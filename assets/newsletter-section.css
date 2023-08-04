@@ -1,3 +1,53 @@
+.newsletter {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: fit-content;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 
+
+.newsletter__wrapper.color-background-1.gradient.content-container.isolate.content-container--full-width.section-template--20070425755933__984d0ec9-71c4-487b-acba-e3423507f49d-padding{
+  background: unset;
+}
+
+.newsletter__field-wrapper.scroll-trigger.animate--slide-in .field:after, 
+.newsletter__field-wrapper.scroll-trigger.animate--slide-in .field:before {
+    display: none;
+}
+
+.newsletter__field-wrapper.scroll-trigger.animate--slide-in .field {
+  flex-direction: column!important;
+  align-items: center;
+}
+
+.newsletter__field-wrapper.scroll-trigger.animate--slide-in .field button {
+  position: unset;
+}
+
+.newsletter__input input {
+  background: unset;
+}
+
+.newsletter__input label {
+  right: 0;
+  left: 0;
+}
+
+.newsletter__input {
+  border-bottom: 1px solid #000;
+  margin-bottom: 40px;
+  width: 543px;
+}
+
+button#Subscribe {
+  border: 1px solid;
+  border-radius: 50px;
+  width: 210px;
+}
+
 .newsletter__wrapper {
   padding-right: calc(4rem / var(--font-body-scale));
   padding-left: calc(4rem / var(--font-body-scale));

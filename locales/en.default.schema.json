@@ -265,6 +265,10 @@
           "label": "Instagram",
           "info": "http:\/\/instagram.com\/shopify"
         },
+        "social_spotify_link": {
+          "label": "Spotify",
+          "info": "http:\/\/spotify.com\/shopify"
+        },
         "social_tiktok_link": {
           "label": "TikTok",
           "info": "https:\/\/tiktok.com\/@shopify"
@@ -274,8 +278,8 @@
           "info": "https:\/\/shopify.tumblr.com"
         },
         "social_snapchat_link": {
-          "label": "Snapchat",
-          "info": "https:\/\/www.snapchat.com\/add\/shopify"
+          "label": "Spotify",
+          "info": "https:\/\/www.spotify.com\/shopify"
         },
         "social_youtube_link": {
           "label": "YouTube",

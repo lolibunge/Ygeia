@@ -5,11 +5,12 @@
   align-items: center;
   width: 100%;
   position: relative;
+  align-items: center;
 }
 
 @media screen and (min-width: 750px) {
   .newsletter-form {
-    align-items: flex-start;
+    /* align-items: flex-start; */
     margin: 0 auto;
     max-width: 36rem;
   }

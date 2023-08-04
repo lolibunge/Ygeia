@@ -88,7 +88,7 @@
   }
 
   .banner--medium:not(.banner--adapt) {
-    min-height: 56rem;
+    min-height: unset;
   }
 
   .banner--large:not(.banner--adapt) {
@@ -386,11 +386,13 @@
 
 .banner__box > * + .banner__text {
   margin-top: 1.5rem;
+
 }
 
 @media screen and (min-width: 750px) {
   .banner__box > * + .banner__text {
     margin-top: 2rem;
+    text-align: left;
   }
 }
 
@@ -400,6 +402,7 @@
 
 .banner__box > *:first-child {
   margin-top: 0;
+  text-align: left;
 }
 
 @media screen and (max-width: 749px) {
@@ -436,6 +439,8 @@
   gap: 1rem;
   max-width: 45rem;
   word-break: break-word;
+  border: 1px solid #000;
+  border-radius: 50px;
 }
 
 @media screen and (max-width: 749px) {
@@ -461,7 +466,7 @@
 }
 
 .banner__box > * + .banner__buttons {
-  margin-top: 2rem;
+  margin: 2rem  auto ; 
 }
 
 @media screen and (max-width: 749px) {

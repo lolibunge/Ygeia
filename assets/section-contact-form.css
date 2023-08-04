@@ -37,3 +37,47 @@
     grid-column-gap: 2rem;
   }
 }
+
+
+/* CONTACT PAGE */
+.contact-page__container {
+  display: flex;
+}
+
+h2.title.title-wrapper--no-top-margin.inline-richtext.h1.scroll-trigger.animate--slide-in {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+span.second-part {
+  text-align: right;
+}
+
+.contact-page__left-column {
+  padding: 40px;
+  width: 50%;
+}
+
+.contact__button .button {
+  background: transparent;
+  border: 1px solid #000;
+  border-radius: 50px;
+  width: 50%;
+}
+
+.contact__button {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 50px;
+}
+
+.content-for-layout{
+  margin-top: 140px!important;
+}
+
+span.icon-chat {
+  height: 16px;
+  width: 16px;
+  margin-right: 10px;
+}

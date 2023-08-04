@@ -1,3 +1,12 @@
+.feature-collection .collection {
+  text-align: center;
+}
+
+.feature-collection .card.card--standard.card--media {
+  justify-content: space-between;
+  align-items: center;
+}
+
 .card-wrapper {
   color: inherit;
   height: 100%;
@@ -14,6 +23,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .card.card--horizontal {
@@ -50,7 +61,7 @@
 
 .card--card:after,
 .card--standard .card__inner:after {
-  content: '';
+  content: "";
   position: absolute;
   z-index: -1;
   width: calc(var(--border-width) * 2 + 100%);
@@ -58,8 +69,8 @@
   top: calc(var(--border-width) * -1);
   left: calc(var(--border-width) * -1);
   border-radius: var(--border-radius);
-  box-shadow: var(--shadow-horizontal-offset) var(--shadow-vertical-offset) var(--shadow-blur-radius)
-    rgba(var(--color-shadow), var(--shadow-opacity));
+  box-shadow: var(--shadow-horizontal-offset) var(--shadow-vertical-offset) var(--shadow-blur-radius) rgba(var(--color-shadow),var(--shadow-opacity));
+  background: #00000042;
 }
 
 /* Needed for gradient continuity with or without animation, the transform scopes the gradient to its container which happens already when animation are turned on */
@@ -87,7 +98,7 @@
 .card .card__inner .card__media {
   overflow: hidden;
   /* Fix for Safari border bug on hover */
-  z-index: 0;
+  z-index: -1;
   border-radius: calc(var(--border-radius) - var(--border-width) - var(--image-padding));
 }
 
@@ -101,7 +112,7 @@
 }
 
 .card-information {
-  text-align: var(--text-alignment);
+  text-align: center;
 }
 
 .card__media,
@@ -126,6 +137,7 @@
 
 .card__inner {
   width: 100%;
+  height: 250px;
 }
 
 .card--media .card__inner .card__content {
@@ -141,13 +153,57 @@
   flex-grow: 1;
 }
 
+.collection-list .card__inner .card__content {
+  display: none;
+}
+
+.card__information {
+  display: flex;
+  flex-direction: column;
+}
+
 .card__content--auto-margins {
   grid-template-rows: minmax(0, auto) max-content minmax(0, auto);
+}
+
+.feature-collection .collection .collection__title h4 {
+  text-transform: uppercase;
+  /* font-size: 21px; */
+}
+
+.card__description {
+  margin: 50px 0 30px;
+  min-height: 100px;
+  text-align: center;
+}
+
+.card__button .btn__view-products {
+  border: 1px solid #000;
+  border-radius: 50px;
+  padding: 10px 50px;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
 }
 
 .card__information {
   grid-row-start: 2;
   padding: 1.3rem 1rem;
+}
+
+.feature-collection .card__information {
+  width: 100%;
+  display: flex!important;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-collection .card__information h3{
+  color: #fff;
+}
+
+.feature-collection .card__information h3 a{
+  text-decoration: none;
 }
 
 .card:not(.ratio) > .card__content {
@@ -200,6 +256,7 @@
 .card__heading {
   margin-top: 0;
   margin-bottom: 0;
+  color: #505050;
 }
 
 .card__heading:last-child {
@@ -233,6 +290,9 @@
 
 .card--card.card--media > .card__content {
   margin-top: calc(0rem - var(--image-padding));
+}
+.card__heading a{
+  text-decoration: none;
 }
 
 .card--standard.card--text a::after,
@@ -299,8 +359,8 @@
   }
 
   .underline-links-hover:hover a {
-    text-decoration: underline;
-    text-underline-offset: 0.3rem;
+    text-decoration: unset;
+    text-underline-offset: unset;
   }
 }
 
@@ -309,7 +369,14 @@
 .card--standard:not(.card--horizontal) > .card__content .card__badge,
 .card--standard.card--text.article-card > .card__content .card__information,
 .card--standard > .card__content .card__caption {
-  display: none;
+  display: block;
+}
+
+.card__information {
+  width: 100%;
+  display: flex!important;
+  align-items: center;
+  justify-content: center;
 }
 
 .card--standard:not(.card--horizontal) .placeholder-svg {
@@ -365,6 +432,12 @@
 
 .card-information {
   width: 100%;
+  line-height: 0;
+  min-height: 100px;
+}
+
+.card-information p, .card-information div{
+  margin: 0;
 }
 
 .card-information > * {

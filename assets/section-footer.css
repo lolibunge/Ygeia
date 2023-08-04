@@ -2,12 +2,17 @@
   border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
 
+.footer .footer__content-top .list-menu__item {
+  font-family: 'The Seasons Regular';
+  font-size: 25px;
+}
+
 .footer:not(.color-background-1) {
   border-top: none;
 }
 
 .footer__content-top {
-  padding-bottom: 5rem;
+  padding:  0 5rem 5rem;
   display: block;
 }
 
@@ -38,6 +43,11 @@
     row-gap: 6rem;
     margin-bottom: 0;
   }
+}
+
+.footer__blocks-wrapper {
+  width: fit-content;
+  column-gap: 80px;
 }
 
 .footer__content-bottom {
@@ -291,8 +301,23 @@
 }
 
 .footer__copyright {
-  text-align: center;
-  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.footer__copyright-links ul {
+  display: flex;
+  column-gap: 20px;
+}
+
+.footer__copyright-links li {
+  list-style: none;
+}
+
+.footer__content-bottom-wrapper.footer-copyright__second-row.page-width {
+  justify-content: space-between;
+  max-width: unset;
 }
 
 @media screen and (min-width: 750px) {
@@ -332,6 +357,7 @@
 
   .footer-block__details-content > li:not(:last-child) {
     margin-right: 1.5rem;
+    white-space: nowrap;  
   }
 }
 
@@ -368,7 +394,7 @@
 @media screen and (min-width: 750px) {
   .footer-block__details-content .list-menu__item--link {
     display: inline-block;
-    font-size: 1.4rem;
+    font-size: 33px;
   }
 
   .footer-block__details-content > :first-child .list-menu__item--link {

@@ -78,3 +78,10 @@
 .collection__view-all a:not(.link) {
   margin-top: 1rem;
 }
+.collection__view-all .button {
+  max-width: fit-content;
+  word-break: break-word;
+  border: 1px solid #000;
+  border-radius: 50px;
+  margin: auto;
+}
