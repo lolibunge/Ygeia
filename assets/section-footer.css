@@ -46,7 +46,7 @@
 }
 
 .footer__blocks-wrapper {
-  width: fit-content;
+  width: 100%;
   column-gap: 80px;
 }
 
