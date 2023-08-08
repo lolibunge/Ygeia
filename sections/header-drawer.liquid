@@ -1,0 +1,22 @@
+{% render 'header-drawer' %}
+
+{% schema %}
+{
+  "name": "Header Drawer",
+  "class": "section-header-drawer",
+  "settings": [
+    
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "t:sections.header.settings.menu.label"
+    },
+    {
+        "type": "link_list",
+        "id": "second-menu",
+        "label": "Second Main Menu"
+    }
+  ]
+}
+{% endschema %}

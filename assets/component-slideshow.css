@@ -144,8 +144,53 @@ slideshow-component .slideshow.banner {
   z-index: 1;
 }
 
-.slideshow__controls button.slider-button {
+/* .slideshow__controls button.slider-button {
   display: none;
+} */
+
+slideshow-component .slider-button.slider-button--prev:before {
+  content: "";
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-image: url(/cdn/shop/files/icon-angle.webp?v=1691153204);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 30px;
+  width: 30px;
+  opacity: .3;
+  transform: rotate(180deg);
+}
+
+slideshow-component .slider-button.slider-button--prev svg{
+  display: none;
+}
+
+slideshow-component .slider-button.slider-button--next:before {
+  content: "";
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-image: url(/cdn/shop/files/icon-angle.webp?v=1691153204);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 30px;
+  width: 30px;
+  opacity: .3;
+} 
+
+slideshow-component .slider-button.slider-button--next svg{
+  display: none;
+}
+
+.slideshow__controls-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .slideshow__controls--top {

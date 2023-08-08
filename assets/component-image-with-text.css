@@ -415,3 +415,9 @@
     row-gap: var(--grid-desktop-vertical-spacing);
   }
 }
+
+
+div#shopify-section-template--20070425821469__0895009e-d528-4325-8c10-714459f5cd47 a.button.button--primary {
+  border: none;
+  text-decoration: underline;
+}

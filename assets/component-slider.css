@@ -369,6 +369,8 @@ slider-component.slider-component-full-width {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 9;
 }
 
 .slider-button:not([disabled]):hover {

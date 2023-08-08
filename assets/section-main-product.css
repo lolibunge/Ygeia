@@ -28,8 +28,10 @@
   }
 
   .product__info-wrapper {
-    padding: 0 0 0 5rem;
-  }
+    box-shadow: 0px 0px 30px 0px #e6e6e6;
+    border-radius: 50px;
+    padding: 4rem;
+}
 
   .product__info-wrapper--extra-padding {
     padding: 0 0 0 8rem;
@@ -59,7 +61,7 @@
   }
 
   .product--large:not(.product--no-media) .product__info-wrapper {
-    padding: 0 0 0 4rem;
+    /* padding: 0 0 0 4rem; */
     max-width: 35%;
     width: calc(35% - var(--grid-desktop-horizontal-spacing) / 2);
   }
@@ -279,7 +281,19 @@ fieldset.product-form__input .form__label {
 
 .product-form__submit {
   margin-bottom: 1rem;
+  background: #b2a89d;
+  border: none;
+  font-family: 'The Seasons Regular';
+  color: #fff;
+  font-size: 16px;
 }
+
+.product__price-add-to-cart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 
 .no-js .product-form__submit.button--secondary {
   --color-button: inherit;
@@ -337,11 +351,16 @@ a.product__text {
 
 .product__text.caption-with-letter-spacing {
   text-transform: uppercase;
+  font-size: 12px;
 }
 
 .product__title {
   word-break: break-word;
   margin-bottom: 1.5rem;
+}
+
+.product__title h1{
+  font-size: 26px;
 }
 
 .product__title > * {
@@ -369,7 +388,7 @@ a.product__text {
 }
 
 .product .price__container {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
 }
 
 .product .price dl {
@@ -1300,6 +1319,9 @@ a.product__text {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  text-transform: uppercase;
+  text-decoration: underline;
+  font-size: 12px;
 }
 
 .product--no-media .product__inventory {

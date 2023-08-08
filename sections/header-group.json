@@ -43,10 +43,16 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "header-drawer": {
+      "type": "heade-drawer",
+      "settings": {
+      }
     }
   },
   "order": [
     "announcement-bar",
-    "header"
+    "header",
+    "header-drawer"
   ]
 }
