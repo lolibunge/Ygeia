@@ -30,8 +30,11 @@
   .product__info-wrapper {
     box-shadow: 0px 0px 30px 0px #e6e6e6;
     border-radius: 50px;
+  }
+  
+  .product__info {
     padding: 4rem;
-}
+  }
 
   .product__info-wrapper--extra-padding {
     padding: 0 0 0 8rem;
@@ -380,7 +383,7 @@ a.product__text {
 }
 
 .product__accordion .accordion__content {
-  padding: 0 1rem;
+  padding: 0 4rem;
 }
 
 .product .price .badge {

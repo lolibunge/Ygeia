@@ -75,7 +75,8 @@
         class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
       >
         {%- assign product_form_id = 'product-form-' | append: section.id -%}
-
+        
+        <div class="product__info">
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when '@app' -%}
@@ -166,24 +167,7 @@
               </p>
             {%- when 'custom_liquid' -%}
               {{ block.settings.custom_liquid }}
-            {%- when 'collapsible_tab' -%}
-              <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
-                <details id="Details-{{ block.id }}-{{ section.id }}">
-                  <summary>
-                    <div class="summary__title">
-                      {% render 'icon-accordion', icon: block.settings.icon %}
-                      <h2 class="h4 accordion__title inline-richtext">
-                        {{ block.settings.heading | default: block.settings.page.title }}
-                      </h2>
-                    </div>
-                    {% render 'icon-caret' %}
-                  </summary>
-                  <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                    {{ block.settings.content }}
-                    {{ block.settings.page.content }}
-                  </div>
-                </details>
-              </div>
+
             {%- when 'quantity_selector' -%}
               <div
                 id="Quantity-Form-{{ section.id }}"
@@ -523,6 +507,85 @@
               %}
           {%- endcase -%}
         {%- endfor -%}
+      </div>
+
+      <div class="product__accordion-wrapper">
+        {% for block in section.blocks %}
+        {%- case block.type -%}
+
+          {%- when 'collapsible_tab' -%}
+          <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
+            <details id="Details-{{ block.id }}-{{ section.id }}">
+              <summary>
+                <div class="summary__title">
+                  {% render 'icon-accordion', icon: block.settings.icon %}
+                  <h2 class="h4 accordion__title inline-richtext">
+                    {{ block.settings.heading | default: block.settings.page.title }}
+                  </h2>
+                </div>
+                {% render 'icon-caret' %}
+              </summary>
+              <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                {{ block.settings.content }}
+                {{ block.settings.page.content }}
+              </div>
+            </details>
+          </div>
+        {%- when 'collapsible_description' -%}
+          <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
+            <details id="Details-{{ block.id }}-{{ section.id }}">
+              <summary>
+                <div class="summary__title">
+                  {% render 'icon-accordion', icon: block.settings.icon %}
+                  <h2 class="h4 accordion__title inline-richtext">
+                    {{ block.settings.heading | default: block.settings.page.title }}
+                  </h2>
+                </div>
+                {% render 'icon-caret' %}
+              </summary>
+              <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                {{ product.metafields.custom.product_description.value }}
+              </div>
+            </details>
+          </div>
+          {%- when 'collapsible_benefits' -%}
+          <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
+            <details id="Details-{{ block.id }}-{{ section.id }}">
+              <summary>
+                <div class="summary__title">
+                  {% render 'icon-accordion', icon: block.settings.icon %}
+                  <h2 class="h4 accordion__title inline-richtext">
+                    {{ block.settings.heading | default: block.settings.page.title }}
+                  </h2>
+                </div>
+                {% render 'icon-caret' %}
+              </summary>
+              <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+               {{ product.metafields.custom.product_benefits.value }}
+              </div>
+            </details>
+          </div>
+          {%- when 'collapsible_how-it-works' -%}
+          <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
+            <details id="Details-{{ block.id }}-{{ section.id }}">
+              <summary>
+                <div class="summary__title">
+                  {% render 'icon-accordion', icon: block.settings.icon %}
+                  <h2 class="h4 accordion__title inline-richtext">
+                    {{ block.settings.heading | default: block.settings.page.title }}
+                  </h2>
+                </div>
+                {% render 'icon-caret' %}
+              </summary>
+              <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+               {{ product.metafields.custom.product_how_it_works.value }}
+              </div>
+            </details>
+          </div>
+        {%- endcase -%}
+        {% endfor %}
+      </div>
+
         <a href="{{ product.url }}" class="link product__view-details animate-arrow">
           {{ 'products.product.view_full_details' | t }}
           {% render 'icon-arrow' %}
@@ -1072,6 +1135,60 @@
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.page.label"
         }
       ]
+    },
+    {
+      "type": "collapsible_description",
+      "name": "Collapsible Description",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Collapsible row",
+          "info": "t:sections.main-product.blocks.collapsible_tab.settings.heading.info",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.content.label"
+        }
+      ]          
+    },
+    {
+      "type": "collapsible_benefits",
+      "name": "Collapsible Benefits",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Collapsible row",
+          "info": "t:sections.main-product.blocks.collapsible_tab.settings.heading.info",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.content.label"
+        }
+      ]          
+    },
+    {
+      "type": "collapsible_how-it-works",
+      "name": "Collapsible How it Works",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Collapsible row",
+          "info": "t:sections.main-product.blocks.collapsible_tab.settings.heading.info",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.content.label"
+        }
+      ]          
     },
     {
       "type": "popup",

@@ -121,6 +121,10 @@
     rgba(var(--color-shadow), var(--media-shadow-opacity));
 }
 
+.image-with-text .image-with-text__media-item {
+  padding: 6rem 7rem 7rem;
+}
+
 .image-with-text .global-media-settings {
   overflow: hidden !important;
 }

@@ -21,6 +21,7 @@
 
 .collection-hero__text-wrapper {
   flex-basis: 100%;
+  text-align: center;
 }
 
 @media screen and (min-width: 750px) {
@@ -40,8 +41,7 @@
 }
 
 .collection-hero__title + .collection-hero__description {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin: 1.5rem auto;
   font-size: 1.6rem;
   line-height: calc(1 + 0.5 / var(--font-body-scale));
 }

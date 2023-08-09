@@ -95,9 +95,9 @@ html.no-js .no-js-hidden {
 }
 
 .page-width {
-  max-width: var(--page-width);
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0!important;
 }
 
 body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
@@ -105,7 +105,8 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 }
 
 .page-width.drawer-menu {
-  max-width: 100%;
+  max-width: 1440px;
+  margin: auto;
 }
 
 .page-width-desktop {
@@ -654,6 +655,18 @@ summary {
   /* position: relative; */
 }
 
+summary.header__icon span:after {
+  content: 'MENU';
+  color: #fff;
+  position: absolute;
+  font-family: 'The Seasons Regular';
+  font-size: 25px;
+}
+
+details#Details-menu-drawer-container[open] summary.header__icon span:after {
+  content: 'CLOSE';
+}
+
 summary .icon-caret {
   position: absolute;
   height: 0.6rem;
@@ -805,6 +818,24 @@ summary::-webkit-details-marker {
   gap: 1rem;
   margin-bottom: 3rem;
   flex-wrap: wrap;
+}
+
+.multicolumn-with-video .title-wrapper-with-link {
+  justify-content: flex-end;
+}
+
+#shopify-section-template--20070425821469__1a63a889-f1e9-4a23-840f-a708acd29ee7 .multicolumn-with-video .title-wrapper-with-link {
+  justify-content: center;
+}
+
+#shopify-section-template--20070425821469__1a63a889-f1e9-4a23-840f-a708acd29ee7 .multicolumn-card-spacing {
+  padding-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.multicolumn-with-video .center {
+  margin-top: 30px;
 }
 
 .title--primary {
@@ -2366,7 +2397,6 @@ product-info .loading-overlay:not(.hidden) ~ *,
   position: fixed;
   top: 0;
   width: 100%; 
-  max-width: 1440px; 
 }
 
 .shopify-section-header-hidden .header-wrapper {
@@ -3620,6 +3650,7 @@ details-disclosure > details {
 main#MainContent {
   max-width: 1440px;
   margin: 120px auto;
+  width: 100%;
 }
 .no-top-margin {
   margin: auto!important;

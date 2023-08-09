@@ -556,3 +556,23 @@
     clip-path: polygon(var(--shape--blob-5));
   }
 }
+
+/* BLOG  */
+.blog .card__inner .card__content, 
+.main-blog .card__inner .card__content {
+  display: none;
+}
+
+.blog h3.card__heading.h2, 
+.main-blog h3.card__heading.h2  {
+  font-family: 'Avenir Regular';
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.blog .article-card__info.caption-with-letter-spacing.h5, 
+.main-blog .article-card__info.caption-with-letter-spacing.h5  {
+  font-family: 'Avenir Regular';
+  font-style: italic;
+}
