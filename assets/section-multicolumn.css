@@ -15,10 +15,10 @@
   margin-top: 30px!important;
 }
 
-.multicolumn-list.grid {
+/* .multicolumn-list.grid {
   column-gap: 30px;
   flex-wrap: unset;
-}
+} */
 
 @media screen and (max-width: 749px) {
   .multicolumn .title-wrapper-with-link {

@@ -1,6 +1,23 @@
 .feature-collection .collection {
   text-align: center;
+  width: 90%;
+  margin: auto;
+  padding-top: 56px;
 }
+.feature-collection .collection__section-title h3 {
+  width: 45%;
+  margin: 0 auto 30px;
+}
+
+.feature-collection .collection__title {
+  margin: 60px auto 40px;
+}
+
+.feature-collection .collection__section-title .collection__description {
+    width: 60%;
+    margin: auto;
+}
+
 
 .feature-collection .card.card--standard.card--media {
   justify-content: space-between;
@@ -151,6 +168,10 @@
   padding: 1rem;
   width: 100%;
   flex-grow: 1;
+}
+
+.section-collection-list .collection-list-wrapper {
+  width: 90%;
 }
 
 .collection-list .card__inner .card__content {
@@ -575,4 +596,16 @@
 .main-blog .article-card__info.caption-with-letter-spacing.h5  {
   font-family: 'Avenir Regular';
   font-style: italic;
+}
+
+
+@media screen and (max-width:768px){
+  .feature-collection .collection__section-title h3 {
+    width: 100%;
+  }
+  
+  .feature-collection .collection__section-title .collection__description {
+      width: 100%;
+  }
+  
 }

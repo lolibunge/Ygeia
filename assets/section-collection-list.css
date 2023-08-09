@@ -4,7 +4,6 @@
   /* display: flex;
   column-gap: 20px; */
 }
-
 .product-carousel .card-view-product {
   border: 1px solid;
   border-radius: 50px;
@@ -22,24 +21,33 @@
   outline: none!important;
 }
 
-.flickity-page-dots {
+.section-collection-list .flickity-page-dots, .feature-collection .flickity-page-dots{
   display: none;
 }
+
+.flickity-page-dots {
+  bottom: 25px;
+}
+
 
 .flickity-button, .flickity-button:hover {
   background: unset;
 }
 
-.flickity-prev-next-button.previous {
+.feature-collection  .flickity-prev-next-button.previous,
+.section-collection-list .flickity-prev-next-button.previous {
   left: -50px;
 }
 
-.flickity-prev-next-button.next {
+
+.feature-collection .flickity-prev-next-button.next,
+.section-collection-list .flickity-prev-next-button.next {
   right: -50px;
 }
 
-.flickity-prev-next-button {
-  top: 40%;
+.feature-collection .flickity-prev-next-button,
+.section-collection-list .flickity-prev-next-button{
+  top: 25%;
   width: 30px;
   height: 30px;
 }
