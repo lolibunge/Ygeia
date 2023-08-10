@@ -1,3 +1,9 @@
+<!-- CSS -->
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<!-- JavaScript -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+
 <section
   id="MainProduct-{{ section.id }}"
   class="page-width section-{{ section.id }}-padding"
@@ -65,9 +71,10 @@
 
   <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
     <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
-      {% render 'product-media-gallery', variant_images: variant_images %}
+      <div class="main-carousel">{% render 'carousel-product-gallery' %}</div>
     </div>
     <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+     
       <product-info
         id="ProductInfo-{{ section.id }}"
         data-section="{{ section.id }}"
@@ -75,7 +82,8 @@
         class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
       >
         {%- assign product_form_id = 'product-form-' | append: section.id -%}
-        
+        <div class="product__info-column">
+          <div class="product__info-left-column">
         <div class="product__info">
         {%- for block in section.blocks -%}
           {%- case block.type -%}
@@ -123,16 +131,7 @@
                     {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
                   {%- endif -%}
                 </div>
-              <div {{ block.shopify_attributes }}>
-                {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
-                {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
-                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                  {{ form | payment_terms }}
-                {%- endform -%}
-              </div>
-
-              {%- when 'buy_buttons' -%}
-              {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%}
+              
 
               
 
@@ -507,6 +506,24 @@
               %}
           {%- endcase -%}
         {%- endfor -%}
+        </div>
+        </div>
+        <div class="product__info-right-column">
+          {% for block in section.blocks %}
+        {%- case block.type -%}
+          <div {{ block.shopify_attributes }}>
+            {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
+            {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              {{ form | payment_terms }}
+            {%- endform -%}
+          </div>
+
+          {%- when 'buy_buttons' -%}
+          {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%}
+        </div>
+        {%- endcase -%}
+        {%- endfor -%}
       </div>
 
       <div class="product__accordion-wrapper">
@@ -591,7 +608,8 @@
           {% render 'icon-arrow' %}
         </a>
       </product-info>
-    </div>
+      </div>
+    
     {%- if section.settings.media_position == 'right' -%}
       {% comment %} Duplicate gallery to display after product content on tablet/desktop breakpoint {% endcomment %}
       <div class="grid__item product__media-wrapper small-hide">
@@ -720,6 +738,59 @@
     }
   </script>
 </section>
+
+<style>
+  .main-carousel .flickity-viewport{
+    height: 660px!important;
+    width: 400px;
+  }
+  .product__media-wrapper{
+    width: 400px;
+    height: 660px;
+    margin: auto;
+  }
+  .carousel-cell {
+    display: block;
+    padding: 0!important;
+    margin-right: 10px;
+  }
+  .carousel-cell img {
+    display: block;
+    height: 660px;
+    object-fit: contain;
+  }
+  .main-carousel .flickity-prev-next-button.previous {
+    left: -300px;
+  }
+
+  .main-carousel .flickity-prev-next-button.next {
+    right: -300px;
+  }
+  .main-carousel .flickity-viewport:focus, .main-carousel:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+
+  .main-carousel .flickity-viewport:focus-visible, .main-carousel:focus-visible {
+    outline: 0;
+    outline-offset: 0;
+    box-shadow: unset;
+  }
+
+
+  </style>
+
+<script>
+  // external js: flickity.pkgd.js
+ 
+ var elem = document.querySelector('.main-carousel');
+ var flkty = new Flickity( elem, {
+   // options
+   'wrapAround': true,
+  'groupCells': true,
+  'pageDots': false
+ });
+ </script>
 
 {% schema %}
 {

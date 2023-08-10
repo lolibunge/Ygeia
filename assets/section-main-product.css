@@ -30,10 +30,11 @@
   .product__info-wrapper {
     box-shadow: 0px 0px 30px 0px #e6e6e6;
     border-radius: 50px;
+    background: #fff;
   }
   
   .product__info {
-    padding: 4rem;
+    padding: 0rem 4rem 0;
   }
 
   .product__info-wrapper--extra-padding {
@@ -340,6 +341,17 @@ fieldset.product-form__input .form__label {
 .product__info-container .product__description,
 .product__info-container .icon-with-text {
   margin: 2.5rem 0;
+}
+
+.product__info-column {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 40px;
+}
+
+.product__price-add-to-cart product-form.product-form {
+  margin: 0!important;
 }
 
 .product__text {

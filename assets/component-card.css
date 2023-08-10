@@ -280,6 +280,21 @@
   color: #505050;
 }
 
+.collection .card__heading {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #505050;
+  font-family: 'Avenir Regular';
+  text-transform: uppercase;
+}
+
+.collection .card-information {
+  width: 100%;
+  line-height: 0;
+  min-height: unset;
+  font-style: italic;
+}
+
 .card__heading:last-child {
   margin-bottom: 0;
 }

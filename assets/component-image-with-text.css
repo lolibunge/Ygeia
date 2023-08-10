@@ -126,7 +126,12 @@
 }
 
 .image-with-text .image-with-text__media-item {
-  padding: 6rem 7rem 7rem;
+  /* padding: 6rem 7rem 7rem; */
+  padding:0;
+}
+
+.two-block-text .two-block-text__media-item{
+  padding: 12rem 7rem 7rem;
 }
 
 .image-with-text .global-media-settings {
@@ -340,7 +345,7 @@
 
 @media screen and (min-width: 990px) {
   .image-with-text__content {
-    padding: 6rem 7rem 7rem;
+    padding: 12rem 7rem 7rem;
   }
 }
 
