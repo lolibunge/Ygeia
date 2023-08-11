@@ -217,6 +217,7 @@
   display: flex!important;
   align-items: center;
   justify-content: center;
+  row-gap: 30px;
 }
 
 .feature-collection .card__information h3{

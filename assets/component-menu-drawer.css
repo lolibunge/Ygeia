@@ -16,13 +16,13 @@ details#Details-menu-drawer-container[open] .header__icon {
 }
 
 header-drawer .header__icon span{
-  height: 100px!important;
-  width: 100px!important;
+  height: 130px!important;
+  width: 130px!important;
 }
 
 .header__icon--menu img {
-  width: 100px!important;
-  height: 100px!important;
+  width: 130px!important;
+  height: 130px!important;
   object-fit: cover;
 }
 

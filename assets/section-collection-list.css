@@ -123,6 +123,16 @@ button.flickity-button.flickity-prev-next-button.next svg {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
+
+  .flickity-prev-next-button{
+    display: none;  
+  }
+
+  .feature-collection .flickity-prev-next-button, .section-collection-list .flickity-prev-next-button {
+    top: 35%;
+    display: block;  
+  }
+  
 }
 
 .collection-list__item:only-child {
@@ -133,6 +143,9 @@ button.flickity-button.flickity-prev-next-button.next svg {
 @media screen and (max-width: 749px) {
   .slider.collection-list--1-items {
     padding-bottom: 0;
+  }
+  .collection-list-view-all {
+    margin-bottom: 30px;
   }
 }
 
