@@ -20,7 +20,7 @@
 
   .facets__form .product-count {
     grid-column-start: 3;
-    align-self: flex-start;
+    align-self: center;
   }
 }
 
@@ -32,7 +32,7 @@
 }
 
 .facet-filters {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   grid-column: 2;
   grid-row: 1;
@@ -179,13 +179,17 @@
   grid-row: 1;
   display: flex;
   flex-wrap: wrap;
+  column-gap: 20px;
 }
 
 .facets__heading {
   display: block;
   color: rgba(var(--color-foreground), 0.85);
   font-size: 1.4rem;
-  margin: -1.5rem 2rem 0 0;
+  margin: 0;
+  border: 1px solid #000;
+  padding: 10px 40px;
+  border-radius: 50px;
 }
 
 .facets__reset {
@@ -194,13 +198,16 @@
 
 .facets__disclosure {
   margin-right: 3.5rem;
+  border: 1px solid #000;
+  padding: 10px 40px;
+  border-radius: 50px;
 }
 
 .facets__summary {
   color: rgba(var(--color-foreground), 0.75);
   font-size: 1.4rem;
   padding: 0 1.75rem 0 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
 }
 
 .facets__disclosure fieldset {
@@ -237,7 +244,7 @@
 }
 
 .facets__summary .icon-caret {
-  right: 0;
+  right: 10px;
 }
 
 .facets__display {

@@ -25,6 +25,30 @@ slideshow-component .slideshow.banner {
   visibility: visible;
 }
 
+.slideshow__slide .image-with-text-carousel__image {
+  width: 50%;
+  height: 100%;
+  line-height: 0;
+}
+
+.slideshow__slide .image-with-text-carousel__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slideshow__slide  .image-with-text-carousel__image svg {
+  height: 100%;
+}
+
+.slideshow__slide .image-with-text-carousel__text {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media screen and (max-width: 749px) {
   .slideshow--placeholder.banner--mobile-bottom.banner--adapt_image .slideshow__media,
   .slideshow--placeholder.banner--adapt_image:not(.banner--mobile-bottom) {
@@ -43,6 +67,7 @@ slideshow-component .slideshow.banner {
   flex-direction: column;
   justify-content: center;
   max-width: 54.5rem;
+  align-items: flex-start;
 }
 
 .slideshow__text > * {
@@ -107,6 +132,65 @@ slideshow-component .slideshow.banner {
 
 .slideshow__controls {
   border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+.slideshow__controls.slider-buttons.no-js-hidden.slideshow__controls--border-radius-mobile {
+  width: fit-content;
+  border: none;
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 1;
+}
+
+/* .slideshow__controls button.slider-button {
+  display: none;
+} */
+
+slideshow-component .slider-button.slider-button--prev:before {
+  content: "";
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-image: url(/cdn/shop/files/icon-angle.webp?v=1691153204);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 30px;
+  width: 30px;
+  opacity: .3;
+  transform: rotate(180deg);
+}
+
+slideshow-component .slider-button.slider-button--prev svg{
+  display: none;
+}
+
+slideshow-component .slider-button.slider-button--next:before {
+  content: "";
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-image: url(/cdn/shop/files/icon-angle.webp?v=1691153204);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 30px;
+  width: 30px;
+  opacity: .3;
+} 
+
+slideshow-component .slider-button.slider-button--next svg{
+  display: none;
+}
+
+.slideshow__controls-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .slideshow__controls--top {

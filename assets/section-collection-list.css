@@ -1,6 +1,107 @@
 .collection-list {
   margin-top: 0;
   margin-bottom: 0;
+  /* display: flex;
+  column-gap: 20px; */
+}
+.product-carousel .card-view-product {
+  border: 1px solid;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+.collection-list:focus-visible,
+.product-carousel:focus-visible,
+.flickity-prev-next-button.previous,
+.flickity-prev-next-button.next
+ {
+  box-shadow: none;
+  outline: none!important;
+}
+
+.section-collection-list .flickity-page-dots, .feature-collection .flickity-page-dots{
+  display: none;
+}
+
+.flickity-page-dots {
+  bottom: 25px;
+}
+
+
+.flickity-button, .flickity-button:hover {
+  background: unset;
+}
+
+.feature-collection  .flickity-prev-next-button.previous,
+.section-collection-list .flickity-prev-next-button.previous {
+  left: -50px;
+}
+
+
+.feature-collection .flickity-prev-next-button.next,
+.section-collection-list .flickity-prev-next-button.next {
+  right: -50px;
+}
+
+.feature-collection .flickity-prev-next-button,
+.section-collection-list .flickity-prev-next-button{
+  top: 25%;
+  width: 30px;
+  height: 30px;
+}
+
+button.flickity-button.flickity-prev-next-button.previous:before {
+  content: '';
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-image: url(https://cdn.shopify.com/s/files/1/0794/5106/2557/files/icon-angle.webp?v=1691153204);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 30px;
+  width: 30px;
+  opacity: 0.3;
+  transform: rotate(180deg);
+}
+
+button.flickity-button.flickity-prev-next-button.previous svg {
+  display: none;
+}
+
+button.flickity-button.flickity-prev-next-button.next:before {
+  content: '';
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-image: url(https://cdn.shopify.com/s/files/1/0794/5106/2557/files/icon-angle.webp?v=1691153204);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 30px;
+  width: 30px;
+  opacity: 0.3;
+}
+
+button.flickity-button.flickity-prev-next-button.next svg {
+  display: none;
+}
+
+.collection-list .card--card:after, 
+.collection-list .card--standard .card__inner:after {
+  background: unset;
+  box-shadow: unset;
+}
+
+.collection-list .card--card, 
+.collection-list .card--standard .card__inner {
+  background-color: unset;
+}
+
+.collection-list .card__media .media img {
+  object-fit: contain;
 }
 
 .collection-list-title {
@@ -22,6 +123,16 @@
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
+
+  .flickity-prev-next-button{
+    display: none;  
+  }
+
+  .feature-collection .flickity-prev-next-button, .section-collection-list .flickity-prev-next-button {
+    top: 35%;
+    display: block;  
+  }
+  
 }
 
 .collection-list__item:only-child {
@@ -32,6 +143,9 @@
 @media screen and (max-width: 749px) {
   .slider.collection-list--1-items {
     padding-bottom: 0;
+  }
+  .collection-list-view-all {
+    margin-bottom: 30px;
   }
 }
 
@@ -58,4 +172,13 @@
 
 .collection-list-view-all {
   margin-top: 2rem;
+}
+
+.collection-list-view-all a {
+  text-transform: uppercase;
+  border: 1px solid;
+  border-radius: 50px;
+  line-height: unset;
+  padding: 10px 35px;
+  min-height: unset;
 }

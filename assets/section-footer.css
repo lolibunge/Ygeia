@@ -2,12 +2,17 @@
   border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
 
+.footer .footer__content-top .list-menu__item {
+  font-family: 'The Seasons Regular';
+  font-size: 25px;
+}
+
 .footer:not(.color-background-1) {
   border-top: none;
 }
 
 .footer__content-top {
-  padding-bottom: 5rem;
+  padding:  0 5rem 5rem;
   display: block;
 }
 
@@ -18,7 +23,7 @@
 
   .footer-block.grid__item {
     padding: 0;
-    margin: 4rem 0;
+    margin: 0rem 0;
     width: 100%;
   }
 
@@ -31,6 +36,16 @@
     padding-left: calc(4rem / var(--font-body-scale));
     padding-right: calc(4rem / var(--font-body-scale));
   }
+  
+  .footer-block__details-content {
+    margin-bottom: 0rem!important;
+  }
+
+  .footer-block--icon {
+    margin-top: 30px!important;
+  }
+
+
 }
 
 @media screen and (min-width: 750px) {
@@ -40,9 +55,14 @@
   }
 }
 
+.footer__blocks-wrapper {
+  width: 100%;
+  column-gap: 80px;
+}
+
 .footer__content-bottom {
   border-top: solid 0.1rem rgba(var(--color-foreground), 0.08);
-  padding-top: 3rem;
+  padding: 0 5rem 5rem;
 }
 
 .footer__content-bottom:only-child {
@@ -108,6 +128,12 @@
   margin: 0 auto;
 }
 
+.footer-block--back-to-top {
+  width: 40px;
+  margin-left: auto;
+  margin-right: 0;
+}
+
 @media screen and (min-width: 750px) {
   .footer-block {
     display: block;
@@ -133,6 +159,9 @@
 @media screen and (max-width: 749px) {
   .footer-block.footer-block--menu:only-child {
     text-align: left;
+  }
+  .footer-block--back-to-top {
+    margin: auto;
   }
 }
 
@@ -291,8 +320,23 @@
 }
 
 .footer__copyright {
-  text-align: center;
-  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.footer__copyright-links ul {
+  display: flex;
+  column-gap: 20px;
+}
+
+.footer__copyright-links li {
+  list-style: none;
+}
+
+.footer__content-bottom-wrapper.footer-copyright__second-row.page-width {
+  justify-content: space-between;
+  max-width: unset;
 }
 
 @media screen and (min-width: 750px) {
@@ -332,6 +376,7 @@
 
   .footer-block__details-content > li:not(:last-child) {
     margin-right: 1.5rem;
+    white-space: nowrap;  
   }
 }
 
@@ -368,7 +413,7 @@
 @media screen and (min-width: 750px) {
   .footer-block__details-content .list-menu__item--link {
     display: inline-block;
-    font-size: 1.4rem;
+    font-size: 33px;
   }
 
   .footer-block__details-content > :first-child .list-menu__item--link {

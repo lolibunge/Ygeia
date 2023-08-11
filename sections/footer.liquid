@@ -1,3 +1,5 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+
 {% comment %}theme-check-disable UndefinedObject{% endcomment %}
 {{ 'section-footer.css' | asset_url | stylesheet_tag }}
 {{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
@@ -8,6 +10,10 @@
 {%- style -%}
   .footer {
     margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+    background-color: {{ section.settings.background-color }};
+  }
+  .footer a, .footer{
+    color: {{ section.settings.text-color }}!important;
   }
 
   .section-{{ section.id }}-padding {
@@ -17,7 +23,9 @@
 
   @media screen and (min-width: 750px) {
     .footer {
-      margin-top: {{ section.settings.margin_top }}px;
+      /* margin-top: {{ section.settings.margin_top }}px; */
+      max-width: 1440px;
+      margin: auto;
     }
 
     .section-{{ section.id }}-padding {
@@ -25,9 +33,10 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
 {%- endstyle -%}
 
-<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+<footer class="footer section-{{ section.id }}-padding">
   {%- liquid
     assign has_social_icons = true
     if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
@@ -48,7 +57,7 @@
     or section.settings.enable_follow_on_shop
   -%}
     {%- unless only_empty_brand -%}
-      <div class="footer__content-top page-width">
+      <div class="footer__content-top">
         {%- if section.blocks.size > 0 -%}
           {%- liquid
             if section.blocks.size == 9
@@ -67,7 +76,7 @@
           >
             {%- for block in section.blocks -%}
               <div
-                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if block.type == 'icon' %} footer-block--icon{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
@@ -127,9 +136,7 @@
                       {%- if settings.brand_description != blank -%}
                         <div class="rte">{{ settings.brand_description }}</div>
                       {%- endif -%}
-                      {%- if block.settings.show_social and has_social_icons -%}
-                        {%- render 'social-icons', class: 'footer__list-social' -%}
-                      {%- endif -%}
+                      
                     </div>
                   {%- when 'image' -%}
                     <div class="footer-block__details-content footer-block-image {{ block.settings.alignment }}">
@@ -152,6 +159,10 @@
                         {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
                       {%- endif -%}
                     </div>
+                    {% when 'icon' %}
+                     <div class="footer-block--back-to-top">
+                      <a id="back-top" href="#">{% render 'icon-arrow-up' %}</a> 
+                     </div>
                 {%- endcase -%}
               </div>
             {%- endfor -%}
@@ -236,10 +247,6 @@
               {{ shop | login_button: action: 'follow' }}
               {% # theme-check-enable %}
             </div>
-          {%- endif -%}
-
-          {%- if section.settings.show_social and has_social_icons -%}
-            {%- render 'social-icons', class: 'footer__list-social' -%}
           {%- endif -%}
         </div>
       </div>
@@ -348,13 +355,34 @@
         {%- endif -%}
       </div>
     </div>
-    <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
+    <div class="footer__content-bottom-wrapper footer-copyright__second-row page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
+      <div class="footer__social">
+        {%- if section.settings.show_social and has_social_icons -%}
+            {%- render 'social-icons', class: 'footer__list-social' -%}
+          {%- endif -%}
+      </div>
       <div class="footer__copyright caption">
+      <div class="footer__copyright-links">
+        {%- if section.settings.copy-right-menu != blank -%}
+          <ul class="footer__copyright-links-list">
+            {%- for link in section.settings.copy-right-menu.links -%}
+              <li>
+                <a
+                  href="{{ link.url }}"
+                  class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}"
+                >
+                  {{ link.title }}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
         <small class="copyright__content"
-          >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
+          >&copy; {{ shop.name | link_to: routes.root_url -}}
         </small>
-        <small class="copyright__content">{{ powered_by_link }}</small>
-        {%- if section.settings.show_policy -%}
+        <!-- <small class="copyright__content">{{ powered_by_link }}</small> -->
+        <!-- {%- if section.settings.show_policy -%}
           <ul class="policies list-unstyled">
             {%- for policy in shop.policies -%}
               {%- if policy != blank -%}
@@ -366,11 +394,30 @@
               {%- endif -%}
             {%- endfor -%}
           </ul>
-        {%- endif -%}
+        {%- endif -%} -->
       </div>
     </div>
   </div>
 </footer>
+
+<script>
+$(document).ready(function(){
+
+	// fade in #back-top
+	$(function () {
+
+		// scroll body to 0px on click
+		$('#back-top').click(function () {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 800);
+			return false;
+		});
+	});
+
+});
+</script>
+
 
 {% schema %}
 {
@@ -477,14 +524,38 @@
           "default": "center"
         }
       ]
+    },
+    {
+      "type": "icon",
+      "name": "Icon",
+      "settings": []
     }
   ],
   "settings": [
     {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "default": "background-1"
+      "type": "header",
+      "content": "Footer Layout"
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Choose a background color"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Choose a text color"
+    },
+    {
+      "type": "header",
+      "content": "Copy Right Menu"
+    },
+    {  
+      "type": "link_list",
+      "id": "copy-right-menu",
+      "default": "footer",
+      "label": "t:sections.footer.blocks.link_list.settings.menu.label",
+      "info": "t:sections.footer.blocks.link_list.settings.menu.info"
     },
     {
       "type": "header",

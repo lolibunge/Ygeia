@@ -32,6 +32,9 @@
   min-height: 1.6rem;
   margin: 0;
   word-break: break-word;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-family: 'Avenir Regular';
 }
 
 .accordion .icon-accordion {
@@ -51,6 +54,7 @@
   word-break: break-word;
   overflow-x: auto;
   padding: 0 0.6rem;
+  font-size: 13px;
 }
 
 .accordion__content img {

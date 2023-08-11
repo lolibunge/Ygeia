@@ -12,9 +12,13 @@
   }
 }
 
-.image-with-text__media {
+.section-image-with-text-carousel .image-with-text__media {
   min-height: 100%;
   overflow: visible;
+}
+
+.image-with-text__media {
+  height: 500px!important;
 }
 
 .image-with-text__media--small {
@@ -119,6 +123,15 @@
   overflow: hidden;
   box-shadow: var(--media-shadow-horizontal-offset) var(--media-shadow-vertical-offset) var(--media-shadow-blur-radius)
     rgba(var(--color-shadow), var(--media-shadow-opacity));
+}
+
+.image-with-text .image-with-text__media-item {
+  /* padding: 6rem 7rem 7rem; */
+  padding:0;
+}
+
+.two-block-text .two-block-text__media-item{
+  padding: 12rem 7rem 7rem;
 }
 
 .image-with-text .global-media-settings {
@@ -332,7 +345,7 @@
 
 @media screen and (min-width: 990px) {
   .image-with-text__content {
-    padding: 6rem 7rem 7rem;
+    padding: 12rem 7rem 7rem;
   }
 }
 
@@ -361,6 +374,10 @@
 
 .image-with-text__content .image-with-text__text + .button {
   margin-top: 3rem;
+}
+
+.section-image-with-text-carousel .image-with-text__content .image-with-text__text + .button {
+  margin: auto;
 }
 
 .image-with-text__heading {
@@ -414,4 +431,10 @@
   .multirow__inner {
     row-gap: var(--grid-desktop-vertical-spacing);
   }
+}
+
+
+div#shopify-section-template--20070425821469__0895009e-d528-4325-8c10-714459f5cd47 a.button.button--primary {
+  border: none;
+  text-decoration: underline;
 }
