@@ -28,20 +28,19 @@ header-drawer .header__icon span{
 
 div#menu-drawer {
   position: absolute;
-  bottom: 150px;
+  bottom: 170px;
   left: 0;
   right: 0;
   margin: auto;
+  background: rgb(48,48,51);
+  background: linear-gradient(90deg, rgba(48,48,51,1) 0%, rgba(155,153,157,1) 100%);
+  padding: 20px;
   width: fit-content;
-  background-image: url(https://cdn.shopify.com/s/files/1/0794/5106/2557/files/menu-background-color.png?v=1690566936);
-  background-size: contain;
-  background-repeat: no-repeat;
-  padding: 50px;
-  background-position: center;
+  border-radius: 10px;
 }
 
 ul.menu-drawer__menu.has-submenu.list-menu .list-menu__item {
-  font-family: 'The Seasons Regular';
+  font-family: 'BlackMango-Regular';
   font-size: 30px;
 }
 

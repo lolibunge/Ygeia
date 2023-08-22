@@ -280,7 +280,7 @@ h5,
 .h3,
 .h4,
 .h5 {
-  font-family: 'The Seasons Regular';
+  font-family: 'BlackMango-Regular';
   font-style: var(--font-heading-style);
   font-weight: var(--font-heading-weight);
   letter-spacing: calc(var(--font-heading-scale) * 0.06rem);
@@ -311,19 +311,19 @@ h5,
 
 h1,
 .h1 {
-  font-size: 70px;
+  font-size: 7rem;
 }
 
 @media only screen and (min-width: 750px) {
   h1,
   .h1 {
-    font-size: 70px;
+    font-size: 7rem;
   }
 }
 
 @media screen and (max-width:749px){
   h1, .h1 {
-    font-size: 60px;
+    font-size: 6rem;
   }
   h1.title {
       text-align: center;
@@ -347,14 +347,14 @@ h2,
 h3,
 .h3 {
   font-family: 'Balgin';
-  font-size: 21px;
+  font-size: 2rem;
 }
 
 @media only screen and (min-width: 750px) {
   h3,
   .h3 {
     font-family: 'Balgin';
-    font-size: 21px;
+    font-size: 2rem;
   }
 }
 
@@ -362,7 +362,7 @@ h4,
 .h4 {
   font-family: 'Avenir Regular';
   font-style: var(--font-heading-style);
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 h5,
@@ -692,6 +692,20 @@ summary {
 header-drawer details#Details-menu-drawer-container[open] summary.header__icon span:after {
   content: 'CLOSE';
 } */
+
+
+.header__icon--search {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.header__icon--search svg.modal__toggle-open.icon.icon-search, .header__icon--search svg.modal__toggle-close.icon.icon-close {
+  height: 30px;
+  width: 30px;
+  fill: #ffff;
+  color: #fff;
+}
 
 summary .icon-caret {
   position: absolute;
@@ -3614,28 +3628,40 @@ details-disclosure > details {
   src: url("Avenir Regular.woff") format("woff");
 }
 @font-face {
-  font-family: "The Seasons Regular";
-  src: url("The Seasons Regular.woff") format("woff");
+  font-family: "BlackMango-Regular";
+  src: url("BlackMango-Regular.woff") format("woff");
 }
 @font-face {
-  font-family: "The Seasons Light";
-  src: url("The Seasons Light.woff") format("woff");
+  font-family: "BlackMango-Light";
+  src: url("BlackMango-Light.woff") format("woff");
 }
 @font-face {
-  font-family: "The Seasons Light Italic";
-  src: url("The Seasons Light Italic.woff") format("woff");
+  font-family: "BlackMango-Bold";
+  src: url("BlackMango-Bold.woff") format("woff");
 }
 @font-face {
-  font-family: "The Seasons Italic";
-  src: url("The Seasons Italic.woff") format("woff");
+  font-family: "BlackMango-Black";
+  src: url("BlackMango-Black.woff") format("woff");
 }
 @font-face {
-  font-family: "The Seasons Bold Italic";
-  src: url("The Seasons Bold Italic.woff") format("woff");
+  font-family: "BlackMango-ExtraBold";
+  src: url("BlackMango-ExtraBold.woff") format("woff");
 }
 @font-face {
-  font-family: "The Seasons Bold";
-  src: url("The Seasons Bold.woff") format("woff");
+  font-family: "BlackMango-ExtraLight";
+  src: url("BlackMango-ExtraLight.woff") format("woff");
+}
+@font-face {
+  font-family: "BlackMango-Medium";
+  src: url("BlackMango-Medium.woff") format("woff");
+}
+@font-face {
+  font-family: "BlackMango-SemiBold";
+  src: url("BlackMango-SemiBold.woff") format("woff");
+}
+@font-face {
+  font-family: "BlackMango-Thin";
+  src: url("BlackMango-Thin.woff") format("woff");
 }
 
 @font-face {
