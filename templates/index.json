@@ -1,75 +1,513 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify:\/\/collections\/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "button"
-      ],
+    "934afaa0-ca46-42cf-9492-f507830552e6": {
+      "type": "video",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "inverse",
-        "image_behavior": "none",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "heading": "",
+        "heading_size": "h1",
+        "enable_video_looping": true,
+        "video": "shopify:\/\/files\/videos\/homepage-video.mp4",
+        "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+        "description": "",
+        "full_width": true,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
-    "featured_collection": {
+    "8f80e6fe-9984-4d32-aa93-231bf854da8b": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
+        "title": "Reviving the knowledge of the past,introducing the future of science.",
+        "heading_size": "h1",
+        "description": "<p>Revolutionizing the wellness space, Ygeïa was born to empower individuals through quantum healing with treatments that turn back the hands of time of your DNA. <\/p>",
+        "button-text": "<p>Read more<\/p>",
+        "button-link": "#",
+        "collection-title": "<p>ACHIEVE YOUR WELLNESS GOALS<\/p>",
         "show_description": false,
+        "show_title": true,
         "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
+        "collection": "functions",
+        "products_to_show": 25,
         "columns_desktop": 4,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "color_scheme": "background-1",
+        "enable_desktop_slider": true,
+        "slider_visual": "dots",
+        "color_scheme": "",
         "image_ratio": "adapt",
         "image_shape": "default",
-        "show_secondary_image": true,
+        "show_secondary_image": false,
         "show_vendor": false,
         "show_rating": false,
         "enable_quick_add": false,
         "columns_mobile": "2",
         "swipe_on_mobile": false,
-        "padding_top": 44,
+        "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "55221881-c853-4801-9cdd-4ec69fb804e0": {
+      "type": "image-with-text-carousel-2",
+      "blocks": {
+        "49c3f2b4-895f-4796-b049-7b5df9d19fe8": {
+          "type": "block-carousel",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/image-with-text-1.jpg",
+            "height": "large",
+            "desktop_image_width": "medium",
+            "layout": "text_first",
+            "desktop_content_position": "top",
+            "desktop_content_alignment": "left",
+            "content_layout": "no-overlap",
+            "block_background_color": "#efefef",
+            "image_behavior": "none",
+            "mobile_content_alignment": "left",
+            "padding_top": 36,
+            "padding_bottom": 36,
+            "heading": "<strong>Amulets<\/strong>",
+            "heading_size": "h1",
+            "caption": "Advanced shields against electromagnetic pollution",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium",
+            "title": "Transform harm to health, wherever you go.",
+            "title_size": "h3",
+            "text": "<p>Convert harmful electromagnetic frequencies to health-benefiting scalar waves with advanced shields against EMF.<\/p>",
+            "button_label": "SHOP",
+            "button_link": "#",
+            "button_style_secondary": false
+          }
+        },
+        "9c346218-322a-497d-bef5-38077e45fca8": {
+          "type": "block-carousel",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/image-with-text-1.jpg",
+            "height": "large",
+            "desktop_image_width": "medium",
+            "layout": "image_first",
+            "desktop_content_position": "top",
+            "desktop_content_alignment": "left",
+            "content_layout": "no-overlap",
+            "block_background_color": "#efefef",
+            "image_behavior": "none",
+            "mobile_content_alignment": "left",
+            "padding_top": 36,
+            "padding_bottom": 36,
+            "heading": "Image with text",
+            "heading_size": "h1",
+            "caption": "Add a tagline",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium",
+            "title": "Title block",
+            "title_size": "h1",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        },
+        "59db6f2c-9bbc-4d3c-a1b1-1977af1ca7c9": {
+          "type": "block-carousel",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/image-with-text-1.jpg",
+            "height": "large",
+            "desktop_image_width": "medium",
+            "layout": "image_first",
+            "desktop_content_position": "top",
+            "desktop_content_alignment": "left",
+            "content_layout": "no-overlap",
+            "block_background_color": "#efefef",
+            "image_behavior": "none",
+            "mobile_content_alignment": "left",
+            "padding_top": 36,
+            "padding_bottom": 36,
+            "heading": "Image with text",
+            "heading_size": "h1",
+            "caption": "Add a tagline",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium",
+            "title": "Title block",
+            "title_size": "h1",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        },
+        "b3b2ef38-2171-47e2-b40c-0b9527c72808": {
+          "type": "block-carousel",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/image-with-text-1.jpg",
+            "height": "large",
+            "desktop_image_width": "medium",
+            "layout": "image_first",
+            "desktop_content_position": "top",
+            "desktop_content_alignment": "left",
+            "content_layout": "no-overlap",
+            "block_background_color": "#efefef",
+            "image_behavior": "none",
+            "mobile_content_alignment": "left",
+            "padding_top": 36,
+            "padding_bottom": 36,
+            "heading": "Image with text",
+            "heading_size": "h1",
+            "caption": "Add a tagline",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium",
+            "title": "Title block",
+            "title_size": "h1",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "49c3f2b4-895f-4796-b049-7b5df9d19fe8",
+        "9c346218-322a-497d-bef5-38077e45fca8",
+        "59db6f2c-9bbc-4d3c-a1b1-1977af1ca7c9",
+        "b3b2ef38-2171-47e2-b40c-0b9527c72808"
+      ],
+      "settings": {}
+    },
+    "566a17fa-9567-4bd6-b34e-bef1b5000030": {
+      "type": "collection-list",
+      "blocks": {
+        "template--20070425755933__566a17fa-9567-4bd6-b34e-bef1b5000030-featured_collection-1": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "quantum-repair"
+          }
+        },
+        "template--20070425755933__566a17fa-9567-4bd6-b34e-bef1b5000030-featured_collection-2": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "amulets"
+          }
+        },
+        "template--20070425755933__566a17fa-9567-4bd6-b34e-bef1b5000030-featured_collection-3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "juvenis"
+          }
+        },
+        "d45a8509-c2bd-44cd-afa1-c4600d072186": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "crystal-pool"
+          }
+        },
+        "e46745eb-9096-4a63-afbb-63f06fedb0cc": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "gilded-skin"
+          }
+        }
+      },
+      "block_order": [
+        "template--20070425755933__566a17fa-9567-4bd6-b34e-bef1b5000030-featured_collection-1",
+        "template--20070425755933__566a17fa-9567-4bd6-b34e-bef1b5000030-featured_collection-2",
+        "template--20070425755933__566a17fa-9567-4bd6-b34e-bef1b5000030-featured_collection-3",
+        "d45a8509-c2bd-44cd-afa1-c4600d072186",
+        "e46745eb-9096-4a63-afbb-63f06fedb0cc"
+      ],
+      "settings": {
+        "title": "SCROLL OUR DEVICES",
+        "heading_size": "h4",
+        "image_ratio": "square",
+        "columns_desktop": 5,
+        "color_scheme": "",
+        "show_view_all": true,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "0fb3aa40-120f-449a-980e-c16d76b817a0": {
+      "type": "video",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "enable_video_looping": true,
+        "video": "shopify:\/\/files\/videos\/waves.mp4",
+        "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+        "description": "",
+        "full_width": true,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "5d1ca8d2-c6dc-481b-8ed0-a38ef318f9c9": {
+      "type": "rich-text",
+      "blocks": {
+        "template--20070425755933__5d1ca8d2-c6dc-481b-8ed0-a38ef318f9c9-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>WHAT ARE SCALAR WAVES?<\/strong>",
+            "heading_size": "h2"
+          }
+        },
+        "template--20070425755933__5d1ca8d2-c6dc-481b-8ed0-a38ef318f9c9-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Scalar waves are detectable frequencies in the ether all around us, first recorded in the 1890s by Nikola Tesla through<\/p><p>his experiments in wireless energy transmission using the Tesla Coil. These wave propagations are a primal force of nature, traveling faster than the speed of light with the ability to transmit biological signals and transfer information.<\/p>"
+          }
+        },
+        "template--20070425755933__5d1ca8d2-c6dc-481b-8ed0-a38ef318f9c9-button-1": {
+          "type": "button",
+          "settings": {
+            "button_label": "Read more",
+            "button_link": "",
+            "button_style_secondary": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "template--20070425755933__5d1ca8d2-c6dc-481b-8ed0-a38ef318f9c9-heading-1",
+        "template--20070425755933__5d1ca8d2-c6dc-481b-8ed0-a38ef318f9c9-text-1",
+        "template--20070425755933__5d1ca8d2-c6dc-481b-8ed0-a38ef318f9c9-button-1"
+      ],
+      "custom_css": [],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "7c983b50-e193-41c3-b2a6-2dd7d9699a5d": {
+      "type": "image-with-text-carousel-2",
+      "blocks": {
+        "f4724e5f-64c1-4258-b465-1a9c0a4effaf": {
+          "type": "block-carousel",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/image-with-text-2.jpg",
+            "height": "adapt",
+            "desktop_image_width": "medium",
+            "layout": "image_first",
+            "desktop_content_position": "top",
+            "desktop_content_alignment": "left",
+            "content_layout": "no-overlap",
+            "block_background_color": "#efefef",
+            "image_behavior": "none",
+            "mobile_content_alignment": "left",
+            "padding_top": 36,
+            "padding_bottom": 36,
+            "heading": "<strong>Proof<\/strong>",
+            "heading_size": "h1",
+            "caption": "Anti-Aging by Longitudinal Magnetic Waves: A New Approach by Modulating ATP-Levels",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium",
+            "title": "Title block",
+            "title_size": "h1",
+            "text": "<p>Authors: H. Schnabl, H. Schnabl, K. Meyl<\/p>",
+            "button_label": "READ ARTICLE",
+            "button_link": "#",
+            "button_style_secondary": false
+          }
+        },
+        "aa5a7d3b-be08-4964-8ceb-f8f1a9d11f0f": {
+          "type": "block-carousel",
+          "settings": {
+            "height": "adapt",
+            "desktop_image_width": "medium",
+            "layout": "image_first",
+            "desktop_content_position": "top",
+            "desktop_content_alignment": "left",
+            "content_layout": "no-overlap",
+            "block_background_color": "#efefef",
+            "image_behavior": "none",
+            "mobile_content_alignment": "left",
+            "padding_top": 36,
+            "padding_bottom": 36,
+            "heading": "Image with text",
+            "heading_size": "h1",
+            "caption": "Add a tagline",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium",
+            "title": "Title block",
+            "title_size": "h1",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "button_label": "Button label",
+            "button_link": "#",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "f4724e5f-64c1-4258-b465-1a9c0a4effaf",
+        "aa5a7d3b-be08-4964-8ceb-f8f1a9d11f0f"
+      ],
+      "settings": {}
+    },
+    "99c38acc-4c3a-4df0-a435-5cdcfe043d53": {
+      "type": "multicolumn-w-video",
+      "blocks": {
+        "template--20070425755933__99c38acc-4c3a-4df0-a435-5cdcfe043d53-column-1": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/testimony-1.jpg",
+            "show-video": false,
+            "author": "AMARA, USA",
+            "text": "<p>\"Amazing!! I wear mine everyday now, it's so easy to match with basically any outfit and I love how it's not just a statement accessory, but also a gorgeous armour!\"<\/p>"
+          }
+        },
+        "template--20070425755933__99c38acc-4c3a-4df0-a435-5cdcfe043d53-column-2": {
+          "type": "column",
+          "settings": {
+            "show-video": true,
+            "video": "shopify:\/\/files\/videos\/testimoniy-2.mp4",
+            "author": "JADE, SPAIN",
+            "text": "<p>\"I have been worried about the long-term effects of EMF for a while now because I'm normally in close proximity with a lot of machinery. SO GLAD I found this amazing brand with such a beautiful solution so I no longer have to worry! I can't wait to try some of their other products...\"<\/p>"
+          }
+        },
+        "template--20070425755933__99c38acc-4c3a-4df0-a435-5cdcfe043d53-column-3": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/testimony-3.jpg",
+            "show-video": false,
+            "author": "PETER, CANADA",
+            "text": "<p>\"I love my amulet! Everyone always compliments me and asks me where I got it! They're shocked when I tell them it's a healing necklace because it's so stylish...\"<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--20070425755933__99c38acc-4c3a-4df0-a435-5cdcfe043d53-column-1",
+        "template--20070425755933__99c38acc-4c3a-4df0-a435-5cdcfe043d53-column-2",
+        "template--20070425755933__99c38acc-4c3a-4df0-a435-5cdcfe043d53-column-3"
+      ],
+      "settings": {
+        "title": "Testimonials",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "button_label": "View All",
+        "button_link": "#",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "eb4a0f7c-a1f7-4949-8a08-21e561a14dc8": {
+      "type": "faqs",
+      "blocks": {
+        "template--20070425755933__eb4a0f7c-a1f7-4949-8a08-21e561a14dc8-button-1": {
+          "type": "button",
+          "settings": {
+            "button_label": "SCALAR",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        },
+        "8bb48b9a-daab-4b28-92da-daae3219b936": {
+          "type": "button",
+          "settings": {
+            "button_label": "YGEIA PRODUCTS",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        },
+        "a990970b-6115-4ef3-9a5a-f0295e2d345f": {
+          "type": "button",
+          "settings": {
+            "button_label": "ORDERING & PAYMENT",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        },
+        "0fb228fb-b852-42c6-bbee-df5a5a93aca6": {
+          "type": "button",
+          "settings": {
+            "button_label": "SHIPPING & RETURNS",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "template--20070425755933__eb4a0f7c-a1f7-4949-8a08-21e561a14dc8-button-1",
+        "8bb48b9a-daab-4b28-92da-daae3219b936",
+        "a990970b-6115-4ef3-9a5a-f0295e2d345f",
+        "0fb228fb-b852-42c6-bbee-df5a5a93aca6"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52,
+        "heading": "FAQs",
+        "heading_size": "h1",
+        "caption": "Frequently asked questions.",
+        "text_style": "caption-with-letter-spacing",
+        "text_size": "medium",
+        "button_label": "View all FAQs",
+        "button_link": "shopify:\/\/pages\/faqs",
+        "button_style_secondary": false
+      }
+    },
+    "984d0ec9-71c4-487b-acba-e3423507f49d": {
+      "type": "newsletter",
+      "blocks": {
+        "template--20070425755933__984d0ec9-71c4-487b-acba-e3423507f49d-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Newsletter<\/strong>",
+            "heading_size": "h1"
+          }
+        },
+        "template--20070425755933__984d0ec9-71c4-487b-acba-e3423507f49d-paragraph-1": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>I am a professional model and actor based in France. I graduated from Montecero Community College with a degree in Fine Arts.<\/p>"
+          }
+        },
+        "template--20070425755933__984d0ec9-71c4-487b-acba-e3423507f49d-email_form-1": {
+          "type": "email_form",
+          "settings": {
+            "button-text": "SIGN-ME UP"
+          }
+        }
+      },
+      "block_order": [
+        "template--20070425755933__984d0ec9-71c4-487b-acba-e3423507f49d-heading-1",
+        "template--20070425755933__984d0ec9-71c4-487b-acba-e3423507f49d-paragraph-1",
+        "template--20070425755933__984d0ec9-71c4-487b-acba-e3423507f49d-email_form-1"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52,
+        "background-image": "shopify:\/\/shop_images\/newsletter-bg.jpg"
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "934afaa0-ca46-42cf-9492-f507830552e6",
+    "8f80e6fe-9984-4d32-aa93-231bf854da8b",
+    "55221881-c853-4801-9cdd-4ec69fb804e0",
+    "566a17fa-9567-4bd6-b34e-bef1b5000030",
+    "0fb3aa40-120f-449a-980e-c16d76b817a0",
+    "5d1ca8d2-c6dc-481b-8ed0-a38ef318f9c9",
+    "7c983b50-e193-41c3-b2a6-2dd7d9699a5d",
+    "99c38acc-4c3a-4df0-a435-5cdcfe043d53",
+    "eb4a0f7c-a1f7-4949-8a08-21e561a14dc8",
+    "984d0ec9-71c4-487b-acba-e3423507f49d"
   ]
 }

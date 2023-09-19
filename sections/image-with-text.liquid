@@ -71,6 +71,9 @@
                 {{ block.settings.caption | escape }}
               </p>
             {%- when 'text' -%}
+             <div class="image-with-text__heading rte" {{ block.shopify_attributes }}>
+                <h2 class="h1">{{ block.settings.heading }}</h2>
+              </div>
               <div class="image-with-text__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
                 {{ block.settings.text }}
               </div>
@@ -393,6 +396,12 @@
       "name": "t:sections.image-with-text.blocks.text.name",
       "limit": 1,
       "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Block Heading",
+          "label": "t:sections.featured-blog.settings.heading.label"
+        },
         {
           "type": "richtext",
           "id": "text",

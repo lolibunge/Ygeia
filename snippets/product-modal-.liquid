@@ -1,0 +1,286 @@
+
+<style>
+/* Style for the modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    /* Add additional styling as needed */
+}
+
+.modal-content {
+    /* Style for the content within the modal */
+    background-color: #fff;
+    width: 80%;
+    padding: 20px;
+    height: 70vh;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal-step {
+    display: none;
+    /* Style for individual steps within the modal */
+    justify-content: center;
+}
+
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    width: 80%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 20px;
+}
+
+.timeline label{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: .8rem;
+}
+
+.timeline-step {
+    color: #00;
+    border-radius: 5px;
+}
+
+.timeline-step.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+.option-wrapper{
+    display: flex;
+    margin-top: 10px;
+    gap:10px;
+}
+.option label{
+    padding: 5px 20px;
+    border-radius: 20px;
+    background-color: #000;
+    color: #fff;
+}
+
+.product-options {
+    height: calc(70vh - 40vh);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.option input {
+    display: none;
+}
+
+.option input:checked ~ label {
+    background-color: #fff;
+    border: 1px solid #000;
+    color: #000;
+}
+
+</style>
+    
+<!-- Modal for Product Configuration Steps -->
+<div id="product-modal" class="modal">
+    <div class="modal-content">
+        <div id="step1" class="modal-step">
+            <!-- Step 1: Choose Size -->
+            {%- unless product.has_only_default_variant -%}
+            {%- for option in product.options_with_values -%}
+            {%- if option.name == "Model" -%}
+            <variant-radios class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
+                <div class="product-options">
+                    <div class="form__label">{{ option.name }}</div>
+                    <div class="option-wrapper">
+                    {%- for value in option.values -%}
+                    
+                       <div class="option">
+                        <input type="radio" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                        name="{{ option.name }}" value="{{ value | escape }}" form="{{ product_form_id }}"
+                        {% if option.selected_value == value %}checked{% endif %} onclick="showStep(2);"
+                    >
+                    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+                    {{ value }}
+                    
+                </label>
+                       </div>
+                    {%- endfor -%}
+                    </div>
+                </div>
+                <script type="application/json">
+                    {{ product.variants | json }}
+                </script>
+            </variant-radios>
+            {%- endif -%}
+            {%- endfor -%}
+            {%- endunless -%}
+        </div>
+
+        <div id="step2" class="modal-step">
+            <!-- Step 2: Choose Color -->
+            {%- unless product.has_only_default_variant -%}
+            {%- for option in product.options_with_values -%}
+            {%- if option.name == "Color" -%}
+            <variant-radios class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
+                <div class="product-options">
+                    <div class="form__label">{{ option.name }}</div>
+                    <div class="option-wrapper">
+                    {%- for value in option.values -%}
+                    
+                        <div class="option">
+                            <input type="radio" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                            name="{{ option.name }}" value="{{ value | escape }}" form="{{ product_form_id }}"
+                            {% if option.selected_value == value %}checked{% endif %} onclick="showStep(3);"
+                        >
+                        <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">    
+                        {{ value }}
+                    </label>
+                </div>
+                    {%- endfor -%}
+                    </div>
+                </div>
+                <script type="application/json">
+                    {{ product.variants | json }}
+                </script>
+            </variant-radios>
+            {%- endif -%}
+            {%- endfor -%}
+            {%- endunless -%}
+        </div>
+
+        <div id="step3" class="modal-step">
+            <!-- Step 3: Product Information -->
+            <div class="left-column">
+                <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}" height="200" />
+            </div>
+            <div class="right-column">
+                <h2>{{ product.title }}</h2>
+                <div {{ block.shopify_attributes }}>
+                    {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
+                    {%- form 'product', product, id: product.id, class: 'installment caption-large' -%}
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                {%- for option in product.options_with_values -%}
+                    {%- if option.name == "Model" -%}
+                    {{option.name}}
+                    <select name="id">
+                        {%- for value in option.values -%}
+                        <option value="{{variant.id}}"> {{ value }} </option>
+                        {%- endfor -%}
+                    </select>
+                    {%- endif -%}
+                    {%- if option.name == "Color" -%}
+                    {{option.name}}
+                    <select name="id">
+                        {%- for value in option.values -%}
+                        <option value="{{variant.id}}"> {{ value }} </option>
+                        {%- endfor -%}
+                    </select>
+                    {%- endif -%}
+                {%- endfor -%}
+                
+                <p id="stock-status">
+                    Stock:
+                    {% if product.available %}
+                    In Stock
+                    {% else %}
+                    Out of Stock
+                    {% endif %}
+                </p> <!-- Default stock status -->
+
+                
+                    {%- endform -%}
+                </div>
+                <!-- Buy Button -->
+                {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%}
+            </div>
+        </div>
+
+        <!-- Timeline to display the user's progress -->
+        <div class="timeline">
+            <label>
+                <input type="radio" name="step" value="1" checked onclick="showStep(1);">
+                <div class="timeline-step active">Step 1</div>
+            </label>
+            <label>
+                <input type="radio" name="step" value="2" onclick="showStep(2);">
+                <div class="timeline-step">Step 2</div>
+            </label>
+            <label>
+                <input type="radio" name="step" value="3" onclick="showStep(3);">
+                <div class="timeline-step">Step 3</div>
+            </label>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript to open the modal -->
+<script>
+    let currentStep = 1; // Initialize the current step to 1
+
+    // JavaScript to open the modal
+    function openProductModal() {
+        document.getElementById('product-modal').style.display = 'block';
+    }
+
+    // JavaScript to handle the configuration steps
+    function showStep(stepNumber) {
+        const steps = document.querySelectorAll('.modal-step');
+        steps.forEach((step, index) => {
+            if (index + 1 === stepNumber) {
+                step.style.display = 'flex';
+            } else {
+                step.style.display = 'none';
+            }
+        });
+
+        // Update the timeline to highlight the active step and set radio inputs
+        const timelineSteps = document.querySelectorAll('.timeline-step');
+        const radioInputs = document.querySelectorAll('input[name="step"]');
+
+        timelineSteps.forEach((timelineStep, index) => {
+            if (index + 1 === stepNumber) {
+                timelineStep.classList.add('active');
+                radioInputs[index].checked = true;
+            } else {
+                timelineStep.classList.remove('active');
+                radioInputs[index].checked = false;
+            }
+        });
+
+        // If it's the final step, update the product information
+        if (stepNumber === 3) {
+            // Retrieve the selected color and model
+            const selectedColor = document.querySelector('input[name="Color"]:checked');
+            const selectedModel = document.querySelector('input[name="Model"]:checked');
+
+            // Get the values of selected color and model
+            const colorValue = selectedColor ? selectedColor.value : 'Not Selected';
+            const modelValue = selectedModel ? selectedModel.value : 'Not Selected';
+
+            // Update the third step with the selected color and model
+            document.getElementById('selected-color').textContent = colorValue;
+            document.getElementById('selected-model').textContent = modelValue;
+        }
+
+        currentStep = stepNumber; // Update the current step
+    }
+
+    // Initial step display
+    showStep(1);
+
+    document.getElementById('configure-product-button').addEventListener('click', openProductModal);
+</script>

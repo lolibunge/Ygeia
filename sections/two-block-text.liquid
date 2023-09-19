@@ -20,9 +20,9 @@
   <div class="two-block-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
     <div class="two-block-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
         {% if section.settings.title != blank %}
-        <div class="two-block-text__title {{ section.settings.heading_size }}">
+        <h2 class="two-block-text__title {{ section.settings.heading_size }}">
         {{ section.settings.title }}
-      </div>
+      </h2>
       {% endif %}
       {% if section.settings.subtitle != blank %}
       <div class="two-block-text__subtitle {{ section.settings.text_style }}--{{ section.settings.text_size }}">

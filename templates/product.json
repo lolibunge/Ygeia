@@ -3,6 +3,10 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
         "vendor": {
           "type": "text",
           "settings": {
@@ -10,58 +14,63 @@
             "text_style": "uppercase"
           }
         },
-        "title": {
-          "type": "title",
-          "settings": {}
-        },
         "price": {
           "type": "price",
-          "settings": {}
-        },
-        "variant_picker": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button"
-          }
-        },
-        "quantity_selector": {
-          "type": "quantity_selector",
           "settings": {}
         },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
           }
         },
-        "description": {
-          "type": "description",
-          "settings": {}
-        },
-        "share": {
-          "type": "share",
+        "88f8b22c-fd04-4359-a940-a1fd751a22bb": {
+          "type": "inventory",
           "settings": {
-            "share_label": "Share"
+            "text_style": "body",
+            "inventory_threshold": 10,
+            "show_inventory_quantity": true
+          }
+        },
+        "8e05f335-5e8b-413e-a248-9e08da601a4c": {
+          "type": "collapsible_description",
+          "settings": {
+            "heading": "Description",
+            "content": "<p>{{ product.metafields.custom.product_description | metafield_tag }}<\/p>"
+          }
+        },
+        "cbdcf347-fb31-42a5-a2ee-bf98d0aa6934": {
+          "type": "collapsible_benefits",
+          "settings": {
+            "heading": "Benefits",
+            "content": "<p>{{ product.metafields.custom.product_benefits | metafield_tag }}<\/p>"
+          }
+        },
+        "675ede6a-5017-45c2-8bdd-492f34d3c778": {
+          "type": "collapsible_how-it-works",
+          "settings": {
+            "heading": "How It Works",
+            "content": "<p>{{ product.metafields.custom.product_how_it_works | metafield_tag }}<\/p>"
           }
         }
       },
       "block_order": [
-        "vendor",
         "title",
+        "vendor",
         "price",
-        "variant_picker",
-        "quantity_selector",
         "buy_buttons",
-        "description",
-        "share"
+        "88f8b22c-fd04-4359-a940-a1fd751a22bb",
+        "8e05f335-5e8b-413e-a248-9e08da601a4c",
+        "cbdcf347-fb31-42a5-a2ee-bf98d0aa6934",
+        "675ede6a-5017-45c2-8bdd-492f34d3c778"
       ],
       "settings": {
         "enable_sticky_info": true,
         "media_size": "large",
         "constrain_to_viewport": true,
         "media_fit": "contain",
-        "gallery_layout": "stacked",
+        "gallery_layout": "thumbnail_slider",
         "media_position": "left",
         "image_zoom": "lightbox",
         "mobile_thumbnails": "hide",
@@ -73,6 +82,7 @@
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
@@ -88,10 +98,193 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "0895009e-d528-4325-8c10-714459f5cd47": {
+      "type": "two-block-text",
+      "blocks": {
+        "template--20070425821469__0895009e-d528-4325-8c10-714459f5cd47-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>EM pollution from devices like phones, laptops, Wi-Fi, and Bluetooth can have gradual but detrimental effects on our bodies by disrupting cellular communication, leading to abnormal cell behavior.<\/p><p>Neutralizing their negative impacts, our healing pendants protect you from daily EMF exposure by absorbing electromagnetic waves and converting them into beneficial scalar waves that enhance your immune system.<\/p><p>Neutralizing their negative impacts, our healing pendants protect you from daily EMF exposure by absorbing electromagnetic waves and converting them into beneficial scalar waves that enhance your immune system.<\/p>",
+            "text_style": "body"
+          }
+        },
+        "d1d6c33e-681f-4cc8-bebc-29901712a22b": {
+          "type": "button",
+          "settings": {
+            "button_label": "BROWSE ALL AMULETS",
+            "button_link": "shopify:\/\/collections\/amulets",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "template--20070425821469__0895009e-d528-4325-8c10-714459f5cd47-text-1",
+        "d1d6c33e-681f-4cc8-bebc-29901712a22b"
+      ],
+      "settings": {
+        "title": "<strong>KanaloaAmulet<\/strong>",
+        "heading_size": "h1",
+        "subtitle": "ADVANCED SHIELDS AGAINST ELECTROMAGNETIC POLLUTION",
+        "text_size": "medium",
+        "description": "<h3>Transform harm to health, wherever you go.<\/h3>",
+        "text_style": "body",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "b56f312b-839a-4081-8fc1-35815126935a": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--20070425821469__b56f312b-839a-4081-8fc1-35815126935a-text-1": {
+          "type": "text",
+          "settings": {
+            "heading": "<strong>Benefits<\/strong>",
+            "text": "<p>Protection against electromagnetic fields<\/p><ul><li>Energize blood cells, decreasing blood viscosity and increasing circulation<\/li><li>Enhance immune and endocrine systems<\/li><li>Enable more efficient cellular detoxification, boosting cellular permeability<\/li><li>Increases mitochondrial ATP levels (cell’s energy source)<\/li><li>Reduces Inflammation<\/li><li>Improves overall biological functioning<\/li><li>Calms the mind for improved focus and mental functioning<\/li><li>Improved quality of sleep<\/li><\/ul>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "template--20070425821469__b56f312b-839a-4081-8fc1-35815126935a-text-1"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/image-with-text-section.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "50ae75ed-287c-4184-b6ea-7f2771649d12": {
+      "type": "rich-text",
+      "blocks": {
+        "template--20070425821469__50ae75ed-287c-4184-b6ea-7f2771649d12-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>What are Scalar Waves?<\/strong>",
+            "heading_size": "h1"
+          }
+        },
+        "template--20070425821469__50ae75ed-287c-4184-b6ea-7f2771649d12-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Scalar waves are detectable frequencies in the aether all around us, first recorded in the 1890’s by Nikola Tesla through his experiments in wireless energy transmission using the Tesla Coil. These wave propogations are a primal force of nature, traveling at 1.5 times the speed of light with the ability to transmit biological signals and transfer information.<\/p><p><\/p><p>Breaking barriers of today’s scientific paradigm, it is unexplainable within the confines of Einstein’s<\/p><p>EM theory and therefore often overlooked or disregarded, yet scalar energy does not contradict Maxwell’s understanding of time but can be interpreted as an extension of his equations. In the ever-evolving landscape of science, other notable researchers in this quantum space include Georges Lakhovsky,<\/p><p>Konstantin Meyl, Peng Gao, and Bahman Zohuri.<\/p><p><br\/><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--20070425821469__50ae75ed-287c-4184-b6ea-7f2771649d12-heading-1",
+        "template--20070425821469__50ae75ed-287c-4184-b6ea-7f2771649d12-text-1"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "6d8b4705-a61c-40fd-8a55-19a9195a5f37": {
+      "type": "video",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "enable_video_looping": false,
+        "video": "{{ product.metafields.custom.product_video.value }}",
+        "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+        "description": "",
+        "full_width": true,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "6f637a70-b83a-4fa9-b303-3b4b4996aef8": {
+      "type": "featured-blog",
+      "settings": {
+        "heading": "<strong>Science<\/strong>",
+        "heading_size": "h1",
+        "blog": "news",
+        "post_limit": 3,
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "show_view_all": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1a63a889-f1e9-4a23-840f-a708acd29ee7": {
+      "type": "multicolumn-w-video",
+      "blocks": {
+        "template--20070425821469__1a63a889-f1e9-4a23-840f-a708acd29ee7-column-1": {
+          "type": "column",
+          "settings": {
+            "show-video": false,
+            "author": "JADE, NEW ORLEANS",
+            "text": "<p>\"Amazing!! I wear mine everyday now, it's so easy to match with basically any outfit and I love how it's not just a statement accessory, but also a gorgeous armour!\"<\/p>"
+          }
+        },
+        "template--20070425821469__1a63a889-f1e9-4a23-840f-a708acd29ee7-column-2": {
+          "type": "column",
+          "settings": {
+            "show-video": false,
+            "author": "JADE, NEW ORLEANS",
+            "text": "<p>\"I have been worried about the long-term effects of EMF for a while now because I'm normally in close proximity with a lot of machinery. SO GLAD I found this amazing brand with such a beautiful solution so I no longer have to worry! I can't wait to try some of their other products...\"<\/p>"
+          }
+        },
+        "template--20070425821469__1a63a889-f1e9-4a23-840f-a708acd29ee7-column-3": {
+          "type": "column",
+          "settings": {
+            "show-video": false,
+            "author": "JADE, NEW ORLEANS",
+            "text": "<p>\"I love my amulet! Everyone always compliments me and asks me where I got it! They're shocked when I tell them it's a healing necklace because it's so stylish...\"<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--20070425821469__1a63a889-f1e9-4a23-840f-a708acd29ee7-column-1",
+        "template--20070425821469__1a63a889-f1e9-4a23-840f-a708acd29ee7-column-2",
+        "template--20070425821469__1a63a889-f1e9-4a23-840f-a708acd29ee7-column-3"
+      ],
+      "settings": {
+        "title": "Testimonials",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "main",
-    "related-products"
+    "related-products",
+    "0895009e-d528-4325-8c10-714459f5cd47",
+    "b56f312b-839a-4081-8fc1-35815126935a",
+    "50ae75ed-287c-4184-b6ea-7f2771649d12",
+    "6d8b4705-a61c-40fd-8a55-19a9195a5f37",
+    "6f637a70-b83a-4fa9-b303-3b4b4996aef8",
+    "1a63a889-f1e9-4a23-840f-a708acd29ee7"
   ]
 }
