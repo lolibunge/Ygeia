@@ -1,9 +1,15 @@
+{{ 'sticky-product-modal.js' | asset_url | script_tag }}
+
+<sticky-product-modal
+data-handle="{{ product.handle }}">
+</sticky-product-modal>
+
 <style>
     /* Modal Styles */
     .modal {
         display: none;
         position: fixed;
-        z-index: 1000;
+        z-index: 99999;
         left: 0;
         top: 0;
         width: 100%;
@@ -20,6 +26,15 @@
         width: 80%;
         max-width: 600px;
         position: relative;
+        height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-info {
+        display: flex;
+        gap: 20px;
     }
 
     .close {
@@ -39,217 +54,66 @@
     #step1 {
         display: block;
     }
-</style>
 
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <div class="step" id="step1">
-            <h2>Step 1: Select Model</h2>
-            <label for="model">Choose a Model:</label>
-            <select id="model"></select>
-            <button onclick="nextStep(2)">Next</button>
-        </div>
-        <div class="step" id="step2">
-            <h2>Step 2: Select Color</h2>
-            <label for="color">Choose a Color:</label>
-            <select id="color"></select>
-            <button onclick="nextStep(3)">Next</button>
-        </div>
-        <div class="step" id="step3">
-            <h2>Step 3: Product Information</h2>
-            <div class="product-info">
-                <img src="" alt="" id="product-image">
-                <div class="product-details">
-                    <h3 id="product-name">Product Name</h3>
-                    <p>Model: <span id="selectedModel"></span></p>
-                    <p>Color: <span id="selectedColor"></span></p>
-                    <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" value="1">
-                    <p id="availability"></p>
-                    
-                    <button onclick="addToCart()">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    let currentStep = 1;
-    let productData = {};
-
-    function openModal(productHandle) {
-        document.getElementById('myModal').style.display = 'block';
-        fetchProductData(productHandle);
-    }
-
-    function closeModal() {
-        document.getElementById('myModal').style.display = 'none';
-        currentStep = 1;
-        showStep(currentStep);
-    }
-
-    function nextStep(step) {
-        if (step === currentStep + 1) {
-            currentStep = step;
-            showStep(currentStep);
-        }
-    }
-
-    function showStep(step) {
-        const steps = document.getElementsByClassName('step');
-        for (let i = 0; i < steps.length; i++) {
-            steps[i].style.display = 'none';
-        }
-        steps[step - 1].style.display = 'block';
-
-        if (step === 3) {
-            // Update product information in step 3
-            const selectedModel = document.getElementById('model').value;
-            const selectedColor = document.getElementById('color').value;
-            document.getElementById('selectedModel').textContent = selectedModel;
-            document.getElementById('selectedColor').textContent = selectedColor;
-            // Check availability and update message
-            const availabilityMessage = checkAvailability(selectedModel, selectedColor);
-            document.getElementById('availability').textContent = availabilityMessage;
-        }
-    }
-
-    function addToCart() {
-    // Get the selected model, color, and quantity
-    const selectedModel = document.getElementById('selectedModel').textContent;
-    const selectedColor = document.getElementById('selectedColor').textContent;
-    const quantity = parseInt(document.getElementById('quantity').value);
-
-    // Check if a valid model, color, and quantity are provided
-    if (!selectedModel || !selectedColor || isNaN(quantity) || quantity <= 0) {
-        alert('Please select a valid model, color, and quantity.');
-        return;
-    }
-
-    // Find the variant based on the selected model and color
-    const selectedVariant = findVariantByOptions(selectedModel, selectedColor);
-
-    // Check if the variant exists
-    if (!selectedVariant) {
-        alert('Selected model and color combination not found.');
-        return;
-    }
-
-    // Use the Shopify AJAX API to add the product to the cart
-    jQuery.post('/cart/add.js', {
-        items: [
-            {
-                id: selectedVariant.id,
-                quantity: quantity
-            }
-        ]
-    }, function(response) {
-        // Redirect to the cart page upon successful addition
-        window.location.href = '/cart'; // Adjust the URL as needed
-    }, 'json');
+    /* Timeline Styles */
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    position: absolute;
+    width: 80%;
+    bottom: 10px;
 }
 
+.timeline label {
+    text-align: center;
+}
+.timeline label input {
+    display: none;
+}
 
-    // Function to find a product variant by selected options
-    function findVariantByOptions(selectedModel, selectedColor) {
-        // Assuming productData.variants is an array of product variants
-        return productData.variants.find(variant => {
-            return variant.option1 === selectedModel && variant.option2 === selectedColor;
-        });
-    }
+.option-selector {
+    padding: 10px 15px;
+    border-radius: 50px;
+}
 
-    // Function to fetch product data from Shopify
-    function fetchProductData(productHandle) {
-        // Construct the Shopify product URL
-        const productUrl = `/products/${productHandle}.js`;
+input#quantity {
+    padding: 10px 15px;
+    border-radius: 50px;
+    width: 90px;
+    border: 1px solid #ededed;
+    font-family: 'BlackMango-Regular';
+}
 
-        // Fetch product data using the URL
-        fetch(productUrl)
-            .then(response => response.json())
-            .then(data => {
-                productData = data;
-                populateModelAndColorOptions();
-            })
-            .catch(error => {
-                console.error('Error fetching product data: ', error);
-            });
-    }
+.timeline-step {
+    flex: 1;
+    color: #9d9d9d;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font: .8rem;
+}
 
-    // Function to populate the Model and Color dropdowns based on product options
-    function populateModelAndColorOptions() {
-        const modelSelect = document.getElementById('model');
-        const colorSelect = document.getElementById('color');
+.timeline-step.active {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #000;
+}
 
-        // Clear existing options
-        modelSelect.innerHTML = '';
-        colorSelect.innerHTML = '';
-
-        // Assuming the product options are available as an array in productData.options
-        productData.options.forEach(option => {
-            if (option.name === 'Model') {
-                option.values.forEach(value => {
-                    const optionElement = document.createElement('option');
-                    optionElement.value = value;
-                    optionElement.textContent = value;
-                    modelSelect.appendChild(optionElement);
-                });
-            } else if (option.name === 'Color') {
-                option.values.forEach(value => {
-                    const optionElement = document.createElement('option');
-                    optionElement.value = value;
-                    optionElement.textContent = value;
-                    colorSelect.appendChild(optionElement);
-                });
-            }
-        });
-
-        const productImage = document.getElementById('product-image');
-        // Update the product name and image
-        document.getElementById('product-name').textContent = productData.title;
-        productImage.setAttribute('src', productData.featured_image);
-        productImage.setAttribute('alt', productData.title);
-
-        productImage.style.height = '200px';
-    }
-
-    function checkAvailability(selectedModel, selectedColor) {
-        // Implement your availability checking logic here.
-        // You can use the productData object to determine availability based on selected options.
-        // Return an appropriate message based on the availability.
-        // For simplicity, we'll return a static message here.
-        return 'In Stock';
-    }
-
-    // Close the modal if the user clicks outside the modal content
-    window.onclick = function (event) {
-        const modal = document.getElementById('myModal');
-        if (event.target === modal) {
-            closeModal();
-        }
-    };
-
-    // Function to extract the product handle from the URL
-    function getProductHandleFromURL() {
-        const pathArray = window.location.pathname.split('/');
-        // Assuming the product handle is in the last segment of the URL
-        return pathArray[pathArray.length - 1];
-    }
-
-    // Function to open the modal with the product handle from the URL
-    function openModalWithProductHandleFromURL() {
-        const productHandle = getProductHandleFromURL();
-        if (productHandle) {
-            openModal(productHandle);
-        }
-    }
-
-    // Add a click event listener to the "Buy" button
-    document.getElementById('configure-product-button').addEventListener('click', function () {
-        openModalWithProductHandleFromURL();
-    });
-
-    // Initialize the modal and product data on page load
-    // openModalWithProductHandleFromURL();
-</script>
+.btn.add_to_cart {
+    background: #b2a89d;
+    color: #fff;
+}
+.btn {
+    margin-bottom: 1rem;
+    border: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: BlackMango-Regular;
+}
+.step .btn {
+    margin-left: 20px;
+}
+</style>

@@ -347,7 +347,7 @@ fieldset.product-form__input .form__label {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 40px;
+    padding: 40px 40px 0 40px;
 }
 
 .product__price-add-to-cart product-form.product-form {
