@@ -4,15 +4,42 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "154e3d69-33e6-47c8-8019-32789a2ed080": {
+          "type": "link_list",
+          "settings": {
+            "heading": "",
+            "menu": "footer"
+          }
+        },
+        "f8f903db-fb35-499b-892d-45398d70e5d5": {
+          "type": "link_list",
+          "settings": {
+            "heading": "",
+            "menu": "footer-menu-1"
+          }
+        },
+        "2cf752d3-ece4-4ea0-9642-e1a17a6586ad": {
+          "type": "icon",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "154e3d69-33e6-47c8-8019-32789a2ed080",
+        "f8f903db-fb35-499b-892d-45398d70e5d5",
+        "2cf752d3-ece4-4ea0-9642-e1a17a6586ad"
+      ],
       "settings": {
-        "color_scheme": "background-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
+        "background-color": "#32343b",
+        "text-color": "#ffffff",
+        "copy-right-menu": "footer-menu-2",
+        "newsletter_enable": false,
+        "newsletter_heading": "",
         "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": true,
         "enable_language_selector": true,
-        "payment_enable": true,
+        "payment_enable": false,
         "show_policy": false,
         "margin_top": 0,
         "padding_top": 36,

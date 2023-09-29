@@ -12,14 +12,10 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-    .section-image-with-text-carousel .image-with-text__content {
-        background-color:{{ section.settings.background_color }};
-        height: 470px;
-    }
 
     .section-image-with-text-carousel .image-with-text__media-item {
         padding: 0;
-        height: 470px;
+        /* height: 470px; */
     }
 
 {%- endstyle -%}
@@ -65,6 +61,7 @@
       <div
         id="ImageWithText--{{ block.id }}"
         class="image-with-text__content image-with-text__content--{{ block.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.height }} gradient color-{{ section.settings.color_scheme }} content-container"
+        style="background-color:{{ block.settings.block_background_color }};"
       >
        
               <h2
@@ -79,6 +76,9 @@
               >
                 {{ block.settings.caption | escape }}
               </p>
+              <div class="image-with-text__title">
+                {{ block.settings.title | escape }}
+              </div>
               <div class="image-with-text__text rte">
                 {{ block.settings.text }}
               </div>
@@ -128,18 +128,7 @@
   "disabled_on": {
     "groups": ["header", "footer"]
   },
-  "settings": [
-    {
-        "type": "header",
-        "content": "Block Layout"  
-    },
-    {
-        "type": "color",
-        "id": "background_color",
-        "label": "Background Color",
-        "default": "#efefee"
-    }
-  ],
+  "settings": [],
   "blocks": [
     {
       "type": "block-carousel",
@@ -268,6 +257,15 @@
         ],
         "default": "no-overlap",
         "label": "t:sections.image-with-text.settings.content_layout.label"
+      },
+      {
+        "type": "header",
+        "content": "Block Layout"  
+      },
+      {
+          "type": "color",
+          "id": "block_background_color",
+          "label": "Background Color"
       },
       {
         "type": "header",
@@ -408,6 +406,32 @@
           ],
           "default": "medium",
           "label": "t:sections.image-with-text.blocks.caption.settings.caption_size.label"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "default": "Title block",
+          "label": "Add a title for the text"
+        },
+        {
+          "type": "select",
+          "id": "title_size",
+          "options": [
+            {
+              "value": "h3",
+              "label": "Title size h3"
+            },
+            {
+              "value": "h2",
+              "label": "Title size h2"
+            },
+            {
+              "value": "h1",
+              "label": "Title size h2"
+            }
+          ],
+          "default": "h3",
+          "label": "Title size"
         },
         {
           "type": "richtext",

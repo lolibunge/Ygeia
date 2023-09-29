@@ -377,7 +377,11 @@
 }
 
 .section-image-with-text-carousel .image-with-text__content .image-with-text__text + .button {
-  margin: auto;
+  margin:5rem auto 0;
+  width: 160px;
+  border: 2px solid;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
 }
 
 .image-with-text__heading {

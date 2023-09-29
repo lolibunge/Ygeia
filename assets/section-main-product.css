@@ -287,7 +287,7 @@ fieldset.product-form__input .form__label {
   margin-bottom: 1rem;
   background: #b2a89d;
   border: none;
-  font-family: 'The Seasons Regular';
+  font-family: 'BlackMango-Regular';
   color: #fff;
   font-size: 16px;
 }
@@ -347,7 +347,7 @@ fieldset.product-form__input .form__label {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 40px;
+    padding: 40px 40px 0 40px;
 }
 
 .product__price-add-to-cart product-form.product-form {
