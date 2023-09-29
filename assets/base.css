@@ -104,6 +104,10 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   max-width: 100%;
 }
 
+body.gradient.no-select {
+  user-select: none;
+}
+
 .page-width.drawer-menu {
   /* max-width: 1440px; */
   margin: auto;
@@ -859,6 +863,11 @@ summary::-webkit-details-marker {
   margin-bottom: 3rem;
   flex-wrap: wrap;
 }
+
+.multicolumn-list__item {
+  height: fit-content;
+}
+
 .multicolumn-with-video {
   width: 90%;
   margin:60px auto 0;

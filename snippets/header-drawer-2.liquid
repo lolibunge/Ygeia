@@ -293,6 +293,8 @@ div#search-icon[data-open-search]~.template-search__header{
                 let rect = this.menu.getBoundingClientRect();
                 this.menuStartX = rect.left;
                 this.menuStartY = rect.top;
+                // Add a class to prevent text selection
+                document.body.classList.add('no-select');
             });
 
             window.addEventListener('mousemove', (e) => {
@@ -308,6 +310,9 @@ div#search-icon[data-open-search]~.template-search__header{
             window.addEventListener('mouseup', () => {
                 if (this.isDragging) {
                     this.isDragging = false;
+
+                    // Remove the class to allow text selection
+                    document.body.classList.remove('no-select');
 
                     // Snap to closest point
                     let menuCenter = {
