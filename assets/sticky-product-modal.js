@@ -306,12 +306,13 @@ class StickyProductModal extends HTMLElement {
     nextStep(buttonId) {
         const currentStep = this.currentStep;
         const nextStep = currentStep + 1;
-    
+
         // Check if this is the final step
-        if (currentStep === this.numSteps) {
+        if (currentStep > this.numSteps) {
             this.closeModal(); // Close the modal on the final step
         } else {
             this.showStep(nextStep);
+            this.currentStep = nextStep;
         }
     }
     
@@ -320,7 +321,7 @@ class StickyProductModal extends HTMLElement {
     showStep(step) {
         // Get all elements with the class "step"
         const steps = document.getElementsByClassName('step');
-    
+
         // Check if the step index is valid (between 1 and the number of steps)
         if (step >= 1 && step <= steps.length) {
             // Hide all steps by setting their display style to "none"
@@ -469,12 +470,12 @@ class StickyProductModal extends HTMLElement {
 
     fetchProductData(productHandle) {
         // Construct the Shopify product URL
-        const productUrl = `https://dev-ygeia.myshopify.com/products/${productHandle}.json`;
+        const productUrl = `/products/${productHandle}.json`;
         console.log('Product URL: ' + productUrl);
     
         // Fetch product data using the URL
         fetch(productUrl)
-            .then(response => response.json())
+            .then(response => response.json())  
             .then(data => {
                 this.productData = data;
                 
