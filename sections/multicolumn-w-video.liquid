@@ -128,7 +128,12 @@
               {%- endif -%}
               {% if block.settings.show-video %}
               <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %} video-section">
-              {{ block.settings.video  | video_tag: image_size: '360x', loop: section.settings.enable_video_looping, controls: true, muted: false }}
+               <div
+                class="media media--transparent media--{{ section.settings.image_ratio }}"
+                {% if section.settings.image_ratio == 'adapt' %}
+                  style="padding-bottom: {{ 1 | divided_by: highest_ratio | times: 100 }}%;"
+                {% endif %}
+              >{{ block.settings.video  | video_tag: image_size: '360x', loop: section.settings.enable_video_looping, controls: true, muted: false }}</div>
               </div>
             {% endif %}
             </div>

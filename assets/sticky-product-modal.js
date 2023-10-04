@@ -304,23 +304,39 @@ class StickyProductModal extends HTMLElement {
     }
 
     nextStep(buttonId) {
+
+        
+        
         const currentStep = this.currentStep;
+        
         const nextStep = currentStep + 1;
 
         // Check if this is the final step
         if (currentStep > this.numSteps) {
             this.closeModal(); // Close the modal on the final step
         } else {
-            this.showStep(nextStep);
-            this.currentStep = nextStep;
+            if(this.selectedModel === ''){
+                alert("Please select a Model");
+            }else if(this.selectedColor === ''){
+                alert("Please select a Color");
+            }else {
+                this.showStep(nextStep);
+                this.currentStep = nextStep;
+            }
         }
     }
     
     
 
     showStep(step) {
+        const selectedModelElement = document.getElementById('selectedModel');
+        const selectedColorElement = document.getElementById('selectedColor');
+
+        
         // Get all elements with the class "step"
+        console.log('Step:', step);
         const steps = document.getElementsByClassName('step');
+        console.log('Number of Steps:', steps.length);
 
         // Check if the step index is valid (between 1 and the number of steps)
         if (step >= 1 && step <= steps.length) {
@@ -416,8 +432,8 @@ class StickyProductModal extends HTMLElement {
             const variants = this.productData.product.variants;
     
             // Debugging: Log selectedModel and selectedColor
-            //console.log('Selected Model:', selectedModel);
-            //console.log('Selected Color:', selectedColor);
+            // console.log('Selected Model:', selectedModel);
+            // console.log('Selected Color:', selectedColor);
     
             // Find the variant that matches the selected options
             for (const variant of variants) {
