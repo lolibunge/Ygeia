@@ -2,24 +2,34 @@ class StickyProductModal extends HTMLElement {
     constructor() {
         super();
         this.currentStep = 1;
-        this.numSteps = 0; // Initialize numSteps
-        this.selectedModel = ''; // Initialize selectedModel as an empty string
-        this.selectedColor = ''; // Initialize selectedColor as an empty string
+        this.numSteps = 0;
+        this.selectedOptions = []; 
         this.productData = null;
-        
+        this.modal = null;
     }
-
 
     get productHandle() {
         return this.getAttribute('data-handle');
     }
 
     connectedCallback() {
-        this.render();
+        // Render the modal structure
+        this.renderModal();
+
+        // Initialize currentStep and show the first step
+        this.currentStep = 1;
+
+        // Fetch product data after setting up the button click event
+        this.openModalButton = document.getElementById('configure-product-button');
+        this.openModalButton.addEventListener('click', () => {
+            this.showModal();
+        });
+
+        // Fetch product data
         this.fetchProductData(this.productHandle);
-        console.log('Product Handle: ' + this.productHandle);
-        this.currentStep = 1; // Initialize the current step to 1
-        this.showStep(this.currentStep); 
+
+        // Set up event listeners for option selectors, timeline, and "Next" button
+        this.finalizeSetup();
     }
 
     createSteps(product) {
@@ -27,392 +37,285 @@ class StickyProductModal extends HTMLElement {
         const timeline = document.querySelector('.timeline');
         const numSteps = product.options.length;
         this.numSteps = numSteps;
-
-        // Check if there are no options, i.e., numSteps is 0
-        if (numSteps === 1) {
-            console.log('no options');
-        }else {
-            // Iterate through product options to create elements
-            product.options.slice(0, numSteps).forEach((option, index) => {
-                if (index < 2) {
-                    const optionName = option.name;
-                    const step = document.createElement('div');
-                    step.className = 'step';
-                    step.id = `step${index + 1}`;
-
-                    const title = document.createElement('h2');
-                    title.textContent = `Step ${index + 1}: Select ${optionName}:`;
-
-                    const label = document.createElement('label');
-                    label.setAttribute('for', optionName.toLowerCase());
-                    label.textContent = `Choose ${optionName}:`;
-
-                    const select = document.createElement('select');
-                    select.className = 'option-selector';
-                    select.id = optionName.toLowerCase();
-
-                    const defaultOptionElement = document.createElement('option');
-                    defaultOptionElement.textContent = 'Choose an option';
-                    select.appendChild(defaultOptionElement);
-
-                    option.values.forEach(optionValue => {
-                        const optionElement = document.createElement('option');
-                        optionElement.value = optionValue;
-                        optionElement.textContent = optionValue;
-                        select.appendChild(optionElement);
-
-                        optionElement.addEventListener('change', () => {
-                            this.checkOptionsAndEnableNextButtons();
-                        });
-                    });
-
-                    const button = document.createElement('button');
-                    button.className = 'btn';
-                    button.id = `nextStep${index + 1}`;
-                    button.textContent = 'Next';
-
-                    step.appendChild(title);
-                    step.appendChild(label);
-                    step.appendChild(select);
-                    step.appendChild(button);
-
-                    stepsContainer.appendChild(step);
-
-                    const timelineLabel = document.createElement('label');
-                    const timelineInput = document.createElement('input');
-                    timelineInput.setAttribute('type', 'radio');
-                    timelineInput.setAttribute('name', 'step');
-                    timelineInput.setAttribute('value', `${index + 1}`);
-                    const timelineStep = document.createElement('div');
-                    timelineStep.className = 'timeline-step';
-                    timelineStep.id = `radio-step${index + 1}`;
-                    timelineStep.textContent = `Step ${index + 1}`;
-
-                    timeline.appendChild(timelineLabel);
-                    timelineLabel.appendChild(timelineInput);
-                    timelineLabel.appendChild(timelineStep);
-
-                    this.checkOptionsAndEnableNextButtons();
-                }
-            });
-
-            const finalStep = document.createElement('div');
-            finalStep.className = 'step';
-
-            const finalStepHeading = document.createElement('h2');
-            finalStep.appendChild(finalStepHeading);
-            
-        }
-
-
-        // Create the final step for product information
-        const finalStep = document.createElement('div');
-        finalStep.className = 'step';
-
-        const finalStepHeading = document.createElement('h2');       
-        finalStep.appendChild(finalStepHeading);
-
-        const finalStepProdInf = document.createElement('div');
-        finalStepProdInf.className = 'product-info';
-        finalStep.appendChild(finalStepProdInf);
-
-        // Create placeholders for dynamic content
-        const productImageContainer = document.createElement('div');
-        const productImage = document.createElement('img');
-        productImage.id = 'product-image';
-        const productInfoContainer = document.createElement('div');
-        const productName = document.createElement('h3');
-        productName.id = 'product-name';
-        const selectedPrice = document.createElement('p');
-        selectedPrice.id = 'selectedPrice';
-        const selectedModel = document.createElement('p');
-        selectedModel.id = 'selectedModel';
-        const selectedColor = document.createElement('p');
-        selectedColor.id = 'selectedColor';
-        const productQuantity = document.createElement('label');
-        productQuantity.setAttribute('for', 'quantity');
-        const inputQuantity = document.createElement('input');
-        inputQuantity.setAttribute('type', 'number');
-        inputQuantity.setAttribute('value', '1');
-        inputQuantity.id = 'quantity';
-        const productAvailability = document.createElement('p');
-        productAvailability.id = 'availability';
-        const addToCartFinalStep = document.createElement('button');
-        addToCartFinalStep.className = 'btn add_to_cart';
-        addToCartFinalStep.id = 'addToCart';
-        addToCartFinalStep.textContent = 'Add to Cart';
-
-        if (product.options.length > 1) {
-            this.numSteps = numSteps;
-            finalStep.id = 'step' + (numSteps + 1);
-            finalStepHeading.textContent = `Step ${numSteps + 1}: Product Information`;
+    
+        // Clear any existing content in stepsContainer
+        stepsContainer.innerHTML = '';
+    
+        // Check if the product has options
+        console.log('Product options length:', product.options.length);
+    
+        if (product.options.length === 1) {
+            // If the product has no options, show the final step directly
+            console.log('Product has no options:', product);
+            this.showFinalStep(product);
         } else {
-            const variant = product.variants;
-            finalStep.id = 'finalStep';
-            finalStepHeading.textContent = 'Final Step: Product Information';
-            productImage.src = product.image.src;
-            productName.textContent = product.title;
-            selectedPrice.textContent = `$${variant[0].price}`;
-            console.log('Variant Price: ', variant[0].price);
-            //selectedModel.textContent = variant[0].option1;
-        }
-
-        productImageContainer.appendChild(productImage);
-        productInfoContainer.appendChild(productName);
-        productInfoContainer.appendChild(selectedPrice);
-        productInfoContainer.appendChild(selectedModel);
-        productInfoContainer.appendChild(selectedColor);
-        productInfoContainer.appendChild(productQuantity);
-        productInfoContainer.appendChild(inputQuantity);
-        productInfoContainer.appendChild(productAvailability);
-        productInfoContainer.appendChild(addToCartFinalStep);
-
-        finalStepProdInf.appendChild(productImageContainer);
-        finalStepProdInf.appendChild(productInfoContainer);
-
-        const finalStepTimelineLable = document.createElement('label');
-        const finalStepTimelineInput = document.createElement('input');
-        finalStepTimelineInput.setAttribute('type','radio');
-        finalStepTimelineInput.setAttribute('name','step');
-        finalStepTimelineInput.setAttribute('value','3');
-        const finalStepTimelineStep = document.createElement('div');
-        finalStepTimelineStep.className = 'timeline-step';
-        finalStepTimelineStep.id = 'radio-step3';
-        finalStepTimelineStep.textContent = 'Review';
-
-        timeline.appendChild(finalStepTimelineLable);
-        finalStepTimelineLable.appendChild(finalStepTimelineInput);
-        finalStepTimelineLable.appendChild(finalStepTimelineStep);
-
-        stepsContainer.appendChild(finalStep);
-        //stepsContainer.insertBefore(step, finalStep);
-
-        // Show the first step
-        this.showStep(1);
-        
-        
-    }
-
-
-    setupEventListeners() {
-        // Add an event listener to the "Add to Cart" button
-        const addToCartButton = document.getElementById('addToCart');
-
-        const modelSelect = document.getElementById('model');
-        const colorSelect = document.getElementById('color');
-
-        modelSelect.addEventListener('change', () => {
-            this.selectedModel = modelSelect.value;
-            this.updateProductInfo();
-        });
-
-        colorSelect.addEventListener('change', () => {
-            this.selectedColor = colorSelect.value;
-            this.updateProductInfo();
-        });
+            // Loop through the options to create steps dynamically
+            for (let index = 0; index < numSteps; index++) {
+                const option = product.options[index];
+                const optionName = option.name;
+                const optionValues = option.values;
     
-        // Add debugging statements to the addToCartButton event listener
-        addToCartButton.addEventListener('click', () => {
-            const selectedModel = document.getElementById('selectedModel').textContent;
-            const selectedColor = document.getElementById('selectedColor').textContent;
+                const step = document.createElement('div');
+                step.className = 'step';
+                step.id = `step${index + 1}`;
     
-            // Check availability before adding to the cart
-            const availability = this.checkAvailability(selectedModel, selectedColor);
-            console.log('Availability:', availability);
+                // Create a label for the step
+                const stepLabel = document.createElement('h2');
+                stepLabel.textContent = `Step ${index + 1}: Select ${optionName}`;
+                step.appendChild(stepLabel);
     
-            if (availability.includes('Out of Stock')) {
-                alert('This variant is out of stock and cannot be added to the cart.');
-                return;
+                // Create a selector for this step
+                const selector = document.createElement('select');
+                selector.className = 'option-selector';
+                selector.id = `selector-step${index + 1}`;
+                const firstOptionElement = document.createElement('option');
+                firstOptionElement.textContent = "Choose an option";
+                selector.appendChild(firstOptionElement);
+    
+                // Add options to the selector based on optionValues
+                optionValues.forEach((value) => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = value;
+                    optionElement.textContent = value; // You can customize the display text here
+                    selector.appendChild(optionElement);
+                });
+    
+                // Append the selector to the step
+                step.appendChild(selector);
+    
+                // Append the step to the container
+                stepsContainer.appendChild(step);
+                
+                selector.addEventListener('change', () => {
+                    // Save the selected option value
+                    const selectedValue = selector.value;
+                
+                    if (selectedValue !== "Choose an option") { // Check if a valid option is selected
+                        // Update the selected option value for the current step
+                        this.selectedOptions[index] = selectedValue; // Store the selected option value
+                    } else {
+                        // User selected the default option ("Choose an option"), so set the value to null
+                        this.selectedOptions[index] = null;
+                    }
+                
+                    // Hide the current step
+                    step.style.display = 'none';
+                
+                    if (index + 2 <= numSteps) {
+                        // Show the next step if it exists
+                        this.showStep(index + 2);
+                    } else {
+                        // If there are no more steps, show the final step
+                        this.showFinalStep(product);
+                    }
+                });
+                
+
             }
     
-            this.addToCart();
-        });
-    
-        // Add event listeners to all "Next" buttons
-        const nextStepButtons = document.querySelectorAll('.step .btn');
-        nextStepButtons.forEach((button, index) => {
-            button.id = `nextStep${index + 1}`;
-            button.addEventListener('click', () => {
-                this.nextStep(button.id); // Pass the button's ID to nextStep
-            });
-        });
+            // Initially, show the first step and hide the rest
+            this.showStep(1);
+        }
     }
     
     
+    // Add a method to show a specific step and hide the rest
+    showStep(stepNumber) {
+        const stepsContainer = document.querySelector('.steps');
+    
+        if (stepNumber >= 1 && stepNumber <= this.numSteps) {
+            const allSteps = stepsContainer.querySelectorAll('.step');
+            allSteps.forEach((step) => {
+                step.style.display = 'none';
+            });
+    
+            const currentStep = stepsContainer.querySelector(`#step${stepNumber}`);
+            if (currentStep) {
+                currentStep.style.display = 'block';
+            }
+        }
+    }
+    
+    // Define the checkOptionsAndEnableNextButtons function
     checkOptionsAndEnableNextButtons() {
-        const selectElements = document.querySelectorAll('.option-selector');
-        let areOptionsSelected = true; // Assume all options are selected initially
-    
-        selectElements.forEach(select => {
-            if (select.value === 'Choose an option') {
-                areOptionsSelected = false;
-            }
-        });
-    
-        // Get the "Next" button for the current step
+        // Get references to your option selectors (you may need to modify this part)
         const currentStep = this.currentStep;
-        const nextStepButton = document.querySelector(`#nextStep${currentStep}`);
+        const selector = document.querySelector(`#selector-step${currentStep}`);
     
-        // Enable or disable the "Next" button based on option selection
-        if (nextStepButton) {
-            nextStepButton.disabled = !areOptionsSelected;
-        }
-    }
-    
-
-    updateProductInfo() {
-        // Access the product data
-        const product = this.productData.product;
-    
-        // Update the product information placeholders
-        const productImage = document.getElementById('product-image');
-        const productName = document.getElementById('product-name');
-        const selectedPrice = document.getElementById('selectedPrice');
-        const selectedModelElement = document.getElementById('selectedModel');
-        const selectedColorElement = document.getElementById('selectedColor');
-    
-        if (this.currentStep === this.numSteps + 1) {
-            // Display information for the final step
-            productImage.src = product.images[0].src;
-            productName.textContent = product.title;
-            selectedPrice.textContent = `$${this.getPriceForModel(product, this.selectedModel)}`;
+        // Check if the selector for the current step has a value
+        if (selector && selector.value) {
+            // Enable the "Next" button for the current step
+            const nextButton = document.querySelector('#next-button');
+            nextButton.disabled = false;
         } else {
-            // Display selected model and color for other steps
-            productImage.src = ''; // Clear image
-            productName.textContent = '';
-            selectedPrice.textContent = '';
+            // Disable the "Next" button for the current step
+            const nextButton = document.querySelector('#next-button');
+            nextButton.disabled = true;
         }
-    
-        // Display the selected model and color
-        selectedModelElement.textContent = this.selectedModel;
-        selectedColorElement.textContent = this.selectedColor;
     }
     
-    getPriceForModel(product, model) {
-        const variant = product.variants.find(variant => variant.option1 === model);
-        return variant ? variant.price : '';
+    
+
+
+    showModal() {
+        if (this.modal) {
+            this.modal.style.display = 'block';
+        }
     }
 
-    openModal() {
-        this.modal.style.display = 'block';
+    renderModal() {
+        const modal = document.createElement('div');
+        modal.id = 'myModal';
+        modal.className = 'modal';
+
+        modal.innerHTML = `
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <div class="steps"></div>
+                <div class="timeline"></div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+        this.modal = modal;
+
+        const closeModalButton = modal.querySelector('#closeModal');
+        closeModalButton.addEventListener('click', () => {
+            this.closeModal();
+        });
+    }
+
+    fetchProductData(productHandle) {
+        // Construct the URL to fetch product data based on the provided productHandle
+        const productUrl = `/products/${productHandle}.json`;
+    
+        // Fetch the product data
+        fetch(productUrl)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.status} (${productHandle})`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                // Process the received data
+                console.log('Product data received:', data);
+    
+                if (data.product) {
+                    this.productData = data.product;
+                    // Create steps based on the fetched product data
+                    if (this.productData.options && this.productData.options.length > 0) {
+                        this.createSteps(this.productData);
+                    } else {
+                        this.showFinalStep();
+                    }
+                } else {
+                    console.error('Product data does not contain a "product" field:', data);
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching product data: ', error);
+            });
+    }
+    
+
+    finalizeSetup() {
+        // Set up event listeners for option selectors, timeline, and "Next" button
+        // Example:
+        // const modelSelector = document.querySelector('#model-selector');
+        // modelSelector.addEventListener('change', () => {
+        //     this.checkOptionsAndEnableNextButtons();
+        // });
     }
 
     closeModal() {
         this.modal.style.display = 'none';
-        this.currentStep = 1; // Reset the current step to the first step
-        this.showStep(this.currentStep);
     }
 
-    nextStep(buttonId) {
-
-        
-        
-        const currentStep = this.currentStep;
-        
-        const nextStep = currentStep + 1;
-
-        // Check if this is the final step
-        if (currentStep > this.numSteps) {
-            this.closeModal(); // Close the modal on the final step
-        } else {
-            if(this.selectedModel === ''){
-                alert("Please select a Model");
-            }else if(this.selectedColor === ''){
-                alert("Please select a Color");
-            }else {
-                this.showStep(nextStep);
-                this.currentStep = nextStep;
-            }
-        }
-    }
-    
-    
-
-    showStep(step) {
-        const selectedModelElement = document.getElementById('selectedModel');
-        const selectedColorElement = document.getElementById('selectedColor');
-
-        
-        // Get all elements with the class "step"
-        console.log('Step:', step);
-        const steps = document.getElementsByClassName('step');
-        console.log('Number of Steps:', steps.length);
-
-        // Check if the step index is valid (between 1 and the number of steps)
-        if (step >= 1 && step <= steps.length) {
-            // Hide all steps by setting their display style to "none"
-            for (let i = 0; i < steps.length; i++) {
-                steps[i].style.display = 'none';
-            }
-    
-            // Show the current step by setting its display style to "block"
-            const currentStepElement = steps[step - 1];
-            currentStepElement.style.display = 'block';
-    
-            // Update the timeline to reflect the current step
-            const timelineRadios = document.getElementsByName('step');
-            for (let i = 0; i < timelineRadios.length; i++) {
-                const timelineStep = timelineRadios[i].parentNode.querySelector('.timeline-step');
-                const timelineStepValue = parseInt(timelineRadios[i].value);
-    
-                if (timelineStepValue === step) {
-                    timelineStep.classList.add('active');
-                } else {
-                    timelineStep.classList.remove('active');
-                }
-    
-                // Disable timeline radio buttons for steps ahead of the current step
-                timelineRadios[i].disabled = timelineStepValue > step;
-            }
-    
-            // Enable or disable "Next" buttons based on the current step
-            const nextStepButtons = document.querySelectorAll('.step button');
-            nextStepButtons.forEach((button, index) => {
-                button.disabled = index + 1 !== step; // Disable buttons for steps other than the current step
-            });
-        } else {
-            // Handle the case where the step index is out of range
-            console.error('Invalid step index:', step);
-        }
-    }
-    
-    
-
-   // Function to add the product to the cart
     addToCart() {
-        // Get the selected model, color, and quantity
-        const selectedModel = this.selectedModel; // Use the property directly
-        const selectedColor = this.selectedColor; // Use the property directly
+        // Check if the productData is available
+        if (!this.productData) {
+            alert('Product data is not available.');
+            return;
+        }
+    
         const quantity = parseInt(document.getElementById('quantity').value);
-
-        // Check if a valid model, color, and quantity are provided
-        if (!selectedModel || !selectedColor || isNaN(quantity) || quantity <= 0) {
-            alert('Please select a valid model, color, and quantity.');
+    
+        if (isNaN(quantity) || quantity <= 0) {
+            alert('Please enter a valid quantity.');
             return;
         }
-
-        // Find the variant based on the selected model and color
-        const selectedVariant = this.findVariantByOptions(selectedModel, selectedColor);
-
-        // Check if the variant exists
-        if (!selectedVariant) {
-            alert('Selected model and color combination not found.');
-            return;
+    
+        // Check if the product has variants
+        if (this.productData.variants && this.productData.variants.length > 0) {
+            // Create an empty properties object for the cart item
+            const cartItemProperties = {};
+    
+            // Iterate over the selectedOptions and map them to the properties
+            this.selectedOptions.forEach((option, index) => {
+                // Check if the option is selected (not null)
+                if (option !== null) {
+                    // Get the option name from productData
+                    const optionName = this.productData.options[index].name;
+                    // Add the option to the properties
+                    cartItemProperties[optionName] = option;
+                }
+            });
+    
+            // Find the selected variant based on the properties
+            const selectedVariant = this.findVariantByOptions(Object.values(cartItemProperties));
+    
+            if (!selectedVariant) {
+                alert('Selected options combination not found.');
+                return;
+            }
+    
+            // Create a cart item object
+            const cartItem = {
+                id: selectedVariant.id,
+                quantity: quantity,
+                properties: cartItemProperties,
+            };
+    
+            // Use the Shopify AJAX API to add the product to the cart
+            this.addToCartAjax([cartItem]);
+        } else {
+            // Product has no variants, handle it accordingly (e.g., display a message or take other action)
+            alert('No variants available for this product.');
         }
+    }
+    
 
-        // Create a cart item object
-        const cartItem = {
-            id: selectedVariant.id,
-            quantity: quantity
-        };
+    findVariantByOptions(...options) {
+        if (!this.productData || !this.productData.variants) {
+            return null; // No variants available
+        }
+    
+        const variants = this.productData.variants;
+    
+        for (const variant of variants) {
+            const variantOptions = variant.options || []; // Ensure variantOptions is an array
+    
+            if (options.every((selectedOption, index) => {
+                const variantOption = variantOptions[index];
+                return !variantOption || variantOption.toLowerCase() === selectedOption.toLowerCase();
+            })) {
+                return variant;
+            }
+        }
+    
+        return null; // No matching variant found
+    }
+    
 
+    addToCartAjax(cartItems) {
         // Use the Shopify AJAX API to add the product to the cart
         fetch('/cart/add.js', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ items: [cartItem] }),
+            body: JSON.stringify({ items: cartItems }),
         })
         .then(response => response.json())
         .then(data => {
@@ -424,153 +327,118 @@ class StickyProductModal extends HTMLElement {
             alert('An error occurred while adding the item to the cart.');
         });
     }
-
-
-    findVariantByOptions(selectedModel, selectedColor) {
-        // Check if productData is available
+    
+    showFinalStep() {
+        const stepsContainer = document.querySelector('.steps');
+        const allSteps = stepsContainer.querySelectorAll('.step');
+        
+        // Hide all previous steps
+        allSteps.forEach((step) => {
+            step.style.display = 'none';
+        });
+    
+        const finalStep = document.createElement('div');
+        finalStep.id = 'final-step';
+        finalStep.className = 'step';
+    
+        // Assuming this.productData contains the product information
         if (this.productData) {
-            const variants = this.productData.product.variants;
+            // Create elements to display product information
+            const productImageContainer = document.createElement('div');
+            productImageContainer.className = 'product-image__container';
+            const productImage = document.createElement('img');
+            productImage.src = this.productData.image.src; // Replace with the actual image URL
+            productImage.alt = this.productData.title;
+            productImage.style.height = '200px';
     
-            // Debugging: Log selectedModel and selectedColor
-            // console.log('Selected Model:', selectedModel);
-            // console.log('Selected Color:', selectedColor);
+            const productInfoContainer = document.createElement('div');
+            productInfoContainer.className = 'product-info__container';
+            const productTitle = document.createElement('h2');
+            productTitle.textContent = this.productData.title;
     
-            // Find the variant that matches the selected options
-            for (const variant of variants) {
-                const modelOption = variant.option1;
-                const colorOption = variant.option2;
+            const productPrice = document.createElement('p');
+            productPrice.className = 'product-price';
+            productPrice.textContent = `Price: $${this.productData.variants[0].price}`;
     
-                // Debugging: Log variant options
-                console.log('Variant Model Option:', modelOption);
-                console.log('Variant Color Option:', colorOption);
+            // Create a quantity selector
+            const productActions = document.createElement('div');
+            productActions.className = 'product-actions__container';
+            const quantityContainer = document.createElement('div');
+            quantityContainer.className = 'product-quantity__container';
+            const quantitySelector = document.createElement('input');
+            const quantityLabel = document.createElement('label');
+            quantityLabel.className = 'product-quantity__label';
+            quantityLabel.textContent = "Quantity";
+            quantitySelector.type = 'number';
+            quantitySelector.min = 1;
+            quantitySelector.id = 'quantity';
+            quantitySelector.value = 1; // Initial quantity
     
-                if (modelOption === selectedModel && colorOption === selectedColor) {
-                    // Debugging: Log variant and availability
-                    console.log('Matching Variant:', variant);
-                    console.log('Inventory Quantity:', variant.inventory_quantity);
+            // Create an "Add to Cart" button
+            const addToCartButton = document.createElement('button');
+            addToCartButton.className = 'btn';
+            addToCartButton.textContent = 'Add to Cart';
+            addToCartButton.addEventListener('click', () => {
+                // Handle adding the product to the cart here
+                // You can implement this functionality as needed
+                // alert('Product added to cart');
+                this.addToCart();
+            });
     
-                    return variant;
-                }
-            }
-        }
+            // Append elements to the final step
+            productImageContainer.appendChild(productImage);
+            productInfoContainer.appendChild(productTitle);
+            productInfoContainer.appendChild(productPrice);
     
-        return null;
-    }
-
-    // Modify the checkAvailability function to correctly find and display inventory quantity
-    checkAvailability(selectedModel, selectedColor) {
-        console.log('Checking availability for Model:', selectedModel, 'Color:', selectedColor);
-
-        // Call findVariantByOptions to get the selectedVariant
-        const selectedVariant = this.findVariantByOptions(selectedModel, selectedColor);
-
-        if (selectedVariant) {
-            // Check if the selectedVariant has the 'inventory_quantity' property
-            if ('inventory_quantity' in selectedVariant) {
-                const inventoryQuantity = selectedVariant.inventory_quantity;
-                console.log('Inventory Quantity:', inventoryQuantity);
-
-                if (inventoryQuantity > 0) {
-                    return `In Stock (${inventoryQuantity} available)`;
-                } else {
-                    return 'Out of Stock';
-                }
+            // Append selected options to the final step
+            if (this.selectedOptions.length > 0) {
+                this.selectedOptions.forEach((optionValue, index) => {
+                    const optionName = this.productData.options[index].name;
+                    const productOption = document.createElement('p');
+                    productOption.className = `option-${optionName.toLowerCase()}`;
+                    productOption.textContent = `${optionName}: ${optionValue}`;
+                    productInfoContainer.appendChild(productOption);
+                });
             } else {
-                // 'inventory_quantity' property not found in the selectedVariant
-                return 'Inventory information not available';
+                console.log("No selected options in selectedOptions.");
             }
+    
+            quantityContainer.appendChild(quantityLabel);
+            quantityContainer.appendChild(quantitySelector);
+            productActions.appendChild(quantityContainer);
+            productActions.appendChild(addToCartButton);
+            productInfoContainer.appendChild(productActions);
+    
+            finalStep.appendChild(productImageContainer);
+            finalStep.appendChild(productInfoContainer);
         } else {
-            return 'Variant not found';
+            console.log("this.productData is not populated or is falsy.");
         }
-    }
-
-    fetchProductData(productHandle) {
-        // Construct the Shopify product URL
-        const productUrl = `/products/${productHandle}.json`;
-        console.log('Product URL: ' + productUrl);
     
-        // Fetch product data using the URL
-        fetch(productUrl)
-            .then(response => response.json())  
-            .then(data => {
-                this.productData = data;
-                
-                // Check if this.productData and this.productData.product are defined
-                if (this.productData && this.productData.product) {
-                    
-                    const product = this.productData.product;
-                    console.log('Product =>', product);
-                    this.createSteps(this.productData.product);
+        // Append the final step to the container
+        stepsContainer.appendChild(finalStep);
     
-                    this.setupEventListeners();
+        // Display the final step (for debugging purposes)
+        // finalStep.style.border = '2px solid red'; // Add a border for debugging
     
-                    // Set the initial step
-                    this.showStep(1);
+        console.log("Final step added to DOM.");
     
-                    // Call updateProductInfo to initialize with default values
-                    this.updateProductInfo();
-                } else {
-                    console.error('Product data or product not found:', this.productData);
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching product data: ', error);
-            });
+        // Log the contents of finalStep for further debugging
+        console.log(finalStep);
+    
+        // Ensure that the final step is being added to the DOM as expected
+        console.log(stepsContainer);
+    
+        // Set a timeout to delay displaying the final step (for debugging purposes)
+        setTimeout(() => {
+            finalStep.style.display = 'flex';
+            console.log("Final step displayed.");
+        }, 1000); // Delay displaying the final step for 1 second (adjust as needed)
     }
-
-
-    render() {
-        // Move the modal HTML structure out of the loop
-        this.innerHTML = `
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <span class="close" id="closeModal">&times;</span>
-                <div class="steps"></div>
-                <!-- Timeline to display the user's progress -->
-                <div class="timeline"></div>
-            </div>
-        </div>
-        `;
-
-
-        // Add event listeners to the radio inputs in the timeline
-        const timelineRadios = document.getElementsByName('step');
-        for (let i = 0; i < timelineRadios.length; i++) {
-            timelineRadios[i].addEventListener('change', (event) => {
-                const selectedStep = parseInt(event.target.value);
-                this.nextStep(selectedStep);
-            });
-        }
-
-        // Initialize modal elements
-        this.openModalButton = document.getElementById('configure-product-button');
-        this.modal = this.querySelector('#myModal');
-        this.closeModalButton = this.querySelector('#closeModal');
-
-        // Event listener for the "Buy" button
-        this.openModalButton.addEventListener('click', () => {
-            this.openModal();
-        });
-
-        // Event listener for the close button
-        this.closeModalButton.addEventListener('click', () => {
-            this.closeModal();
-        });
-
-        // Now that the HTML structure is in place, we can add event listeners to the radio inputs in the timeline
-        this.addTimelineRadioListeners();
-    }
-
-
-    addTimelineRadioListeners() {
-        const timelineRadios = document.getElementsByName('step');
-        for (let i = 0; i < timelineRadios.length; i++) {
-            timelineRadios[i].addEventListener('change', (event) => {
-                const selectedStep = parseInt(event.target.value);
-                this.showStep(selectedStep);
-            });
-        }
-    }
+    
+    
+    
+    
 }
 
 customElements.define('sticky-product-modal', StickyProductModal);
