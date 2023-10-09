@@ -408,6 +408,119 @@ class StickyProductModal extends HTMLElement {
         });
     }
 
+    findVariantBySelectedOptions() {
+        if (!this.productData || !this.productData.variants) {
+            return null; // No variants available
+        }
+
+        const variants = this.productData.variants;
+    
+        for (const variant of variants) {
+            const variantOptions = variant.options || []; // Ensure variantOptions is an array
+
+            if (
+                this.selectedOptions[0] == variant.option1 &&
+                this.selectedOptions[1] == variant.option2 &&
+                this.selectedOptions[2] == variant.option3
+            ) return variant;
+            
+        }
+    
+        return this.productData.variants[0]; // No matching variant found
+    }
+    
+
+    addToCartAjax(cartItems) {
+        // Use the Shopify AJAX API to add the product to the cart
+        fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ items: cartItems }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Redirect to the cart page upon successful addition
+            window.location.href = '/cart'; // Adjust the URL as needed
+        })
+        .catch(error => {
+            console.error('Error adding item to cart:', error);
+            alert('An error occurred while adding the item to the cart.');
+        });
+    }
+    
+    showFinalStep() {
+        const stepsContainer = document.querySelector('.steps');
+        const allSteps = stepsContainer.querySelectorAll('.step');
+    
+        // Hide all previous steps
+        allSteps.forEach((step) => {
+            step.style.display = 'none';
+        });
+    
+        const finalStep = document.createElement('div');
+        finalStep.id = 'final-step';
+        finalStep.className = 'step';
+    
+        // Define selectedVariant variable
+        let selectedVariant = null;
+    
+        // Define addToCartButton variable
+        let addToCartButton = null;
+    
+        // Assuming this.productData contains the product information
+        if (this.productData) {
+            // Create elements to display product information
+            const productImageContainer = document.createElement('div');
+            productImageContainer.className = 'product-image__container';
+            const productImage = document.createElement('img');
+            productImage.src = this.productData.image.src; // Replace with the actual image URL
+            productImage.alt = this.productData.title;
+            productImage.style.height = '200px';
+    
+            const productInfoContainer = document.createElement('div');
+            productInfoContainer.className = 'product-info__container';
+            const productTitle = document.createElement('h2');
+            productTitle.textContent = this.productData.title;
+    
+            const productPrice = document.createElement('p');
+            productPrice.className = 'product-price';
+            productPrice.textContent = `Price: $${this.productData.variants[0].price}`;
+    
+            // Create a quantity selector
+            const productActions = document.createElement('div');
+            productActions.className = 'product-actions__container';
+            const quantityContainer = document.createElement('div');
+            quantityContainer.className = 'product-quantity__container';
+            const quantitySelector = document.createElement('input');
+            const quantityLabel = document.createElement('label');
+            quantityLabel.className = 'product-quantity__label';
+            quantityLabel.textContent = "Quantity";
+            quantitySelector.type = 'number';
+            quantitySelector.min = 1;
+            quantitySelector.id = 'quantity';
+            quantitySelector.value = 1; // Initial quantity
+    
+            // Create an "Add to Cart" button
+            addToCartButton = document.createElement('button');
+            addToCartButton.className = 'btn';
+            addToCartButton.textContent = 'Add to Cart';
+    
+            // Append elements to the final step
+            productImageContainer.appendChild(productImage);
+            productInfoContainer.appendChild(productTitle);
+            productInfoContainer.appendChild(productPrice);
+    
+            // Append selected options to the final step
+            if (this.selectedOptions.length > 0) {
+                this.selectedOptions.forEach((optionValue, index) => {
+                    const optionName = this.productData.options[index].name;
+                    const productOption = document.createElement('p');
+                    productOption.className = `option-${optionName.toLowerCase()}`;
+                    productOption.textContent = `${optionName}: ${optionValue}`;
+                    productInfoContainer.appendChild(productOption);
+                });
 
     findVariantByOptions(selectedModel, selectedColor) {
         // Check if productData is available
