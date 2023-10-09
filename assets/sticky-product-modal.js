@@ -269,25 +269,24 @@ class StickyProductModal extends HTMLElement {
             alert('An error occurred while adding the item to the cart.');
         });
     }
-    
-    
 
-    findVariantByOptions(...options) {
+    findVariantBySelectedOptions() {
         if (!this.productData || !this.productData.variants) {
             return null; // No variants available
         }
-    
+
         const variants = this.productData.variants;
     
         for (const variant of variants) {
             const variantOptions = variant.options || []; // Ensure variantOptions is an array
+
+            if (
+                this.selectedOptions[0] == variant.option1 &&
+                this.selectedOptions[1] == variant.option2 &&
+                this.selectedOptions[2] == variant.option3
+            ) return variant;
     
-            if (options.every((selectedOption, index) => {
-                const variantOption = variantOptions[index];
-                return !variantOption || variantOption.toLowerCase() === selectedOption.toLowerCase();
-            })) {
-                return variant;
-            }
+            
         }
     
         return null; // No matching variant found
@@ -399,7 +398,7 @@ class StickyProductModal extends HTMLElement {
             finalStep.appendChild(productInfoContainer);
     
             // Find the selected variant based on the properties
-            selectedVariant = this.findVariantByOptions(Object.values(this.productData.options));
+            selectedVariant = this.findVariantBySelectedOptions();
     
             if (!selectedVariant) {
                 alert('Selected options combination not found.');
