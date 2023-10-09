@@ -232,58 +232,44 @@ class StickyProductModal extends HTMLElement {
         this.modal.style.display = 'none';
     }
 
-    addToCart() {
+    addToCart(variantId, quantity) {
         // Check if the productData is available
         if (!this.productData) {
             alert('Product data is not available.');
             return;
         }
     
-        const quantity = parseInt(document.getElementById('quantity').value);
-    
+        // Validate the quantity
         if (isNaN(quantity) || quantity <= 0) {
             alert('Please enter a valid quantity.');
             return;
         }
     
-        // Check if the product has variants
-        if (this.productData.variants && this.productData.variants.length > 0) {
-            // Create an empty properties object for the cart item
-            const cartItemProperties = {};
+        // Create a cart item object
+        const cartItem = {
+            id: variantId,     // Use the variantId passed as a parameter
+            quantity: quantity,
+        };
     
-            // Iterate over the selectedOptions and map them to the properties
-            this.selectedOptions.forEach((option, index) => {
-                // Check if the option is selected (not null)
-                if (option !== null) {
-                    // Get the option name from productData
-                    const optionName = this.productData.options[index].name;
-                    // Add the option to the properties
-                    cartItemProperties[optionName] = option;
-                }
-            });
-    
-            // Find the selected variant based on the properties
-            const selectedVariant = this.findVariantByOptions(Object.values(cartItemProperties));
-    
-            if (!selectedVariant) {
-                alert('Selected options combination not found.');
-                return;
-            }
-    
-            // Create a cart item object
-            const cartItem = {
-                id: selectedVariant.id,
-                quantity: quantity,
-                properties: cartItemProperties,
-            };
-    
-            // Use the Shopify AJAX API to add the product to the cart
-            this.addToCartAjax([cartItem]);
-        } else {
-            // Product has no variants, handle it accordingly (e.g., display a message or take other action)
-            alert('No variants available for this product.');
-        }
+        // Use the Shopify AJAX API to add the product to the cart
+        fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ items: [cartItem] }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Redirect to the cart page upon successful addition
+            window.location.href = '/cart'; // Adjust the URL as needed
+        })
+        .catch(error => {
+            console.error('Error adding item to cart:', error);
+            alert('An error occurred while adding the item to the cart.');
+        });
     }
+    
     
 
     findVariantByOptions(...options) {
@@ -331,7 +317,7 @@ class StickyProductModal extends HTMLElement {
     showFinalStep() {
         const stepsContainer = document.querySelector('.steps');
         const allSteps = stepsContainer.querySelectorAll('.step');
-        
+    
         // Hide all previous steps
         allSteps.forEach((step) => {
             step.style.display = 'none';
@@ -340,6 +326,12 @@ class StickyProductModal extends HTMLElement {
         const finalStep = document.createElement('div');
         finalStep.id = 'final-step';
         finalStep.className = 'step';
+    
+        // Define selectedVariant variable
+        let selectedVariant = null;
+    
+        // Define addToCartButton variable
+        let addToCartButton = null;
     
         // Assuming this.productData contains the product information
         if (this.productData) {
@@ -375,15 +367,9 @@ class StickyProductModal extends HTMLElement {
             quantitySelector.value = 1; // Initial quantity
     
             // Create an "Add to Cart" button
-            const addToCartButton = document.createElement('button');
+            addToCartButton = document.createElement('button');
             addToCartButton.className = 'btn';
             addToCartButton.textContent = 'Add to Cart';
-            addToCartButton.addEventListener('click', () => {
-                // Handle adding the product to the cart here
-                // You can implement this functionality as needed
-                // alert('Product added to cart');
-                this.addToCart();
-            });
     
             // Append elements to the final step
             productImageContainer.appendChild(productImage);
@@ -411,6 +397,14 @@ class StickyProductModal extends HTMLElement {
     
             finalStep.appendChild(productImageContainer);
             finalStep.appendChild(productInfoContainer);
+    
+            // Find the selected variant based on the properties
+            selectedVariant = this.findVariantByOptions(Object.values(this.productData.options));
+    
+            if (!selectedVariant) {
+                alert('Selected options combination not found.');
+                return;
+            }
         } else {
             console.log("this.productData is not populated or is falsy.");
         }
@@ -418,23 +412,33 @@ class StickyProductModal extends HTMLElement {
         // Append the final step to the container
         stepsContainer.appendChild(finalStep);
     
-        // Display the final step (for debugging purposes)
-        // finalStep.style.border = '2px solid red'; // Add a border for debugging
-    
-        console.log("Final step added to DOM.");
-    
-        // Log the contents of finalStep for further debugging
-        console.log(finalStep);
-    
-        // Ensure that the final step is being added to the DOM as expected
-        console.log(stepsContainer);
-    
         // Set a timeout to delay displaying the final step (for debugging purposes)
         setTimeout(() => {
             finalStep.style.display = 'flex';
-            console.log("Final step displayed.");
         }, 1000); // Delay displaying the final step for 1 second (adjust as needed)
+    
+        // Add click event listener to "Add to Cart" button
+        if (addToCartButton) {
+            addToCartButton.addEventListener('click', () => {
+                // Check if a variant has been selected
+                if (!selectedVariant) {
+                    alert('Please select a valid product variant.');
+                    return;
+                }
+    
+                const quantity = parseInt(document.getElementById('quantity').value);
+    
+                if (isNaN(quantity) || quantity <= 0) {
+                    alert('Please enter a valid quantity.');
+                    return;
+                }
+    
+                // Call the addToCart function with the selected variantId and quantity
+                this.addToCart(selectedVariant.id, quantity);
+            });
+        }
     }
+    
     
     
     
