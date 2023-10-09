@@ -285,11 +285,10 @@ class StickyProductModal extends HTMLElement {
                 this.selectedOptions[1] == variant.option2 &&
                 this.selectedOptions[2] == variant.option3
             ) return variant;
-    
             
         }
     
-        return null; // No matching variant found
+        return this.productData.variants[0]; // No matching variant found
     }
     
 
