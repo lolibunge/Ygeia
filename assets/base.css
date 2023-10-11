@@ -97,7 +97,7 @@ html.no-js .no-js-hidden {
 .page-width {
   /* max-width: 1440px; */
   margin: 0 auto;
-  padding: 0!important;
+  padding: 0;
 }
 
 body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
