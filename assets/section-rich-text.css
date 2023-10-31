@@ -22,6 +22,14 @@
   width: 100%;
 }
 
+.rich-text__buttons a {
+  font-size:1.6rem;
+}
+
+.rich-text__text p {
+  font-size: 1.7rem;
+}
+
 @media screen and (min-width: 750px) {
   .rich-text__wrapper {
     width: 100%;
@@ -42,7 +50,7 @@
 
 @media screen and (min-width: 990px) {
   .rich-text__blocks {
-    max-width: 78rem;
+    max-width: 90rem;
   }
 }
 

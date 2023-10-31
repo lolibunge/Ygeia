@@ -2,13 +2,19 @@
   padding-right: 9.8rem;
 }
 
-.search__button {
+/* .search__button {
   right: var(--inputs-border-width);
   top: var(--inputs-border-width);
+} */
+
+.search__button {
+  right: auto;
+  top: var(--inputs-border-width);
+  left: -25px;
 }
 
 .reset__button {
-  right: calc(var(--inputs-border-width) + 4.4rem);
+  right: -20px;
   top: var(--inputs-border-width);
 }
 

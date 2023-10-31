@@ -21,7 +21,8 @@
         },
         "2cf752d3-ece4-4ea0-9642-e1a17a6586ad": {
           "type": "icon",
-          "settings": {}
+          "settings": {
+          }
         }
       },
       "block_order": [
@@ -30,7 +31,7 @@
         "2cf752d3-ece4-4ea0-9642-e1a17a6586ad"
       ],
       "settings": {
-        "background-color": "#32343b",
+        "background-color": "#474a52",
         "text-color": "#ffffff",
         "copy-right-menu": "footer-menu-2",
         "newsletter_enable": false,

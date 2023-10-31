@@ -133,20 +133,14 @@
   </div>
 </div>
 
-<style>
-
-  .product-carousel-cell {
-    width: 20%;
-    margin-right: 10px;
-  }
-  </style>
   <script>
    // external js: flickity.pkgd.js
   
   var elem = document.querySelector('.product-carousel');
   var flkty = new Flickity( elem, {
     // options
-    wrapAround: true
+    wrapAround: true,
+    cellAlign: 'left'
   });
   </script>
 

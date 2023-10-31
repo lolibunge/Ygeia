@@ -173,36 +173,6 @@
         "padding_bottom": 36
       }
     },
-    "50ae75ed-287c-4184-b6ea-7f2771649d12": {
-      "type": "rich-text",
-      "blocks": {
-        "template--20070425821469__50ae75ed-287c-4184-b6ea-7f2771649d12-heading-1": {
-          "type": "heading",
-          "settings": {
-            "heading": "<strong>What are Scalar Waves?<\/strong>",
-            "heading_size": "h1"
-          }
-        },
-        "template--20070425821469__50ae75ed-287c-4184-b6ea-7f2771649d12-text-1": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Scalar waves are detectable frequencies in the aether all around us, first recorded in the 1890’s by Nikola Tesla through his experiments in wireless energy transmission using the Tesla Coil. These wave propogations are a primal force of nature, traveling at 1.5 times the speed of light with the ability to transmit biological signals and transfer information.<\/p><p><\/p><p>Breaking barriers of today’s scientific paradigm, it is unexplainable within the confines of Einstein’s<\/p><p>EM theory and therefore often overlooked or disregarded, yet scalar energy does not contradict Maxwell’s understanding of time but can be interpreted as an extension of his equations. In the ever-evolving landscape of science, other notable researchers in this quantum space include Georges Lakhovsky,<\/p><p>Konstantin Meyl, Peng Gao, and Bahman Zohuri.<\/p><p><br\/><\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "template--20070425821469__50ae75ed-287c-4184-b6ea-7f2771649d12-heading-1",
-        "template--20070425821469__50ae75ed-287c-4184-b6ea-7f2771649d12-text-1"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
     "6d8b4705-a61c-40fd-8a55-19a9195a5f37": {
       "type": "video",
       "settings": {
@@ -291,7 +261,6 @@
     "related-products",
     "0895009e-d528-4325-8c10-714459f5cd47",
     "b56f312b-839a-4081-8fc1-35815126935a",
-    "50ae75ed-287c-4184-b6ea-7f2771649d12",
     "6d8b4705-a61c-40fd-8a55-19a9195a5f37",
     "6f637a70-b83a-4fa9-b303-3b4b4996aef8",
     "1a63a889-f1e9-4a23-840f-a708acd29ee7"

@@ -184,7 +184,7 @@
                   preload: true
                 }}
                 {% else %}
-                <img src="https://cdn.shopify.com/s/files/1/0794/5106/2557/files/black-logo.webp?v=1691518871" alt="Dev Ygeia" srcset="https://cdn.shopify.com/s/files/1/0794/5106/2557/files/black-logo.webp?v=1691518871" width="90" height="93.75" loading="eager" class="header__heading-logo motion-reduce" sizes="(max-width: 180px) 50vw, 90px">
+                <img src="https://cdn.shopify.com/s/files/1/0794/5106/2557/files/Logo_YGEIA_grey_-_website_new.svg?v=1697634997" alt="Dev Ygeia" srcset="https://cdn.shopify.com/s/files/1/0794/5106/2557/files/Logo_YGEIA_grey_-_website_new.svg?v=1697634997" width="90" height="93.75" loading="eager" class="header__heading-logo motion-reduce" sizes="(max-width: 180px) 50vw, 90px">
                 {% endif %}
               </div>
             {%- else -%}
@@ -294,7 +294,7 @@
           </localization-form>
         {%- endif -%}
       </div>
-      {% render 'header-search', input_id: 'Search-In-Modal' %}
+      
 
       {%- if shop.customer_accounts_enabled -%}
         <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}">
@@ -311,6 +311,8 @@
         </a>
       {%- endif -%}
 
+      {% render 'header-search', input_id: 'Search-In-Modal' %}
+      
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when '@app' -%}

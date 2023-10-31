@@ -103,6 +103,7 @@
                   <span>{{ 'blogs.article.comments' | t: count: article.comments_count }}</span>
                 {%- endif -%}
               </div>
+              <div class="article-card__read-article"><a href="{{ article.url }}" class="full-unstyled-link">Read article</a></div>
             {%- endif -%}
           </div>
           {%- if show_badge -%}
@@ -142,6 +143,7 @@
                 <span>{{ 'blogs.article.comments' | t: count: article.comments_count }}</span>
               {%- endif -%}
             </div>
+            <div class="article-card__read-article"><a href="{{ article.url }}" class="full-unstyled-link">Read article</a></div>
           {%- endif -%}
         </div>
         {%- if show_badge -%}

@@ -10,7 +10,8 @@
     },
     "faq": {
       "type": "faq-page",
-      "settings": {}
+      "settings": {
+      }
     },
     "c979935e-cb47-44c3-9561-2cdd796c0416": {
       "type": "faqs",
@@ -60,7 +61,7 @@
         "color_scheme": "",
         "full_width": true,
         "padding_top": 40,
-        "padding_bottom": 52,
+        "padding_bottom": 50,
         "heading": "FAQs",
         "heading_size": "h1",
         "caption": "If you have any question or need help, you can contact us to assist you.",

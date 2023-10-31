@@ -170,7 +170,8 @@
         "59db6f2c-9bbc-4d3c-a1b1-1977af1ca7c9",
         "b3b2ef38-2171-47e2-b40c-0b9527c72808"
       ],
-      "settings": {}
+      "settings": {
+      }
     },
     "566a17fa-9567-4bd6-b34e-bef1b5000030": {
       "type": "collection-list",
@@ -241,49 +242,6 @@
         "padding_bottom": 36
       }
     },
-    "5d1ca8d2-c6dc-481b-8ed0-a38ef318f9c9": {
-      "type": "rich-text",
-      "blocks": {
-        "template--20070425755933__5d1ca8d2-c6dc-481b-8ed0-a38ef318f9c9-heading-1": {
-          "type": "heading",
-          "settings": {
-            "heading": "<strong>WHAT ARE SCALAR WAVES?<\/strong>",
-            "heading_size": "h2"
-          }
-        },
-        "template--20070425755933__5d1ca8d2-c6dc-481b-8ed0-a38ef318f9c9-text-1": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Scalar waves are detectable frequencies in the ether all around us, first recorded in the 1890s by Nikola Tesla through<\/p><p>his experiments in wireless energy transmission using the Tesla Coil. These wave propagations are a primal force of nature, traveling faster than the speed of light with the ability to transmit biological signals and transfer information.<\/p>"
-          }
-        },
-        "template--20070425755933__5d1ca8d2-c6dc-481b-8ed0-a38ef318f9c9-button-1": {
-          "type": "button",
-          "settings": {
-            "button_label": "Read more",
-            "button_link": "",
-            "button_style_secondary": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": true
-          }
-        }
-      },
-      "block_order": [
-        "template--20070425755933__5d1ca8d2-c6dc-481b-8ed0-a38ef318f9c9-heading-1",
-        "template--20070425755933__5d1ca8d2-c6dc-481b-8ed0-a38ef318f9c9-text-1",
-        "template--20070425755933__5d1ca8d2-c6dc-481b-8ed0-a38ef318f9c9-button-1"
-      ],
-      "custom_css": [],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
     "7c983b50-e193-41c3-b2a6-2dd7d9699a5d": {
       "type": "image-with-text-carousel-2",
       "blocks": {
@@ -347,7 +305,8 @@
         "f4724e5f-64c1-4258-b465-1a9c0a4effaf",
         "aa5a7d3b-be08-4964-8ceb-f8f1a9d11f0f"
       ],
-      "settings": {}
+      "settings": {
+      }
     },
     "99c38acc-4c3a-4df0-a435-5cdcfe043d53": {
       "type": "multicolumn-w-video",
@@ -449,8 +408,8 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52,
+        "padding_top": 10,
+        "padding_bottom": 10,
         "heading": "FAQs",
         "heading_size": "h1",
         "caption": "Frequently asked questions.",
@@ -492,9 +451,7 @@
       "settings": {
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52,
-        "background-image": "shopify:\/\/shop_images\/newsletter-bg.jpg"
+        "background-image": "shopify:\/\/shop_images\/newsletter-bg_f6a5c2ad-48aa-44bd-b8cd-8fdaf79d6a9d.jpg"
       }
     }
   },
@@ -504,7 +461,6 @@
     "55221881-c853-4801-9cdd-4ec69fb804e0",
     "566a17fa-9567-4bd6-b34e-bef1b5000030",
     "0fb3aa40-120f-449a-980e-c16d76b817a0",
-    "5d1ca8d2-c6dc-481b-8ed0-a38ef318f9c9",
     "7c983b50-e193-41c3-b2a6-2dd7d9699a5d",
     "99c38acc-4c3a-4df0-a435-5cdcfe043d53",
     "eb4a0f7c-a1f7-4949-8a08-21e561a14dc8",

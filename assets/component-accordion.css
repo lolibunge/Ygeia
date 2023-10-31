@@ -5,6 +5,17 @@
   padding: 1.5rem 0;
 }
 
+.page\.faqs .accordion summary {
+  padding: 8rem 0 4rem;
+}
+.page\.faqs .accordion details {
+  margin-bottom: 8rem;
+}
+
+.page\.faqs summary .icon-caret {
+  height: 2.5rem;
+}
+
 .accordion .summary__title {
   display: flex;
   flex: 1;
@@ -33,8 +44,21 @@
   margin: 0;
   word-break: break-word;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 4.8rem;
+  font-family: 'BlackMango-Regular';
+  font-weight: bold;
+}
+
+.summary__title .accordion__title {
+  display: inline-block;
+  max-width: calc(100% - 6rem);
+  min-height: 1.6rem;
+  margin: 0;
+  word-break: break-word;
+  text-transform: uppercase;
+  font-size: 1.2rem;
   font-family: 'Avenir Regular';
+  font-weight: 600;
 }
 
 .accordion .icon-accordion {
@@ -54,7 +78,7 @@
   word-break: break-word;
   overflow-x: auto;
   padding: 0 0.6rem;
-  font-size: 13px;
+  font-size: 1.6rem;
 }
 
 .accordion__content img {
