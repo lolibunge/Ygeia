@@ -18,6 +18,12 @@
 }
 
 @media screen and (max-width: 749px) {
+  .footer__content-top {
+    margin-bottom: 10rem;
+  }
+  .footer .footer__content-top .list-menu__item {
+    font-size: 9vw;
+  }
   .footer .grid {
     display: block;
   }

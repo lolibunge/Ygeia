@@ -19,7 +19,7 @@
   }
   
   .image-with-text__media {
-    height: 500px!important;
+    height: 500px;
   }
   
   .image-with-text__media--small {
@@ -155,6 +155,13 @@
   }
   
   @media screen and (max-width: 749px) {
+    .image-with-text__media {
+      height: 300px!important;
+      padding: 0!important;
+    }
+    .two-block-text__grid{
+      padding: 4rem;
+    }
     .image-with-text.collapse-corners:not(.image-with-text--overlap) .image-with-text__media-item:after,
     .image-with-text.collapse-corners:not(.image-with-text--overlap) .grid__item .image-with-text__media,
     .image-with-text.collapse-corners:not(.image-with-text--overlap) .image-with-text__media img,

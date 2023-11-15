@@ -6,6 +6,10 @@
 {% if template == 'list-collections' %}style="text-align:center;"{% endif %}>
     {{ section.settings.title }}
   </h1>
+  <p class="description description--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %} " 
+{% if template == 'list-collections' %}style="text-align:center;"{% endif %}>
+    {{ section.settings.description }}
+</p>
   {%- liquid
     case section.settings.sort
       when 'products_high', 'products_low'
@@ -58,6 +62,12 @@
       "id": "title",
       "label": "t:sections.main-list-collections.settings.title.label",
       "default": "Collections"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     },
     {
       "type": "select",

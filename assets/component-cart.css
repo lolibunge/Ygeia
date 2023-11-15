@@ -1,7 +1,7 @@
-.cart {
+/* .cart {
   position: relative;
   display: block;
-}
+} */
 
 .cart__empty-text,
 .is-empty .cart__contents,
@@ -226,5 +226,16 @@ div#main-cart-footer {
   .cart__ctas {
     display: flex;
     gap: 1rem;
+  }
+}
+
+
+@media (max-width:749px){
+  body.gradient.cart .title-wrapper-with-link {
+    flex-direction: column;
+  }
+  .cart-item {
+    display: flex;
+    flex-direction: column;
   }
 }

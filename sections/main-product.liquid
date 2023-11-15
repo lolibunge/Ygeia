@@ -662,21 +662,23 @@
     <script src="{{ 'product-model.js' | asset_url }}" defer></script>
   {%- endif -%}
 
-  <script>
-    
-  </script>
 
   <script>
     const productInfoWrapper = document.getElementById('product__info-wrapper');
     const stickyProductBox = document.getElementById('sticky-product-box');
-  productInfoWrapper.addEventListener("mouseover", (event) => {
-    console.log("Over white box!");
-    stickyProductBox.classList.add('overlay');
-  });
-  productInfoWrapper.addEventListener("mouseleave", (event) => {
-    console.log("Out white box!");
-    stickyProductBox.classList.remove('overlay');
-  });
+
+    // Add event listeners for mouseover and mouseleave only on screens wider than 768px
+    if (window.innerWidth > 768) {
+      console.log('Window Screen: ',window.innerWidth);
+      productInfoWrapper.addEventListener("mouseover", (event) => {
+        console.log("Over white box!");
+        stickyProductBox.classList.add('overlay-whitebox');
+      });
+      productInfoWrapper.addEventListener("mouseleave", (event) => {
+        console.log("Out white box!");
+        stickyProductBox.classList.remove('overlay-whitebox');
+      });
+    }
 
     document.addEventListener('DOMContentLoaded', function () {
       function isIE() {
@@ -762,12 +764,16 @@
 {% render 'product-modal' %}
 
 <style>
+  .main-carousel{
+    position: relative;
+  }
+
   .main-carousel .flickity-viewport{
-    height: 660px!important;
-    width: 400px;
+    height: 660px;
+    /* width: 400px; */
   }
   .product__media-wrapper{
-    width: 400px;
+    /* width: 400px; */
     height: 660px;
     margin: auto;
   }
@@ -782,11 +788,11 @@
     object-fit: contain;
   }
   .main-carousel .flickity-prev-next-button.previous {
-    left: -300px;
+    left: 0px;
   }
 
   .main-carousel .flickity-prev-next-button.next {
-    right: -300px;
+    right: 0px;
   }
   .main-carousel .flickity-viewport:focus, .main-carousel:focus {
     outline: 0;
@@ -798,8 +804,33 @@
     outline-offset: 0;
     box-shadow: unset;
   }
+  .flickity-button:disabled {
+    display: none;
+  }
 
+@media (max-width:749px){
+  .grid__item.product__media-wrapper {
+    width: 100%!important;
+    max-width: 100%!important;
+  }
+  .product__media-wrapper{
+    width: 100%;
+    height: auto;
+    margin: auto;
+  }
+  .main-carousel .flickity-viewport{
+    height: auto;
+    width: 100%;
+  }
+  /* .carousel-cell {
+    width: 100%;
+  } */
 
+  .carousel-cell img {
+    height: auto;
+    width: 100%;
+  }
+}
   </style>
 
 <script>
@@ -808,9 +839,10 @@
  var elem = document.querySelector('.main-carousel');
  var flkty = new Flickity( elem, {
    // options
-   'wrapAround': true,
-  'groupCells': true,
-  'pageDots': false
+   wrapAround: true,
+   groupCells: true,
+  pageDots: false,
+  contain: true
  });
  </script>
 

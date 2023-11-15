@@ -117,22 +117,13 @@
             "text": "<p>EM pollution from devices like phones, laptops, Wi-Fi, and Bluetooth can have gradual but detrimental effects on our bodies by disrupting cellular communication, leading to abnormal cell behavior.<\/p><p>Neutralizing their negative impacts, our healing pendants protect you from daily EMF exposure by absorbing electromagnetic waves and converting them into beneficial scalar waves that enhance your immune system.<\/p><p>Neutralizing their negative impacts, our healing pendants protect you from daily EMF exposure by absorbing electromagnetic waves and converting them into beneficial scalar waves that enhance your immune system.<\/p>",
             "text_style": "body"
           }
-        },
-        "d1d6c33e-681f-4cc8-bebc-29901712a22b": {
-          "type": "button",
-          "settings": {
-            "button_label": "BROWSE ALL AMULETS",
-            "button_link": "shopify:\/\/collections\/amulets",
-            "button_style_secondary": false
-          }
         }
       },
       "block_order": [
-        "template--20070425821469__0895009e-d528-4325-8c10-714459f5cd47-text-1",
-        "d1d6c33e-681f-4cc8-bebc-29901712a22b"
+        "template--20070425821469__0895009e-d528-4325-8c10-714459f5cd47-text-1"
       ],
       "settings": {
-        "title": "<strong>KanaloaAmulet<\/strong>",
+        "title": "<strong>Kanaloa Amulet<\/strong>",
         "heading_size": "h1",
         "subtitle": "ADVANCED SHIELDS AGAINST ELECTROMAGNETIC POLLUTION",
         "text_size": "medium",
@@ -150,7 +141,7 @@
           "type": "text",
           "settings": {
             "heading": "<strong>Benefits<\/strong>",
-            "text": "<p>Protection against electromagnetic fields<\/p><ul><li>Energize blood cells, decreasing blood viscosity and increasing circulation<\/li><li>Enhance immune and endocrine systems<\/li><li>Enable more efficient cellular detoxification, boosting cellular permeability<\/li><li>Increases mitochondrial ATP levels (cell’s energy source)<\/li><li>Reduces Inflammation<\/li><li>Improves overall biological functioning<\/li><li>Calms the mind for improved focus and mental functioning<\/li><li>Improved quality of sleep<\/li><\/ul>",
+            "text": "<ul><li>Energize blood cells, decreasing blood viscosity and increasing circulation<\/li><li>Enhance immune and endocrine systems<\/li><li>Enable more efficient cellular detoxification, boosting cellular permeability<\/li><li>Increases mitochondrial ATP levels (cell’s energy source)<\/li><li>Reduces Inflammation<\/li><li>Improves overall biological functioning<\/li><li>Calms the mind for improved focus and mental functioning<\/li><li>Improved quality of sleep<\/li><\/ul>",
             "text_style": "body"
           }
         }

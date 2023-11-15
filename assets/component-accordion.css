@@ -84,3 +84,27 @@
 .accordion__content img {
   max-width: 100%;
 }
+
+@media (max-width:768px) {
+  .faqs__content-heading {
+    margin-bottom: 4rem;
+  }
+  .page\.faqs .accordion details {
+    margin-bottom: 0rem;
+  }
+  .accordion__title {
+    font-size: 6.5vw;
+  }
+  .page\.faqs .accordion summary {
+    padding: 4rem 0;
+  }
+  .page\.faqs summary .icon-caret {
+    height: 1rem;
+  }
+  .section-template--21466379780381__36f383d4-3ba5-4e04-978b-28ca90482c6b-padding {
+    padding: 4rem 0;
+  }
+  .accordion {
+    margin-top: 0;
+  }
+}
