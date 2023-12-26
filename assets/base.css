@@ -1718,7 +1718,8 @@ details[open] > .share-button__fallback {
   right: var(--inputs-border-width);
   bottom: var(--inputs-border-width);
   left: var(--inputs-border-width);
-  border-bottom: 0.1rem solid #000;
+  /* border-bottom: 0.1rem solid #000; */
+  border-bottom: 0.1rem solid #fff;
   border-radius: var(--inputs-radius);
   /* box-shadow: 0 0 0 var(--inputs-border-width) rgba(var(--color-foreground), var(--inputs-border-opacity)); */
   transition: box-shadow var(--duration-short) ease;
@@ -1739,7 +1740,8 @@ details[open] > .share-button__fallback {
 .customer .field:hover.field:after,
 .customer select:hover.select:after,
 .localization-form__select:hover.localization-form__select:after {
-  box-shadow: 0 0 0 calc(0.1rem + var(--inputs-border-width))
+  /* box-shadow: 0 0 0 calc(0.1rem + var(--inputs-border-width)); */
+  box-shadow: none;
     rgba(var(--color-foreground), var(--inputs-border-opacity));
   outline: 0;
   border-radius: var(--inputs-radius);
@@ -1750,7 +1752,8 @@ details[open] > .share-button__fallback {
 .customer .field input:focus-visible,
 .customer select:focus-visible,
 .localization-form__select:focus-visible.localization-form__select:after {
-  box-shadow: 0 0 0 calc(0.1rem + var(--inputs-border-width)) rgba(var(--color-foreground));
+  /* box-shadow: 0 0 0 calc(0.1rem + var(--inputs-border-width)) rgba(var(--color-foreground)); */
+  box-shadow: none;
   outline: 0;
   border-radius: var(--inputs-radius);
 }
@@ -1761,6 +1764,7 @@ details[open] > .share-button__fallback {
 .customer select:focus,
 .localization-form__select:focus.localization-form__select:after {
   /* box-shadow: 0 0 0 calc(0.1rem + var(--inputs-border-width)) rgba(var(--color-foreground)); */
+  box-shadow: none;
   outline: 0;
   border-radius: var(--inputs-radius);
 }
@@ -1853,7 +1857,7 @@ details[open] > .share-button__fallback {
 .customer .field input:-webkit-autofill ~ label {
   font-size: 1rem;
   top: calc(var(--inputs-border-width) + 0.5rem);
-  left: 0;
+  left: 40px;
   letter-spacing: .04rem;
 }
 
@@ -2833,6 +2837,12 @@ details[open] .modal-overlay::after {
   border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
   min-height: calc(100% + var(--inputs-margin-offset) + (2 * var(--inputs-border-width)));
   height: 100%;
+}
+
+.search-modal.modal__content{
+  box-shadow: 3px 3px 15px #585858;
+  background: rgb(79,85,78);
+  background: linear-gradient(160deg, rgba(79,85,78,1) 0%, rgba(70,80,88,1) 40%, rgba(151,174,189,1) 100%);
 }
 
 .search-modal__content {
