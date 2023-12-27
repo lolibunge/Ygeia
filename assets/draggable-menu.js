@@ -2,23 +2,20 @@ class DraggableMenu extends HTMLElement {
     constructor() {
         super();
 
-         // Retrieve parent container
+        // Retrieve parent container
         const container = document.getElementById('draggable-menu-container');
 
         // Retrieve data attributes
         const menuDataAttribute1 = container.getAttribute('data-menu1');
         const menuDataAttribute2 = container.getAttribute('data-menu2');
 
-        console.log('menuDataAttribute1:', menuDataAttribute1);
-    console.log('menuDataAttribute2:', menuDataAttribute2);
-
         try {
             const menuData = JSON.parse(menuDataAttribute1 || '[]');
             const menuData2 = JSON.parse(menuDataAttribute2 || '[]');
-          } catch (error) {
+        } catch (error) {
             console.error('Error parsing JSON:', error);
-          }
-        
+        }
+
         this.isDragging = false;
         this.startX = 0;
         this.startY = 0;
@@ -52,73 +49,22 @@ class DraggableMenu extends HTMLElement {
             this.appendChild(point);
         }
 
-        this.menu.addEventListener('mousedown', (e) => {
-            this.isDragging = true;
-            this.startX = e.clientX;
-            this.startY = e.clientY;
-            let rect = this.menu.getBoundingClientRect();
-            this.menuStartX = rect.left;
-            this.menuStartY = rect.top;
-            // Add a class to prevent text selection
-            document.body.classList.add('no-select');
-        });
+        this.menu.addEventListener('mousedown', this.handleDragStart.bind(this));
+        this.menu.addEventListener('touchstart', this.handleDragStart.bind(this), { passive: false });
 
-        window.addEventListener('mousemove', (e) => {
-            if (this.isDragging) {
-                let dx = e.clientX - this.startX;
-                let dy = e.clientY - this.startY;
+        window.addEventListener('mousemove', this.handleDragMove.bind(this));
+        window.addEventListener('touchmove', this.handleDragMove.bind(this), { passive: false });
 
-                this.menu.style.left = `${this.menuStartX + dx}px`;
-                this.menu.style.top = `${this.menuStartY + dy}px`;
-            }
-        });
+        window.addEventListener('mouseup', this.handleDragEnd.bind(this));
+        window.addEventListener('touchend', this.handleDragEnd.bind(this));
 
-        window.addEventListener('mouseup', () => {
-            if (this.isDragging) {
-                this.isDragging = false;
-
-                // Remove the class to allow text selection
-                document.body.classList.remove('no-select');
-
-                // Snap to closest point
-                let menuCenter = {
-                    x: this.menu.offsetLeft + this.menu.offsetWidth / 2,
-                    y: this.menu.offsetTop + this.menu.offsetHeight / 2
-                };
-                let closestPoint = null;
-                let closestDistance = Infinity;
-
-                for (let position in this.points) {
-                    let point = this.points[position];
-                    let dx = point.x - menuCenter.x;
-                    let dy = point.y - menuCenter.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < closestDistance) {
-                        closestDistance = distance;
-                        closestPoint = point;
-                    }
-                }
-
-                this.menu.style.left = `${closestPoint.x - this.menu.offsetWidth / 2}px`;
-                this.menu.style.top = `${closestPoint.y - this.menu.offsetHeight / 2}px`;
-
-                // Position menu list items based on menu's position
-                this.positionMenuListItems(closestPoint);
-            }
-        });
-
-        // Add a click event listener to the menu to toggle the visibility of menu items
-        // Existing event listener for the 'menu'
-
-        const headerDrawer = document.getElementById('shopify-section-header-drawer');
         this.menu.addEventListener('click', (event) => {
             // Check if the click occurred inside the menu
             if (!event.target.closest('.menu-list')) {
                 // If not a click inside the menu list, toggle the 'menu-open' class
                 this.menu.classList.toggle('menu-open');
                 headerDrawer.classList.toggle('menu-overlay');
-                console.log("Header Drawer: "+ headerDrawer);
+                console.log("Header Drawer: " + headerDrawer);
             }
         });
 
@@ -152,7 +98,62 @@ class DraggableMenu extends HTMLElement {
 
         // Add menu items to the menu list container
         this.menuList.innerHTML = finalMenuItems.join('');
+    }
 
+    handleDragStart(e) {
+        e.preventDefault();
+        this.isDragging = true;
+        this.startX = e.clientX || e.touches[0].clientX;
+        this.startY = e.clientY || e.touches[0].clientY;
+        let rect = this.menu.getBoundingClientRect();
+        this.menuStartX = rect.left;
+        this.menuStartY = rect.top;
+        document.body.classList.add('no-select');
+    }
+
+    handleDragMove(e) {
+        if (this.isDragging) {
+            let clientX = e.clientX || e.touches[0].clientX;
+            let clientY = e.clientY || e.touches[0].clientY;
+            let dx = clientX - this.startX;
+            let dy = clientY - this.startY;
+
+            this.menu.style.left = `${this.menuStartX + dx}px`;
+            this.menu.style.top = `${this.menuStartY + dy}px`;
+        }
+    }
+
+    handleDragEnd() {
+        if (this.isDragging) {
+            this.isDragging = false;
+            document.body.classList.remove('no-select');
+
+            // Snap to closest point
+            let menuCenter = {
+                x: this.menu.offsetLeft + this.menu.offsetWidth / 2,
+                y: this.menu.offsetTop + this.menu.offsetHeight / 2
+            };
+            let closestPoint = null;
+            let closestDistance = Infinity;
+
+            for (let position in this.points) {
+                let point = this.points[position];
+                let dx = point.x - menuCenter.x;
+                let dy = point.y - menuCenter.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestPoint = point;
+                }
+            }
+
+            this.menu.style.left = `${closestPoint.x - this.menu.offsetWidth / 2}px`;
+            this.menu.style.top = `${closestPoint.y - this.menu.offsetHeight / 2}px`;
+
+            // Position menu list items based on menu's position
+            this.positionMenuListItems(closestPoint);
+        }
     }
 
     positionMenuListItems(menuPosition) {
@@ -181,7 +182,7 @@ class DraggableMenu extends HTMLElement {
                 menuListItems.style.top = '-240px';
                 menuListItems.style.left = 'unset';
                 menuListItems.style.right = '130px';
-            break;
+                break;
             case this.points['bottom-left']:
                 // Position for right side
                 menuListItems.style.top = '-240px';
@@ -199,7 +200,7 @@ class DraggableMenu extends HTMLElement {
 
     connectedCallback() {
         const headerDrawer = document.getElementById('shopify-section-header-drawer');
-    // Add a click event listener to the document to close the menu when clicking outside of it
+        // Add a click event listener to the document to close the menu when clicking outside of it
         document.addEventListener('click', (event) => {
             if (!this.menu.contains(event.target)) {
                 // Click occurred outside the menu, so close it
@@ -208,7 +209,6 @@ class DraggableMenu extends HTMLElement {
             }
         });
     }
-
 }
 
 customElements.define('draggable-menu', DraggableMenu);
@@ -217,7 +217,7 @@ customElements.define('draggable-menu', DraggableMenu);
 const searchIcon = document.getElementById("search-icon");
 console.log('Search Icon: ' + searchIcon);
 
-searchIcon.addEventListener('click', function(){
+searchIcon.addEventListener('click', function () {
     console.log('Second Search Icon: ' + searchIcon);
     //this.setAttribute('data-open-search', true);
     this.toggleAttribute("data-open-search");
