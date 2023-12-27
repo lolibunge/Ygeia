@@ -664,21 +664,38 @@
 
 
   <script>
-    const productInfoWrapper = document.getElementById('product__info-wrapper');
-    const stickyProductBox = document.getElementById('sticky-product-box');
+   const productInfoWrapper = document.getElementById('product__info-wrapper');
+const stickyProductBox = document.getElementById('sticky-product-box');
+const accordionElements = document.querySelectorAll('[id^="Details-"] summary');
 
-    // Add event listeners for mouseover and mouseleave only on screens wider than 768px
-    if (window.innerWidth > 768) {
-      console.log('Window Screen: ',window.innerWidth);
-      productInfoWrapper.addEventListener("mouseover", (event) => {
-        console.log("Over white box!");
-        stickyProductBox.classList.add('overlay-whitebox');
-      });
-      productInfoWrapper.addEventListener("mouseleave", (event) => {
-        console.log("Out white box!");
-        stickyProductBox.classList.remove('overlay-whitebox');
-      });
+// Add event listeners for mouseover and mouseleave only on screens wider than 768px
+if (window.innerWidth > 768) {
+  console.log('Window Screen: ', window.innerWidth);
+  productInfoWrapper.addEventListener("mouseover", (event) => {
+    console.log("Over white box!");
+    stickyProductBox.classList.add('overlay-whitebox');
+  });
+
+  productInfoWrapper.addEventListener("mouseleave", (event) => {
+    console.log("Out white box!");
+    stickyProductBox.classList.remove('overlay-whitebox');
+
+    // Find the corresponding summary and details elements
+    const activeSummary = document.querySelector('[id^="Details-"] summary[aria-expanded="true"]');
+    const activeDetails = activeSummary ? activeSummary.closest('details') : null;
+
+    // Remove the 'aria-expanded' attribute from the summary
+    if (activeSummary) {
+      activeSummary.setAttribute('aria-expanded', false);
     }
+
+    // Remove the 'open' attribute from the details
+    if (activeDetails) {
+      activeDetails.removeAttribute('open');
+    }
+  });
+}
+
 
     document.addEventListener('DOMContentLoaded', function () {
       function isIE() {
