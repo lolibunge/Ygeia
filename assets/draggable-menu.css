@@ -17,8 +17,8 @@ draggable-menu {
 
 .menu {
     display: block!important;
-    width: 130px;
-    height: 130px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     /* background-color: lightgray; */
     background-image: url(https://cdn.shopify.com/s/files/1/0794/5106/2557/files/Menu_Buttons.png?v=1697635184);
