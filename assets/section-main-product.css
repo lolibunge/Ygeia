@@ -1684,3 +1684,61 @@ a.product__text {
     border: none;
   }
 }
+
+
+/* ---------------------
+ PRODUCT RECOMMENDATIONS
+------------------------ */
+.related-products {
+  width: 80%;    
+  margin: auto;
+}
+.related-products .card__heading a:after {
+  display: none;
+}
+.related-products .flickity-prev-next-button {
+  top: 36%;
+  background-color: transparent;
+}
+.related-products button.flickity-button.flickity-prev-next-button.previous:before {
+  top: 7px;
+}
+.related-products button.flickity-button.flickity-prev-next-button.next:before {
+  top: 7px;
+  left: 10px;
+}
+
+.related-products .flickity-prev-next-button.previous {
+  left: -40px;
+}
+.related-products .flickity-prev-next-button.next {
+  right: -40px;
+}
+
+.related-products h3.card__heading {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+}
+.related-products .card__product-type {
+  font-size: 1.6rem;
+}
+
+@media screen and (min-width:768px) {
+  .related-products {
+    width: 90%;
+  }
+  .related-products .flickity-prev-next-button {
+    top:30%;
+  }
+  
+  .related-products .flickity-prev-next-button.previous {
+    left: -50px;
+  }
+  .related-products .flickity-prev-next-button.next {
+    right: -50px;
+  }
+  
+  .related-products .recomended-product-carousel .recomended-product-carousel-cell {
+    margin-left: 10px;
+  }
+}
