@@ -1,0 +1,81 @@
+{{ 'section-about-us-page.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+.section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+}
+
+{%- endstyle -%}
+
+<div class="about-us-page__container pt-ms pb-mm pl-mll pr-mll">
+    <div class="about-us-page__heading">
+        {%- if section.settings.heading != blank -%}
+            <h1 class="title title-wrapper--no-top-margin inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+                {{ section.settings.heading }}
+            </h1>
+        {%- endif -%}   
+    </div>
+    <div class="about-us-page__info">        
+        <div
+        class="about-us-page__title mb-xs rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        {{ block.shopify_attributes }}
+        {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+            style="--animation-order: {{ forloop.index }};"
+        {% endif %}
+        >
+        <h2>{{ section.settings.title }}</h2>
+        </div>
+        <div
+        class="about-us-page__paragraph rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        {{ block.shopify_attributes }}
+        {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+            style="--animation-order: {{ forloop.index }};"
+        {% endif %}
+        >
+        {{ section.settings.paragraph }}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "About Us Page",
+  "tag": "section",
+  "class": "about-us-page-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+        "type": "text",
+        "id": "heading",
+        "label": "Page Heading"
+    },
+    {
+        "type": "text",
+        "id": "title",
+        "label": "Page Title"
+    },
+    {
+        "type": "textarea",
+        "id": "paragraph",
+        "label": "Page Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Us Page"
+    }
+  ]
+}
+{% endschema %}

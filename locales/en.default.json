@@ -243,6 +243,12 @@
     "cart": {
       "cart": "Cart"
     },
+    "coming-soon": {
+      "form": {
+        "title": "Coming Soon",
+        "email": "Your Email"
+      }
+    },
     "contact": {
       "form": {
         "title": "Contact form",

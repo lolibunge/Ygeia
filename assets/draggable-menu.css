@@ -143,6 +143,25 @@ li.search-bar:hover {
     list-style-type: none!important;
 }
 
+ul.submenu {
+    list-style: none;
+    padding: 0;
+    margin: auto;
+}
+
+li.menu-item.has-children {
+    text-align: center;
+}
+
+ul.submenu .menu-item a {
+    font-family: Avenir Regular;
+    font-size: 1rem;
+    letter-spacing: .5rem;
+    text-transform: uppercase;
+}
+
+ul.submenu li.menu-item {line-height: 2rem;}
+
 /* SEARCH BAR */
 .template-search {
     height: auto;

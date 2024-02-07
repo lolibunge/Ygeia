@@ -1,7 +1,7 @@
 <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'main-search.js' | asset_url }}" defer="defer"></script>
 {{ 'draggable-menu.css' | asset_url | stylesheet_tag }}
-    
+
 <draggable-menu></draggable-menu>
 
 <script>
@@ -9,7 +9,25 @@
         {% for link in section.settings.menu.links %}
         {
             "title": "{{ link.title | escape }}",
-            "url": "{{ link.url | escape }}"
+            "url": "{{ link.url | escape }}",
+            "children": [
+                {% for child_link in link.links %}
+                {
+                    "title": "{{ child_link.title | escape }}",
+                    "url": "{{ child_link.url | escape }}",
+                    "children": [
+                        {% for grandchild_link in child_link.links %}
+                        {
+                            "title": "{{ grandchild_link.title | escape }}",
+                            "url": "{{ grandchild_link.url | escape }}"
+                        }
+                        {% unless forloop.last %},{% endunless %}
+                        {% endfor %}
+                    ]
+                }
+                {% unless forloop.last %},{% endunless %}
+                {% endfor %}
+            ]
         }
         {% unless forloop.last %},{% endunless %}
         {% endfor %}
@@ -189,22 +207,35 @@
             });
 
             // Concatenate menuData2 with menuData
-            const combinedMenuData = menuData.concat(menuData2);
+            const combinedMenuData = menuData.concat(menuData2.map(item => {
+                return {...item, class: 'menu-item menu-item2'};
+            }));
+            console.log('Combined Menu Data:', combinedMenuData);
+            console.log('Menu Data 1:', menuData);
+            console.log('Menu Data 2:', menuData2);
 
             // Load menu items from the combined data
-            const menuItems = combinedMenuData.map(item => {
-                // Check if the item comes from menuData2
-                const isMenuData2Item = menuData2.includes(item);
+            this.loadMenuItems(combinedMenuData);
+        }
 
-                // Assign a class based on whether it's from menuData2 or not
-                const itemClass = isMenuData2Item ? 'menu-item menu-item2' : 'menu-item';
+        loadMenuItems(menuData) {
+            const generateMenuHTML = (menuData) => {
+                let menuHTML = '';
+                for (let item of menuData) {
+                    const hasChildren = item.children && item.children.length > 0;
+                    const itemClass = hasChildren ? 'menu-item has-children' : item.class || 'menu-item';
+                    menuHTML += `<li class="${itemClass}"><a href="${item.url}">${item.title}</a>`;
+                    if (hasChildren) {
+                        menuHTML += '<ul class="submenu">';
+                        menuHTML += generateMenuHTML(item.children);
+                        menuHTML += '</ul>';
+                    }
+                    menuHTML += '</li>';
+                }
+                return menuHTML;
+            };
 
-                return `<li class="${itemClass}"><a href="${item.url}">${item.title}</a></li>`;
-            });
-
-            // Add the 'custom-header-search' snippet before the menu items
             const searchSnippet = `
-                <!-- Add your custom-header-search snippet here -->
                 <li class="search-bar">
                     <form id="custom-search-form" action="/search" method="get">
                         <button type="submit"><svg class="modal__toggle-open icon icon-search" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg></button>
@@ -213,11 +244,8 @@
                 </li>
             `;
 
-            // Combine the 'custom-header-search' snippet with the menu items
-            const finalMenuItems = [searchSnippet, ...menuItems];
-
-            // Add menu items to the menu list container
-            this.menuList.innerHTML = finalMenuItems.join('');
+            const menuHTML = searchSnippet + generateMenuHTML(menuData);
+            this.menuList.innerHTML = menuHTML;
         }
 
         positionMenuListItems(menuPosition) {
@@ -225,38 +253,38 @@
             switch (menuPosition) {
                 case this.points['bottom']:
                     // Position for bottom center
-                    menuListItems.style.top = '-350px';
-                    menuListItems.style.left = '-60px';
+                    menuListItems.style.top = '-380px';
+                    menuListItems.style.left = '-25px';
                     menuListItems.style.right = '0';
                     break;
                 case this.points['left']:
                     // Position for left side
-                    menuListItems.style.top = '-60px';
-                    menuListItems.style.left = '150px';
+                    menuListItems.style.top = '-100px';
+                    menuListItems.style.left = '180px';
                     menuListItems.style.right = 'unset';
                     break;
                 case this.points['right']:
                     // Position for right side
-                    menuListItems.style.top = '-60px';
+                    menuListItems.style.top = '-100px';
                     menuListItems.style.left = 'unset';
-                    menuListItems.style.right = '150px';
+                    menuListItems.style.right = '180px';
                     break;
                 case this.points['bottom-right']:
                     // Position for right side
                     menuListItems.style.top = '-240px';
                     menuListItems.style.left = 'unset';
-                    menuListItems.style.right = '130px';
+                    menuListItems.style.right = '180px';
                     break;
                 case this.points['bottom-left']:
                     // Position for right side
-                    menuListItems.style.top = '-240px';
-                    menuListItems.style.left = '130px';
+                    menuListItems.style.top = '-230px';
+                    menuListItems.style.left = '180px';
                     menuListItems.style.right = 'unset';
                     break;
                 default:
                     // Default position
-                    menuListItems.style.top = '-350px';
-                    menuListItems.style.left = '-60px';
+                    menuListItems.style.top = '-380px';
+                    menuListItems.style.left = '-25px';
                     menuListItems.style.right = '0';
                     break;
             }
@@ -272,10 +300,20 @@
                     headerDrawer.classList.remove('menu-overlay');
                 }
             });
+
+            // Add a click event listener to the menu items to toggle visibility of child items
+            this.menuList.querySelectorAll('.has-children > a').forEach((menuItem) => {
+                menuItem.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent the link from being followed
+                    const submenu = menuItem.nextElementSibling;
+                    submenu.classList.toggle('submenu-open');
+                });
+            });
+
+            // Position menu list items based on the initial menu position
+            this.positionMenuListItems(this.points['bottom']);
         }
     }
 
     customElements.define('draggable-menu', DraggableMenu);
-    
-    </script>
-  
+</script>

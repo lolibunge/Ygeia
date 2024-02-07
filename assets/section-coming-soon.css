@@ -1,0 +1,75 @@
+/* ------------------
+  COMING SOON STYLE 
+------------------- */
+
+.coming-soon__container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.coming-soon__container .coming-soon__form .coming-soon__button {
+    width: fit-content;
+    margin-top: 40px;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    padding: 10px 80px;
+    font-size: 1.6rem;
+    letter-spacing: 1.5px;
+}
+
+body.gradient.page\.coming-soon,
+body.gradient.page\.coming-soon label,
+body.gradient.page\.coming-soon h2{
+    color: #ffffff;
+}
+
+body.gradient.page\.coming-soon h2 {
+    font-size: 10rem;
+    line-height: 10rem;
+}
+
+.coming-soon__container  .coming-soon__paragraph p{
+    font-size: 1.6rem;
+}
+
+.coming-soon__input {
+    width: 100%;
+    border-bottom: 1px solid #fff;
+}
+
+.coming-soon__form .field__button {
+    position: unset;
+}
+
+.coming-soon__form .field:after {
+  display: none;
+}
+.coming-soon__input input {
+    background: transparent;
+    /* border: 1px solid #fff; */
+    width: 100%;
+}
+.coming-soon__field-wrapper .field {
+    flex-direction: column;
+}
+
+@media screen and (max-width:768px) {
+    .coming-soon__container.pt-ms.pb-mm.pl-mll.pr-mll {
+        flex-direction: column-reverse;
+        padding: 40px;
+    }
+    .coming-soon__container .coming-soon__right-column {
+        text-align: end;
+        width: 100%;
+        margin-top: 5rem;
+    }
+    .coming-soon__left-column.pt-ll {
+        padding-top: 5rem;
+    }
+    body.gradient.page\.coming-soon h2 {
+        font-size: 8rem;
+        line-height: 8rem;
+        margin: 0;
+    }
+}

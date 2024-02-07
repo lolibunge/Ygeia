@@ -1,0 +1,91 @@
+/*-----------------------
+   TESTIMONIALS STYLING
+-----------------------*/
+.testimonials-page {
+    max-width: 124rem;
+    margin: auto;
+}
+
+.testimonials-page .testimonials-page__title {
+    text-align: center;
+}
+.testimonials-page h1 {
+    font-size: 7.5rem;
+    margin-bottom: 0rem;
+}
+
+.testimonials-page .testimonials-page__image-container img {
+    width: 100%;
+    height: 294px;
+    object-fit: cover;
+}
+
+.testimonials-page .video-section video {
+    width: 100%;
+    height: 294px;
+    object-fit: cover;
+}
+
+.testimonials-page .testimonials-page__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
+    align-items: center;
+}
+
+.testimonials-page .testimonials-page__description {
+    min-height: 230px;
+}
+
+.testimonials-page .testimonials-page__author {
+    letter-spacing: .3rem;
+}
+
+.testimonials-page .testimonials-page__description p {
+    margin: 0;
+    line-height: 2rem;
+}
+
+.testimonials-page .testimonials-page__contains-card .grid__item {
+    width: calc(25% - 3rem);
+    max-width: calc(25% - 3rem);
+}
+
+.testimonials-page .testimonials-page__contains-card.grid {
+    column-gap: 4rem;
+    row-gap: 10rem;
+}
+
+@media screen and (max-width:768px) {
+
+    .testimonials-page {
+        max-width: 100%;
+        margin: auto;
+        padding: 0 2rem;
+    }
+
+    .testimonials-page h1 {
+        font-size: 5rem;
+        margin-bottom: 0rem;
+    }
+
+    .testimonials-page__grid.pt-ms {
+        padding-top: 4rem;
+        width: 80%;
+        margin: auto;
+    }
+    .testimonials-page .testimonials-page__description {
+        min-height: unset;
+    }
+    .testimonials-page .testimonials-page__author {
+        margin-top: 3rem;
+    }
+    .testimonials-page .testimonials-page__contains-card .grid__item {
+        width: 100%;
+        max-width: 100%;
+    }
+    .testimonials-page .testimonials-page__contains-card.grid {
+        row-gap: 7rem;
+    }
+}
