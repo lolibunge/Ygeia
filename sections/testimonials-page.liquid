@@ -27,6 +27,8 @@
 {% endif %}
 {% endfor %}
 
+  
+
 <div class="testimonials-page">
   <div class="collection section-{{ section.id }}-padding">
     <div class="testimonials-page__title title-wrapper title-wrapper--no-top-margin page-width">
@@ -41,13 +43,31 @@
         </div>
       {%- endif -%}
     </div>
-
+    <div class="testimonials-page__filters">
+      <ul class="testimonials-page__filters-wrapper">
+        <li class="testimonials-page__filter" id="by-product">By Product</li>
+        <li class="testimonials-page__filter" id="health">Health</li>
+        <li class="testimonials-page__filter" id="rejuvenation">Rejuvenation</li>
+        <li class="testimonials-page__filter" id="enviroment">Enviroment</li>
+        <li class="testimonials-page__filter" id="water">Water</li>
+      </ul>
+    </div>
     <div class="testimonials-page__grid pt-ms {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <ul
         class="testimonials-page__contains-card grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop{% if section.settings.collection == blank %} grid--2-col-tablet-down{% else %} grid--{{ section.settings.columns_mobile }}-col-tablet-down{% endif %}"
         role="list"
       >
-        {%- for block in section.blocks limit: section.settings.products_to_show -%}
+      {% for testimonial in shop.metaobjects.products_testimonies.values %}
+
+      {%- assign productValues = testimonial.products.value -%}
+
+      {%- assign productHandles = "" -%}
+      {%- for product in productValues -%}
+        {%- capture handleValue -%}{{ product.handle }}{%- endcapture -%}
+        {%- assign productHandles = productHandles | append: handleValue | append: "," -%}
+      {%- endfor -%}
+      
+        
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
             class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -55,24 +75,20 @@
               data-cascade
               style="--animation-order: {{ forloop.index }};"
             {% endif %}
+            data-product="{{ productHandles }}"
           >
-          {% if block.settings.show-image %}
-          <div class="testimonials-page__image-container"><img src="{{ block.settings.image | img_url:'master' }}" alt="{{ block.settings.image.alt }}" /></div>
-          {% else %}
-            {% if block.settings.show-video %}
-                <div class="video-section">
-                {{ block.settings.video  | video_tag: image_size: '360x', loop: section.settings.enable_video_looping, controls: true, muted: false }}
-                </div>
-            {% endif %}
-          {% endif %}
+          <div class="testimonials-page__image-container"><img src="{{ testimonial.image.value | img_url:'master' }}" alt="{{ testimonial.image.alt.value }}" /></div>
+          
+          <div class="video-section">
+            {{ testimonial.video.value | video_tag: image_size: '360x', loop: section.settings.enable_video_looping, controls: true, muted: false }}
+          </div>
+          
            
           <div class="testimonials-page__info">
-            {% if block.settings.description != blank %}
-            <div class="testimonials-page__description">{{ block.settings.description }}</div>
-            {% endif %}
-            {% if block.settings.author != blank %}
-            <div class="testimonials-page__author">{{ block.settings.author }}</div>
-            {% endif %}
+            <div class="testimonials-page__description">{{ testimonial.testimony.value }}</div>
+            
+            <div class="testimonials-page__author">{{ testimonial.author.value }}</div>
+           
           </div>
           </li>
         
@@ -96,6 +112,52 @@
     {%- endif -%}
   </div>
 </div>
+
+<script>
+  // Function to filter and display testimonials based on the filter id
+  function filterTestimonials(filterId) {
+    // Get all testimonial elements
+    const testimonials = document.querySelectorAll('.testimonials-page__grid li');
+
+    // Iterate over each testimonial
+    testimonials.forEach(testimonial => {
+      // Get the product value of the testimonial
+      const productValue = testimonial.getAttribute('data-product');
+
+      // Check if the filter id is "by-product" or matches the testimonial's product value
+      if (filterId === 'by-product' || productValue.includes(filterId)) {
+        testimonial.style.display = 'block'; // Show testimonial
+      } else {
+        testimonial.style.display = 'none'; // Hide testimonial
+      }
+    });
+
+    // Remove active class from all filters
+    document.querySelectorAll('.testimonials-page__filter').forEach(filter => {
+      filter.classList.remove('active');
+    });
+
+    // Add active class to the clicked filter
+    document.getElementById(filterId).classList.add('active');
+  }
+
+  // Get all filter elements
+  const filters = document.querySelectorAll('.testimonials-page__filter');
+
+  // Add click event listener to each filter
+  filters.forEach(filter => {
+    filter.addEventListener('click', () => {
+      // Get the id of the clicked filter
+      const filterId = filter.id;
+      console.log(filterId);
+
+      // Filter and display testimonials based on the filter id
+      filterTestimonials(filterId);
+    });
+  });
+</script>
+
+
 
 {% schema %}
 {
