@@ -40,7 +40,52 @@
     padding-top: 2rem;
 }
 
+.page\.functions .card__information-button a {
+    text-transform: uppercase;
+    border: 1px solid;
+    border-radius: 50px;
+    line-height: unset;
+    padding: 10px 35px;
+    min-height: unset;
+}
+
+.page\.functions .card__information-button {
+    margin-top: 4rem;
+}
+
+.page\.functions p.card__heading a {
+    font-family: 'BlackMango-Regular';
+    font-size: 2.4rem;
+}
+.page\.functions p.card__caption {
+    font-style: normal
+}
+
 @media screen and (min-width: 750px){
+
+    .page\.functions .card__inner {
+        height: 360px;
+    }
+
+    .page\.functions p.card__heading a {
+        font-size: 4.4rem;
+    }
+
+    .page\.functions .page-width {
+        max-width: 1040px;
+        margin: auto;
+    }
+    
+    .page\.functions .grid--2-col-desktop .grid__item {
+        width: 100%;
+        max-width: 465px;
+    }
+
+    .page\.functions .grid {
+        column-gap: 11rem;
+        row-gap: 11rem;
+    } 
+
     .functions-product-grid-section .card__information {
         padding-top: 4rem;
     }

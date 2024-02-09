@@ -3,8 +3,16 @@
   margin-bottom: 0;
   /* display: flex;
   column-gap: 20px; */
+  width: 75%;
+  margin: auto;
 }
 
+@media screen and (min-width: 750px) {
+  .list-collections .collection-list.grid {
+    column-gap: 8.35em;
+    row-gap: 8.35em;
+  }
+}
 
 .collection-list .card--card:after, 
 .collection-list .card--standard .card__inner:after {
@@ -100,3 +108,4 @@
   padding: 10px 35px;
   min-height: unset;
 }
+
