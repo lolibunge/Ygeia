@@ -1,14 +1,117 @@
 {
-    "sections": {
-      "main": {
-        "type": "testimonials-page",
-        "settings": {
-          "padding_top": 28,
-          "padding_bottom": 28
+  "sections": {
+    "main": {
+      "type": "testimonials-page",
+      "blocks": {
+        "tiles_Wfceg6": {
+          "type": "tiles",
+          "settings": {
+            "description": "<p>Lorem Ipsumis simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book<\/p>",
+            "show-image": true,
+            "image": "shopify:\/\/shop_images\/screen.jpg",
+            "show-video": false,
+            "author": "Author"
+          }
+        },
+        "tiles_daVtNz": {
+          "type": "tiles",
+          "settings": {
+            "description": "<p>Lorem Ipsumis simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book<\/p>",
+            "show-image": false,
+            "show-video": true,
+            "video": "shopify:\/\/files\/videos\/testimoniy-2.mp4",
+            "author": "AUTHOR"
+          }
+        },
+        "tiles_6LrnGX": {
+          "type": "tiles",
+          "settings": {
+            "description": "<p>Lorem Ipsumis simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book<\/p>",
+            "show-image": true,
+            "image": "shopify:\/\/shop_images\/s.jpg",
+            "show-video": false,
+            "author": "AUTHOR"
+          }
+        },
+        "tiles_dkfpjj": {
+          "type": "tiles",
+          "settings": {
+            "description": "<p>Lorem Ipsumis simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book<\/p>",
+            "show-image": false,
+            "show-video": true,
+            "video": "shopify:\/\/files\/videos\/ba58a20b97.mp4",
+            "author": "AUTHOR"
+          }
+        },
+        "tiles_JFdC4f": {
+          "type": "tiles",
+          "settings": {
+            "description": "<p>Lorem Ipsumis simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book<\/p>",
+            "show-image": true,
+            "image": "shopify:\/\/shop_images\/s.webp",
+            "show-video": false,
+            "author": "AUTHOR"
+          }
+        },
+        "tiles_WGX6AN": {
+          "type": "tiles",
+          "settings": {
+            "description": "<p>Lorem Ipsumis simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book<\/p>",
+            "show-image": false,
+            "show-video": true,
+            "video": "shopify:\/\/files\/videos\/f799ddbaa8.mp4",
+            "author": "AUTHOR"
+          }
+        },
+        "tiles_A9iFKJ": {
+          "type": "tiles",
+          "settings": {
+            "description": "<p>Lorem Ipsumis simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book<\/p>",
+            "show-image": true,
+            "image": "shopify:\/\/shop_images\/s_1.webp",
+            "show-video": false,
+            "author": "AUTHOR"
+          }
+        },
+        "tiles_FKyjyB": {
+          "type": "tiles",
+          "settings": {
+            "description": "<p>Lorem Ipsumis simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book<\/p>",
+            "show-image": true,
+            "image": "shopify:\/\/shop_images\/s2.jpg",
+            "show-video": false,
+            "author": "AUTHOR"
+          }
         }
+      },
+      "block_order": [
+        "tiles_Wfceg6",
+        "tiles_daVtNz",
+        "tiles_6LrnGX",
+        "tiles_dkfpjj",
+        "tiles_JFdC4f",
+        "tiles_WGX6AN",
+        "tiles_A9iFKJ",
+        "tiles_FKyjyB"
+      ],
+      "settings": {
+        "title": "Testimonials Page",
+        "heading_size": "h1",
+        "paragraph": "",
+        "description_style": "body",
+        "products_to_show": 12,
+        "columns_desktop": 4,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 28,
+        "padding_bottom": 28
       }
-    },
-    "order": [
-      "main"
-    ]
-  }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

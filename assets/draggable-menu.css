@@ -161,9 +161,8 @@ ul.submenu .menu-item a {
 }
 
 ul.submenu li.menu-item {
-    line-height: 2rem;
+  line-height: 2rem;
 }
-
 ul.submenu li.menu-item::marker {
     font-size: 1rem;
 }

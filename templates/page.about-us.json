@@ -1,14 +1,197 @@
 {
-    "sections": {
-      "main": {
-        "type": "about-us-page",
-        "settings": {
-          "padding_top": 28,
-          "padding_bottom": 28
-        }
+  "sections": {
+    "main": {
+      "type": "about-us-page",
+      "settings": {
+        "heading": "About Us",
+        "title": "Reviving the knowledge of the past, introducing the future of science.",
+        "paragraph": "Ygeïa harnesses the science of information and the power of quantum biomechanics to optimize rejuvenation, health, and holistic healing with revolutionary wellness devices developed from groundbreaking discoveries by the likes of Jacques Benveniste, Nikola Tesla, Georges Lakhovsky, Antoine Priore, Louis-Claude Vincent, Viktor Schauberger, and many more..."
       }
     },
-    "order": [
-      "main"
-    ]
-  }
+    "multicolumn_v2_tWYcUA": {
+      "type": "multicolumn-v2",
+      "blocks": {
+        "column_grbhne": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/69qGPzCsOYXSC28j35QGVg.webp",
+            "title": "Wellness Devices",
+            "text": "<p>Rejuvenate, restore, and revitalize health with advanced frequency therapy and anti-EMF tools designed to compliment your everyday life.<\/p>",
+            "link_label": "DISCOVER",
+            "link": ""
+          }
+        },
+        "column_iVJAEQ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/5QvIthtSXqKk8epf6nCxBg.jpg",
+            "title": "AguaVivaWater",
+            "text": "<p>Fuel your body with dynamized water, structured to optimize your hydration,<\/p>",
+            "link_label": "DISCOVER",
+            "link": ""
+          }
+        },
+        "column_VTxXYR": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/HO_V8c2ct_2CjF-bi8PmHQ_1.jpg",
+            "title": "<strong>The Institute\/Mini-center<\/strong>",
+            "text": "<p>Visit our wellness establishments for guided healing with rejuvenating spaces, sophisticated machines, and tailored treatments.<\/p>",
+            "link_label": "DISCOVER",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_grbhne",
+        "column_iVJAEQ",
+        "column_VTxXYR"
+      ],
+      "settings": {
+        "title": "What We Do",
+        "heading_size": "h0",
+        "image_width": "full",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 100
+      }
+    },
+    "image_with_text_v2_fY7mDY": {
+      "type": "image-with-text-v2",
+      "blocks": {
+        "heading_W9fqVb": {
+          "type": "heading",
+          "settings": {
+            "heading": "CEO \/ Founder",
+            "heading_size": "h0"
+          }
+        },
+        "text_9x3x3m": {
+          "type": "text",
+          "settings": {
+            "subheading": "Marie Laure-Becquelin",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<\/p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_W9fqVb",
+        "text_9x3x3m"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/s2.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "three_images_with_text_94WQpb": {
+      "type": "three-images-with-text",
+      "blocks": {
+        "text_NTHBUG": {
+          "type": "text",
+          "settings": {
+            "heading": "The Team",
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br\/><\/p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "text_NTHBUG"
+      ],
+      "settings": {
+        "image-1": "shopify:\/\/shop_images\/s_1.webp",
+        "team-member-1": "AMARA, USA",
+        "image-2": "shopify:\/\/shop_images\/screen_1.webp",
+        "team-member-2": "AMARA, USA",
+        "image-3": "shopify:\/\/shop_images\/s_1_92f85aff-f5a7-4cd0-a763-41bc6069b193.webp",
+        "team-member-3": "AMARA, USA",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "rich_text_PFWEPt": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_XX8j8a": {
+          "type": "heading",
+          "settings": {
+            "heading": "What We're About",
+            "heading_size": "h1"
+          }
+        },
+        "text_VKgHxY": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Want to learn more?<\/p>"
+          }
+        },
+        "text_nDF66Q": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Embark on a journey of understanding the science of information,<br\/>Ignited by the exceptional minds that paved the way before us…<\/p>"
+          }
+        },
+        "button_EDPNNw": {
+          "type": "button",
+          "settings": {
+            "button_label": "[READ SCIENCE]",
+            "button_link": "",
+            "button_style_secondary": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_XX8j8a",
+        "text_VKgHxY",
+        "text_nDF66Q",
+        "button_EDPNNw"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 100,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main",
+    "multicolumn_v2_tWYcUA",
+    "image_with_text_v2_fY7mDY",
+    "three_images_with_text_94WQpb",
+    "rich_text_PFWEPt"
+  ]
+}

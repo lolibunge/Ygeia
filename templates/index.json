@@ -27,7 +27,7 @@
         "show_description": false,
         "show_title": true,
         "description_style": "body",
-        "collection": "functions",
+        "collection": "our-functions",
         "products_to_show": 25,
         "columns_desktop": 4,
         "full_width": false,
@@ -191,7 +191,7 @@
         "template--20070425755933__566a17fa-9567-4bd6-b34e-bef1b5000030-featured_collection-3": {
           "type": "featured_collection",
           "settings": {
-            "collection": "juvenis"
+            "collection": "rejuvenation"
           }
         },
         "d45a8509-c2bd-44cd-afa1-c4600d072186": {

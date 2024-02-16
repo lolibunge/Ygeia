@@ -1124,15 +1124,10 @@ summary::-webkit-details-marker {
     width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4);
     max-width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4);
   }
-  
+
   .grid--3-col-desktop .grid__item {
     width: calc(33.33% - var(--grid-desktop-horizontal-spacing) * 2 / 3);
     max-width: calc(33.33% - var(--grid-desktop-horizontal-spacing) * 2 / 3);
-  }
-
-  .list-collections .grid--3-col-desktop .grid__item {
-    width: 100%;
-    max-width: 300px;
   }
 
   .grid--2-col-desktop .grid__item {
@@ -4205,8 +4200,7 @@ section#shopify-section-template--20070425821469__ab8a371d-e1b0-4921-a4ee-a2dd25
   margin: 0 8rem;
 }
 
-.list-collections p.description.description--primary,
-.page\.functions p.description.description--primary {
+.list-collections p.description.description--primary {
   max-width: 900px;
   margin: auto auto 70px;
 }

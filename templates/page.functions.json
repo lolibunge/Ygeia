@@ -1,14 +1,18 @@
 {
-    "sections": {
-      "main": {
-        "type": "functions-page",
-        "settings": {
-          "padding_top": 28,
-          "padding_bottom": 28
-        }
+  "sections": {
+    "main": {
+      "type": "functions-page",
+      "settings": {
+        "title": "Our Functions",
+        "description": "Expertly crafted, these powerful devices protect you from harmful EMF and offer restoration from within; effectively rejuvenating cells, ​skin, and organs by repairing cell information from functional impairment through the revolutionary process of cellular recoding.",
+        "sort": "alphabetical",
+        "image_ratio": "square",
+        "columns_desktop": 2,
+        "columns_mobile": "1"
       }
-    },
-    "order": [
-      "main"
-    ]
-  }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

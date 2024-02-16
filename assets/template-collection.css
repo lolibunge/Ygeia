@@ -3,6 +3,9 @@
     flex: 0 0 100%;
     max-width: 100%;
   }
+  .collection .collection-hero{
+    margin: 0 2rem;
+  }
 }
 
 @media screen and (max-width: 989px) {

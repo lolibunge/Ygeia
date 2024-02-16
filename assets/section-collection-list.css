@@ -7,6 +7,11 @@
   margin: auto;
 }
 
+.list-collections .grid--3-col-desktop .collection-list__item.grid__item {
+    width: 26%;
+    max-width: unset;
+}
+
 @media screen and (min-width: 750px) {
   .list-collections .collection-list.grid {
     column-gap: 8.35em;
@@ -71,6 +76,9 @@
   }
   .collection-list-view-all {
     margin-bottom: 30px;
+  }
+  .list-collections .grid--3-col-desktop .collection-list__item.grid__item {
+    width: 100%;
   }
 }
 
