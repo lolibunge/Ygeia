@@ -49,6 +49,9 @@
 .article-card .card__heading {
   margin-bottom: 0.6rem;
 }
+.blog__posts .article-card .card__information{
+  gap: 20px;
+}
 
 .blog-articles .article-card .card__information,
 .blog__posts .article-card .card__information {
@@ -77,6 +80,7 @@
   width: 100%;
   margin-top: 1.2rem;
   text-align: center;
+  font-size: 1.6rem;
 }
 
 .article-card__link:not(:only-child) {

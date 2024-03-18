@@ -1,0 +1,119 @@
+/* .functions-collection-wrapper .card__heading a:after {
+    display: none;
+}
+.functions-collection-wrapper {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.functions-product-grid-section .card-view-product {
+    border: 1px solid;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 1.6rem;
+    letter-spacing: 1.5px;
+    margin-top: 40px;
+}
+
+.functions-product-grid-section .card-information {
+    text-align: justify;
+}
+
+.functions-product-grid-section h3.card__heading.h5 {
+    font-family: BlackMango-Regular;
+    font-size: 3.2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.functions-product-grid-section .card-information {
+    font-size: 1.6rem;
+}
+
+.functions-product-grid-section .grid {
+    column-gap: 10rem;
+    row-gap: 10rem;
+}
+
+.functions-product-grid-section .card__information {
+    justify-content: space-between;
+    padding-bottom: 0;
+    padding-top: 2rem;
+} */
+ .page\.functions p.description.description--primary {
+  max-width: 900px;
+  margin: auto auto 70px;
+}
+
+.page\.functions .card__information-button a {
+    text-transform: uppercase;
+    border: 1px solid;
+    border-radius: 50px;
+    line-height: unset;
+    padding: 10px 35px;
+    min-height: unset;
+}
+
+.page\.functions .card__information-button {
+    margin-top: 4rem;
+}
+
+.page\.functions p.card__heading a {
+    font-family: 'BlackMango-Regular';
+    font-size: 2.4rem;
+}
+.page\.functions p.card__caption {
+    font-style: normal
+}
+
+.page\.functions .page-width {
+  margin: 0 2rem;
+}
+
+
+
+@media screen and (min-width: 750px){
+
+    .page\.functions .card__inner {
+        height: 360px;
+    }
+
+    .page\.functions p.card__heading a {
+        font-size: 4.4rem;
+    }
+
+    .page\.functions .page-width {
+        max-width: 1040px;
+        margin: auto;
+    }
+    
+    .page\.functions .grid--2-col-desktop .grid__item {
+        width: 100%;
+        max-width: 465px;
+    }
+
+    .page\.functions .grid {
+        column-gap: 11rem;
+        row-gap: 11rem;
+    } 
+
+    /* .functions-product-grid-section .card__information {
+        padding-top: 4rem;
+    }
+    .functions-product-grid-section h3.card__heading.h5 {
+        font-size: 4rem;
+    }
+
+    .functions-collection-wrapper {
+        padding-left: 25rem;
+        padding-right: 25rem;
+    }
+
+    .functions-product-grid-section .grid--2-col-desktop .grid__item {
+        width: calc(50% - 4rem);
+        max-width: calc(50% - 6rem);
+    }
+    .functions-product-grid-section .grid {
+        column-gap: 12rem;
+        row-gap: 12rem;
+    } */
+}

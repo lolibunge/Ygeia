@@ -8,37 +8,6 @@
         "color_scheme": "background-1"
       }
     },
-    "090e3a7d-0c20-42c8-97ae-3d243039f40e": {
-      "type": "rich-text",
-      "disabled": true,
-      "blocks": {
-        "template--20070425624861__090e3a7d-0c20-42c8-97ae-3d243039f40e-heading-1": {
-          "type": "heading",
-          "settings": {
-            "heading": "Our Products",
-            "heading_size": "h1"
-          }
-        },
-        "template--20070425624861__090e3a7d-0c20-42c8-97ae-3d243039f40e-text-1": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Expertly crafted, these powerful devices protect you from harmful EMF and offer restoration from within; effectively rejuvenating cells, skin, and organs by repairing cell information from functional impairment through the revolutionary process of cellular recoding. <\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "template--20070425624861__090e3a7d-0c20-42c8-97ae-3d243039f40e-heading-1",
-        "template--20070425624861__090e3a7d-0c20-42c8-97ae-3d243039f40e-text-1"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
@@ -50,9 +19,9 @@
         "show_vendor": false,
         "show_rating": false,
         "enable_quick_add": false,
-        "enable_filtering": true,
+        "enable_filtering": false,
         "filter_type": "horizontal",
-        "enable_sorting": true,
+        "enable_sorting": false,
         "columns_mobile": "2",
         "padding_top": 36,
         "padding_bottom": 36
@@ -61,7 +30,6 @@
   },
   "order": [
     "banner",
-    "090e3a7d-0c20-42c8-97ae-3d243039f40e",
     "product-grid"
   ]
 }

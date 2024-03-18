@@ -3,7 +3,7 @@
   background-position: center;
   background-size: cover;
   height: fit-content;
-  min-height: 500px;
+  min-height: 700px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,7 +51,9 @@ button#Subscribe {
 .newsletter__wrapper {
   padding-right: calc(4rem / var(--font-body-scale));
   padding-left: calc(4rem / var(--font-body-scale));
+  margin: 100px 0 200px;
 }
+
 
 @media screen and (min-width: 750px) {
   .newsletter__wrapper {
@@ -90,6 +92,12 @@ button#Subscribe {
 .newsletter__button {
   margin-top: 3rem;
   width: fit-content;
+  font-size: 1.6rem;
+  letter-spacing: 1.5px;
+}
+
+.newsletter__subheading p {
+  font-size: 1.7rem;
 }
 
 @media screen and (min-width: 750px) {

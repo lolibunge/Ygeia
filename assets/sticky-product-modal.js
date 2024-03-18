@@ -409,6 +409,29 @@ class StickyProductModal extends HTMLElement {
     }
 
 
+    findVariantBySelectedOptions() {
+        if (!this.productData || !this.productData.variants) {
+            return null; // No variants available
+        }
+
+        const variants = this.productData.variants;
+    
+        for (const variant of variants) {
+            const variantOptions = variant.options || []; // Ensure variantOptions is an array
+
+            if (
+                this.selectedOptions[0] == variant.option1 &&
+                this.selectedOptions[1] == variant.option2 &&
+                this.selectedOptions[2] == variant.option3
+            ) return variant;
+            
+        }
+    
+        return this.productData.variants[0]; // No matching variant found
+    }
+    
+
+
     findVariantByOptions(selectedModel, selectedColor) {
         // Check if productData is available
         if (this.productData) {

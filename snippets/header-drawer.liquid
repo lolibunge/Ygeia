@@ -200,7 +200,7 @@
                     {%- endform -%}
                   </noscript>
 
-                  <localization-form class="no-js-hidden">
+                  <!-- <localization-form class="no-js-hidden">
                     {%- form 'localization', id: 'HeaderCountryMobileForm', class: 'localization-form' -%}
                       <div>
                         <h2 class="visually-hidden" id="HeaderCountryMobileLabel">
@@ -209,7 +209,7 @@
                         {%- render 'country-localization', localPosition: 'HeaderCountryMobile' -%}
                       </div>
                     {%- endform -%}
-                  </localization-form>
+                  </localization-form> -->
                 {% endif %}
 
                 {%- if localization.available_languages and localization.available_languages.size > 1 -%}
@@ -245,7 +245,7 @@
                     {%- endform -%}
                   </noscript>
 
-                  <localization-form class="no-js-hidden">
+                  <!-- <localization-form class="no-js-hidden">
                     {%- form 'localization', id: 'HeaderLanguageMobileForm', class: 'localization-form' -%}
                       <div>
                         <h2 class="visually-hidden" id="HeaderLanguageMobileLabel">
@@ -254,7 +254,7 @@
                         {%- render 'language-localization', localPosition: 'HeaderLanguageMobile' -%}
                       </div>
                     {%- endform -%}
-                  </localization-form>
+                  </localization-form> -->
                 {%- endif -%}
               </div>
             {%- endif -%}

@@ -1,0 +1,183 @@
+{{ 'section-coming-soon.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+.section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+}
+.page\.coming-soon {
+    {% if section.settings.bg_image != blank %}
+    background: url({{section.settings.bg_image | img_url:'master'}});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    {% else %}
+    background-color: #000;
+    {% endif %}
+}
+
+{%- endstyle -%}
+
+<div class="coming-soon__container pt-ms pb-mm pl-mll pr-mll">
+    <div class="coming-soon__left-column pt-ll">        
+        <div
+        class="coming-soon__paragraph rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        {{ block.shopify_attributes }}
+        {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+            style="--animation-order: {{ forloop.index }};"
+        {% endif %}
+        >
+        {{ section.settings.paragraph }}
+        </div>
+        <div class="coming-soon__email-form" {{ block.shopify_attributes }}>
+            {% form 'customer', class: 'coming-soon__form' %}
+                <input type="hidden" name="contact[tags]" value="coming-soon">
+                <div
+                class="coming-soon__field-wrapper {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} pt-ss"
+                {% if settings.animations_reveal_on_scroll %}
+                    data-cascade
+                    style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+                >
+                <div class="field">
+                    <div class="coming-soon__input">
+                    <input
+                        id="ComingSoonForm--{{ section.id }}"
+                        type="email"
+                        name="contact[email]"
+                        class="field__input"
+                        value="{{ form.email }}"
+                        aria-required="true"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        autocomplete="email"
+                        {% if form.errors %}
+                        autofocus
+                        aria-invalid="true"
+                        aria-describedby="Newsletter-error--{{ section.id }}"
+                        {% elsif form.posted_successfully? %}
+                        aria-describedby="Newsletter-success--{{ section.id }}"
+                        {% endif %}
+                        placeholder="{{ 'templates.coming-soon.form.email' | t }}"
+                        required
+                    >
+                    <label class="field__label" for="ComingSoonForm--{{ section.id }}">
+                        Your email
+                    </label>
+                    </div>
+                    <button
+                    type="submit"
+                    class="coming-soon__button field__button"
+                    name="commit"
+                    id="Subscribe"
+                    aria-label="{{ 'newsletter.button_label' | t }}"
+                    >
+                    {{ section.settings.button-text }}
+                    </button>
+                </div>
+                {%- if form.errors -%}
+                    <small class="coming-soon__message form__message" id="Newsletter-error--{{ section.id }}">
+                    {%- render 'icon-error' -%}
+                    {{- form.errors.translated_fields.email | capitalize }}
+                    {{ form.errors.messages.email -}}
+                    </small>
+                {%- endif -%}
+                </div>
+                {%- if form.posted_successfully? -%}
+                <h3
+                    class="coming-soon coming-soon--success form__message"
+                    id="Newsletter-success--{{ section.id }}"
+                    tabindex="-1"
+                    autofocus
+                >
+                    {% render 'icon-success' -%}
+                    {{- 'newsletter.success' | t }}
+                </h3>
+                {%- endif -%}
+            {% endform %}
+            </div>
+    </div>
+    <div class="coming-soon__right-column">
+        {%- if section.settings.heading != blank -%}
+            <h2 class="title title-wrapper--no-top-margin inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+                {{ section.settings.heading }}
+            </h2>
+        {%- else -%}
+            <h2 class="visually-hidden">{{ 'templates.coming-soon.form.title' | t }}</h2>
+        {%- endif -%}   
+    </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Coming Soon",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Coming Soon Form",
+      "label": "Heading"
+    },
+    {
+        "type": "richtext",
+        "id": "paragraph",
+        "default": "<p>Our page is under construction. We are working on creating something fantastic. We'll be here soon, subscribe to be notified.</p>",
+        "label": "Coming Soon message"
+    },
+    {
+        "type": "inline_richtext",
+        "id": "button-text",
+        "default": "NOTIFY ME",
+        "label": "Button text"
+    },
+    {
+        "type": "image_picker",
+        "id": "bg_image",
+        "label": "Background Image"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Coming Soon"
+    }
+  ]
+}
+{% endschema %}

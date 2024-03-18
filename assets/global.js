@@ -15,6 +15,7 @@ document.querySelectorAll('[id^="Details-"] summary').forEach((summary) => {
   }
 
   summary.addEventListener('click', (event) => {
+    console.log("I'm in accordion: ",this);
     event.currentTarget.setAttribute('aria-expanded', !event.currentTarget.closest('details').hasAttribute('open'));
   });
 

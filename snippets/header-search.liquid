@@ -10,11 +10,9 @@
 
 <details-modal class="header__search">
   <details>
-    <summary class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle" aria-haspopup="dialog" aria-label="{{ 'general.search.search' | t }}">
+    <summary class="{% if template == 'index' %}header__icons-white{% endif %} header__icon header__icon--search header__icon--summary link focus-inset modal__toggle" aria-haspopup="dialog" aria-label="{{ 'general.search.search' | t }}">
       <span>
-        <svg class="modal__toggle-open icon icon-search" aria-hidden="true" focusable="false">
-          <use href="#icon-search">
-        </svg>
+        <svg class="modal__toggle-open icon icon-search" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>
         <svg class="modal__toggle-close icon icon-close" aria-hidden="true" focusable="false">
           <use href="#icon-close">
         </svg>
@@ -57,9 +55,7 @@
                   </svg>
                 </button>
                 <button class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
-                  <svg class="icon icon-search" aria-hidden="true" focusable="false">
-                    <use href="#icon-search">
-                  </svg>
+                  <svg class="modal__toggle-open icon icon-search" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>
                 </button>
               </div>
 

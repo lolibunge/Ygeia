@@ -159,14 +159,14 @@
           {%- endform -%}
         </noscript>
 
-        <localization-form class="small-hide medium-hide no-js-hidden">
+        <!-- <localization-form class="small-hide medium-hide no-js-hidden">
           {%- form 'localization', id: 'AnnouncementCountryForm', class: 'localization-form' -%}
             <div>
               <h2 class="visually-hidden" id="AnnouncementCountryLabel">{{ 'localization.country_label' | t }}</h2>
               {%- render 'country-localization', localPosition: 'AnnouncementCountry' -%}
             </div>
           {%- endform -%}
-        </localization-form>
+        </localization-form> -->
       {% endif %}
 
       {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
@@ -199,14 +199,14 @@
           {%- endform -%}
         </noscript>
 
-        <localization-form class="small-hide medium-hide no-js-hidden">
+        <!-- <localization-form class="small-hide medium-hide no-js-hidden">
           {%- form 'localization', id: 'AnnouncementLanguageForm', class: 'localization-form' -%}
             <div>
               <h2 class="visually-hidden" id="AnnouncementLanguageLabel">{{ 'localization.language_label' | t }}</h2>
               {%- render 'language-localization', localPosition: 'AnnouncementLanguage' -%}
             </div>
           {%- endform -%}
-        </localization-form>
+        </localization-form> -->
       {%- endif -%}
     </div>
   </div>

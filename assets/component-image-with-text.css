@@ -18,7 +18,7 @@
 }
 
 .image-with-text__media {
-  height: 500px!important;
+  height: 500px;
 }
 
 .image-with-text__media--small {
@@ -183,6 +183,17 @@
 .image-with-text--overlap .image-with-text__content {
   width: 90%;
   margin: -3rem auto 0;
+}
+
+.image-with-text__grid .image-with-text__content {
+  padding-left: 120px!important;
+  padding-right: 60px;
+}
+
+@media (max-width:768px){
+  .image-with-text__grid .image-with-text__content {
+    padding: 4rem!important;
+  }
 }
 
 @media screen and (min-width: 750px) {

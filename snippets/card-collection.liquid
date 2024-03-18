@@ -83,7 +83,7 @@
       {%- else -%}
         <div class="card__content">
           <div class="card__information">
-            <h3 class="card__heading">
+            <p class="card__heading">
               <a
                 {% if card_collection == blank %}
                   role="link" aria-disabled="true"
@@ -98,7 +98,7 @@
                   {{ 'onboarding.collection_title' | t }}
                 {%- endif -%}
               </a>
-            </h3>
+            </p>
             {%- if card_collection.description != blank -%}
               <p class="card__caption">
                 {{- card_collection.description | strip_html | truncatewords: 12 -}}
@@ -111,7 +111,7 @@
     {%- if card_collection != blank and card_style == 'card' or card_collection.featured_image -%}
       <div class="card__content">
         <div class="card__information">
-          <h3 class="card__heading">
+          <p class="card__heading">
             <a
               {% if card_collection == blank %}
                 role="link" aria-disabled="true"
@@ -126,7 +126,7 @@
                 {{ 'onboarding.collection_title' | t }}
               {%- endif -%}
             </a>
-          </h3>
+          </p>
           <p class="card__caption">
             {{- card_collection.description | strip_html | truncatewords: 12 -}}
           </p>

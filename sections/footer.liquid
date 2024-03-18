@@ -288,14 +288,14 @@
               <button class="button button--tertiary">{{ 'localization.update_country' | t }}</button>
             {%- endform -%}
           </noscript>
-          <localization-form>
+          <!-- <localization-form>
             {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
               <div class="no-js-hidden">
                 <h2 class="caption-large text-body" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
                 {%- render 'country-localization', localPosition: 'FooterCountry' -%}
               </div>
             {%- endform -%}
-          </localization-form>
+          </localization-form> -->
         {%- endif -%}
 
         {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
@@ -328,7 +328,7 @@
             {%- endform -%}
           </noscript>
 
-          <localization-form>
+          <!-- <localization-form>
             {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
               <div class="no-js-hidden">
                 <h2 class="caption-large text-body" id="FooterLanguageLabel">
@@ -337,7 +337,7 @@
                 {%- render 'language-localization', localPosition: 'FooterLanguage' -%}
               </div>
             {%- endform -%}
-          </localization-form>
+          </localization-form> -->
         {%- endif -%}
       </div>
       <div class="footer__column footer__column--info">

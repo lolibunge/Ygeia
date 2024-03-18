@@ -1,0 +1,262 @@
+.about-us-page__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-us-page__info {
+    width: 100%;
+}
+.about-us-page__info .about-us-page__title{
+    width: 60%;
+}
+.about-us-page__info .about-us-page__paragraph{
+    width: 70%;
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+}
+
+.about-us-page__info .about-us-page__title h2{
+    font-size: 2.8rem;
+}
+
+.about-us-page__heading .title {
+    text-align: end;
+    font-size: 12rem;
+    width: 35%;
+}
+
+.about-us-page__heading {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.about-us-page__title h2 {
+    font-family: 'Balgin';
+}
+
+.page\.about-us .rich-text__blocks {
+    max-width: unset;
+}
+
+.page\.about-us .rich-text__buttons {
+    margin-top: 4rem;
+}
+.page\.about-us .rich-text__text p {
+    font-family: 'Balgin';
+    font-size: 2.8rem;
+    margin: 0;
+}
+
+.page\.about-us h2.rich-text__heading {
+    font-size: 12rem;
+}
+
+/*---------------------------
+  MULTICOLUMN V2 WHAT WE DO
+---------------------------*/
+
+.multicolumn-v2-section .multicolumn {
+    padding-left: 22rem;
+    padding-right: 22rem;
+}
+
+.multicolumn-v2-section .multicolumn-card__image {
+    width: 100%;
+}
+
+.multicolumn-v2-section .multicolumn-card__image-wrapper .media {
+    height: 310px;
+}
+
+.multicolumn-v2-section .multicolumn-card__info .icon-wrap {
+    display: none;
+}
+
+.multicolumn-v2-section h3.multicolumn-card__title {
+    position: absolute;
+    top: 50%;
+    margin: auto;
+    left: 0;
+    right: 0;
+    color: #fff;
+    font-size: 3.6rem;
+    font-family: BlackMango-Regular;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.multicolumn-v2-section .multicolumn-card__image-wrapper {
+    position: relative;
+}
+
+.multicolumn-v2-section .multicolumn-card__image-wrapper:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    background: #0000004f;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    left: 0;
+}
+.multicolumn-v2-section a.link {
+    padding: 10px 55px;
+    border: 1px solid #505050;
+    border-radius: 50px;
+    letter-spacing: 0.5rem;
+    font-size: 1.2rem;
+}
+/*---------------------------
+     IMAGE WITH TEXT V2
+---------------------------*/
+.image-with-text__subheading h3.h3 {
+    font-family: BlackMango-Regular;
+    font-size: 3.7rem;
+}
+.image-with-text-v2-section .grid__item {
+    width: 50%;
+}
+
+/*--------------------
+Three Images with Text
+--------------------*/
+
+.three-images-with-text-section .image-with-text__text-item {
+    width: 30%;
+}
+
+.three-images-with-text-section .image-with-text__media--placeholder.image-with-text__media--adapt {
+    height: fit-content;
+}
+
+.three-images-with-text-section .image-with-text__image {
+    height: 20rem;
+    width:  20rem;
+}
+.three-images-with-text-section .image-with-text__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+  
+@media screen and (min-width: 750px) {
+    .three-images-with-text-section .image-with-text__media--placeholder.image-with-text__media--adapt {
+        height: fit-content;
+    }
+    .three-images-with-text-section .image-with-text__image {
+        height: 25rem;
+        width:  25rem;
+    }
+}
+
+.three-images-with-text-section .image-with-text__media-row {
+    display: flex;
+    justify-content: center;
+    column-gap: 3rem;
+}
+
+.three-images-with-text-section .image-with-text__team-member {
+    text-align: center;
+}
+
+.three-images-with-text-section .image-with-text__media-item {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5rem;
+}
+
+.three-images-with-text-section .pt-none.image-with-text__content {
+    padding-top: 0!important;
+}
+
+.three-images-with-text-section .image-with-text__heading h2.h1 {
+    font-size: 12rem;
+}
+
+@media screen and (max-width:768px) {
+    .about-us-page__container.pt-ms.pb-ms.pl-mll.pr-mll {
+        padding: 4rem;
+    }
+    .about-us-page__heading .title {
+        width: 100%;
+        font-size: 7.9rem;
+    }
+    .about-us-page__info .about-us-page__title {
+        width: 100%;
+    }
+    .about-us-page__info {
+        padding-top: 10rem;
+    }
+    .about-us-page__info .about-us-page__paragraph {
+        width: 100%;
+    }
+    /*----------------------------------
+            MULTICOLUMN V2
+    -----------------------------------*/
+    .multicolumn-v2-section .multicolumn {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+    /*----------------------------------
+            IMAGE WITH TEXT V2
+    -----------------------------------*/
+    .image-with-text-v2-section.pl-sm.pr-sm {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+    .image-with-text-v2-section .grid__item {
+        width: 100%;
+    }
+    .image-with-text-v2-section .image-with-text__grid .image-with-text__content {
+        padding-left: 0!important;
+        padding-right: 0!important;
+    }
+    .image-with-text-v2-section .image-with-text__heading {
+        font-size: 3.5rem;
+    }
+    .image-with-text-v2-section .image-with-text__subheading h3.h3 {
+        font-size: 2.6rem;
+    }
+    /*----------------------------------
+            THREE IMAGES WITH TEXT
+    -----------------------------------*/
+    .three-images-with-text-section.pl-mll.pr-mm {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .three-images-with-text-section .image-with-text__media-row {
+        flex-direction: column;
+        row-gap: 5rem;
+    }
+    .three-images-with-text-section .image-with-text__image {
+        height: 400px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .three-images-with-text-section .image-with-text__text-item {
+        width: 100%;
+        padding-bottom: 4rem;
+    }
+    .three-images-with-text-section .image-with-text__heading h2.h1 {
+        font-size: 7.9rem;
+    }
+    .three-images-with-text-section .image-with-text__grid {
+        flex-direction: column-reverse;
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+    /*----------------------------------
+            RICH TEXT
+    -----------------------------------*/
+    .page\.about-us h2.rich-text__heading {
+        font-size: 4.5rem;
+    }
+    .page\.about-us .rich-text__text p {
+        font-size: 1.6rem;
+    }
+    .page\.about-us .rich-text__buttons a {
+        font-size: 1.3rem;
+    }
+}

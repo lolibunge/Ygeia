@@ -1,0 +1,368 @@
+{{ 'section-testimonials-page.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.image_shape == 'blob' %}
+  {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+
+{% for block in section.blocks %}
+{% assign block_count = forloop.index %}
+{% if block_count > section.settings.products_to_show %}
+{% assign products_to_display = section.settings.products_to_show %}
+{% endif %}
+{% endfor %}
+
+  
+
+<div class="testimonials-page">
+  <div class="collection section-{{ section.id }}-padding">
+    <div class="testimonials-page__title title-wrapper title-wrapper--no-top-margin page-width">
+      {%- if section.settings.title != blank -%}
+        <h1 class="title inline-richtext {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {{ section.settings.title }}
+        </h1>
+      {%- endif -%}
+      {%- if section.settings.paragraph  != blank -%}
+        <div class="testimonials-page__paragraph {{ section.settings.description_style }} rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {{ section.settings.paragraph  -}}
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="testimonials-page__filters">
+      <ul class="testimonials-page__filters-wrapper">
+        <li class="testimonials-page__filter" id="by-product">By Product</li>
+        <li class="testimonials-page__filter" id="health">Health</li>
+        <li class="testimonials-page__filter" id="rejuvenation">Rejuvenation</li>
+        <li class="testimonials-page__filter" id="enviroment">Enviroment</li>
+        <li class="testimonials-page__filter" id="water">Water</li>
+      </ul>
+    </div>
+    <div class="testimonials-page__grid pt-ms {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <ul
+        class="testimonials-page__contains-card grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop{% if section.settings.collection == blank %} grid--2-col-tablet-down{% else %} grid--{{ section.settings.columns_mobile }}-col-tablet-down{% endif %}"
+        role="list"
+      >
+      {% for testimonial in shop.metaobjects.products_testimonies.values %}
+
+      {%- assign productValues = testimonial.products.value -%}
+
+      {%- assign productHandles = "" -%}
+      {%- for product in productValues -%}
+        {%- capture handleValue -%}{{ product.handle }}{%- endcapture -%}
+        {%- assign productHandles = productHandles | append: handleValue | append: "," -%}
+      {%- endfor -%}
+      
+        
+          <li
+            id="Slide-{{ section.id }}-{{ forloop.index }}"
+            class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ forloop.index }};"
+            {% endif %}
+            data-product="{{ productHandles }}"
+          >
+          <div class="testimonials-page__image-container"><img src="{{ testimonial.image.value | img_url:'master' }}" alt="{{ testimonial.image.alt.value }}" /></div>
+          
+          <div class="video-section">
+            {{ testimonial.video.value | video_tag: image_size: '360x', loop: section.settings.enable_video_looping, controls: true, muted: false }}
+          </div>
+          
+           
+          <div class="testimonials-page__info">
+            <div class="testimonials-page__description">{{ testimonial.testimony.value }}</div>
+            
+            <div class="testimonials-page__author">{{ testimonial.author.value }}</div>
+           
+          </div>
+          </li>
+        
+        {%- endfor -%}
+      </ul>
+      
+    </div>
+
+    {%- if section.settings.show_view_all -%}
+      <div class="center testimonials-page__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <div
+          class="{% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
+          aria-label="View all testimonies"
+        >
+          {{ 'sections.featured_collection.view_all' | t }}
+      </div>
+      </div>
+    {%- endif -%}
+    {% if section.settings.image_shape == 'arch' %}
+      {% render 'mask-arch' %}
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  // Function to filter and display testimonials based on the filter id
+  function filterTestimonials(filterId) {
+    // Get all testimonial elements
+    const testimonials = document.querySelectorAll('.testimonials-page__grid li');
+
+    // Iterate over each testimonial
+    testimonials.forEach(testimonial => {
+      // Get the product value of the testimonial
+      const productValue = testimonial.getAttribute('data-product');
+
+      // Check if the filter id is "by-product" or matches the testimonial's product value
+      if (filterId === 'by-product' || productValue.includes(filterId)) {
+        testimonial.style.display = 'block'; // Show testimonial
+      } else {
+        testimonial.style.display = 'none'; // Hide testimonial
+      }
+    });
+
+    // Remove active class from all filters
+    document.querySelectorAll('.testimonials-page__filter').forEach(filter => {
+      filter.classList.remove('active');
+    });
+
+    // Add active class to the clicked filter
+    document.getElementById(filterId).classList.add('active');
+  }
+
+  // Get all filter elements
+  const filters = document.querySelectorAll('.testimonials-page__filter');
+
+  // Add click event listener to each filter
+  filters.forEach(filter => {
+    filter.addEventListener('click', () => {
+      // Get the id of the clicked filter
+      const filterId = filter.id;
+      console.log(filterId);
+
+      // Filter and display testimonials based on the filter id
+      filterTestimonials(filterId);
+    });
+  });
+</script>
+
+
+
+{% schema %}
+{
+  "name": "Testimonials Page",
+  "tag": "section",
+  "class": "testimonials-page-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Testimonials Page",
+      "label": "Testimonials Page"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph",
+      "label": "t:sections.featured-collection.settings.description.label"
+    },
+    {
+      "type": "select",
+      "id": "description_style",
+      "label": "t:sections.featured-collection.settings.description_style.label",
+      "options": [
+        {
+          "value": "body",
+          "label": "t:sections.featured-collection.settings.description_style.options__1.label"
+        },
+        {
+          "value": "subtitle",
+          "label": "t:sections.featured-collection.settings.description_style.options__2.label"
+        },
+        {
+          "value": "uppercase",
+          "label": "t:sections.featured-collection.settings.description_style.options__3.label"
+        }
+      ],
+      "default": "body"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 25,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.featured-collection.settings.products_to_show.label"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.featured-collection.settings.columns_desktop.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": true,
+      "label": "Enable View all"
+    },
+    {
+      "type": "select",
+      "id": "view_all_style",
+      "label": "t:sections.featured-collection.settings.view_all_style.label",
+      "options": [
+        {
+          "value": "link",
+          "label": "t:sections.featured-collection.settings.view_all_style.options__1.label"
+        },
+        {
+          "value": "outline",
+          "label": "t:sections.featured-collection.settings.view_all_style.options__2.label"
+        },
+        {
+          "value": "solid",
+          "label": "t:sections.featured-collection.settings.view_all_style.options__3.label"
+        }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.featured-collection.settings.header_mobile.content"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "default": "2",
+      "label": "t:sections.featured-collection.settings.columns_mobile.label",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.featured-collection.settings.columns_mobile.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.featured-collection.settings.columns_mobile.options__2.label"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "swipe_on_mobile",
+      "default": false,
+      "label": "t:sections.featured-collection.settings.swipe_on_mobile.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tiles",
+      "name": "Tiles",
+      "settings": [
+        {
+            "type": "richtext",
+            "id": "description",
+            "label": "Testimony Description"
+        },
+        {
+            "type": "checkbox",
+            "id": "show-image",
+            "label": "Show Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Testimony Image"
+        },
+        {
+            "type": "checkbox",
+            "id": "show-video",
+            "label": "Show Video"
+        },
+        {
+            "type": "video",
+            "id": "video",
+            "label": "Testimony Video"
+        },
+        {
+            "type": "text",
+            "id": "author",
+            "label": "Testimony Author"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Page"
+    }
+  ]
+}
+{% endschema %}

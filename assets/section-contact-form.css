@@ -24,6 +24,10 @@
   margin-top: 3rem;
 }
 
+.contact__button button {
+  font-size: 1.47rem;
+  text-transform: uppercase;
+}
 @media screen and (min-width: 750px) {
   .contact__button {
     margin-top: 4rem;
@@ -40,23 +44,43 @@
 
 
 /* CONTACT PAGE */
-.contact-page__container {
+.page\.contact .contact-page__container {
   display: flex;
+  justify-content: center;
+  margin:auto 4rem;
 }
 
-h2.title.title-wrapper--no-top-margin.inline-richtext.h1.scroll-trigger.animate--slide-in {
+.page\.contact h2.title.title-wrapper--no-top-margin.inline-richtext.h1.scroll-trigger.animate--slide-in {
   display: flex;
   flex-direction: column;
-  width: 30%;
 }
 
 span.second-part {
   text-align: right;
 }
 
-.contact-page__left-column {
+.page\.contact .contact-page__left-column {
   padding: 40px;
-  width: 50%;
+  width: 40%;
+}
+.page\.contact .contact-page__left-column p{
+  font-size: 1.6rem;
+}
+.page\.contact .contact-page__right-column {
+  width: 60%;
+  padding-top: 20rem;
+}
+
+.page\.contact .field__label{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-right: 30px;
+  text-transform: uppercase;
+}
+
+.contact-page__left-column .h1 {
+  font-size: 12rem;
 }
 
 .contact__button .button {
@@ -73,11 +97,44 @@ span.second-part {
 }
 
 .content-for-layout{
-  margin-top: 140px!important;
+  margin-top: 14rem!important;
 }
 
 span.icon-chat {
   height: 16px;
   width: 16px;
   margin-right: 10px;
+}
+@media (max-width:768px){
+  .content-for-layout {
+    margin-top:6rem;
+  }
+  .page\.contact .contact-page__container{
+    flex-direction: column;
+    margin: auto;
+    padding:0 4rem;
+  }
+  .page\.contact .contact-page__left-column, .page\.contact .contact-page__right-column{
+    width: 100%;
+    padding: 0;
+  }
+  .page\.contact .contact-page__left-column .h1 {
+    font-size: 24vw;
+  }
+  span.second-part {
+    text-align: left;
+  } 
+
+  .page\.contact textarea#ContactForm-body {
+    height: 14rem;
+  }
+  .page\.contact .contact__button{
+    gap: 10px;
+    flex-direction: column;
+  }
+  .page\.contact .contact__button button {
+    padding: 10px!important;
+    width: 100%;
+    height: fit-content;
+  }
 }

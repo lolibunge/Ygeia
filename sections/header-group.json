@@ -8,7 +8,7 @@
         "logo_position": "top-center",
         "menu": "main-menu",
         "menu_type_desktop": "drawer",
-        "sticky_header_type": "on-scroll-up",
+        "sticky_header_type": "none",
         "show_line_separator": true,
         "color_scheme": "background-1",
         "menu_color_scheme": "background-1",
