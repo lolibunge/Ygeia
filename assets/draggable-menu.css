@@ -41,6 +41,18 @@ li.menu-item {
     font-size: 2rem;
 }
 
+/* Hide submenu items by default */
+.menu-item .submenu {
+    display: none;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+/* Style for submenu items when they are visible */
+.menu-item .submenu.open {
+    display: flex;
+}
+
 li.menu-item.menu-item2 {
     font-family: 'Avenir Regular';
     font-size: 1rem;

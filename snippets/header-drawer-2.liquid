@@ -312,6 +312,22 @@
 
             // Position menu list items based on the initial menu position
             this.positionMenuListItems(this.points['bottom']);
+            this.attachSubmenuToggleListeners();
+        }
+        attachSubmenuToggleListeners() {
+            // Assuming the menuList is already populated with items
+            const menuItemsWithChildren = this.menuList.querySelectorAll('.has-children');
+            menuItemsWithChildren.forEach(menuItem => {
+                // Directly listen on the parent item or a specific part of it depending on your markup
+                menuItem.addEventListener('click', function(event) {
+                    const submenu = menuItem.querySelector('.submenu');
+                    if (submenu) {
+                        submenu.classList.toggle('open');
+                        event.preventDefault(); // Prevent following the link
+                        event.stopPropagation(); // Prevent closing the menu
+                    }
+                });
+            });
         }
     }
 
