@@ -43,7 +43,9 @@
   }
 }
 
-
+.video-section {
+  height: 300px!important;
+}
 
 .multicolumn-card__image-wrapper--third-width {
   width: 33%;

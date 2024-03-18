@@ -41,15 +41,6 @@ data-handle="{{ product.handle }}">
         height: 200px;
     }
 
-    .product__info-left-column {
-        width: 100px;
-    }
-
-    .product__info-left-column img {
-        width: 100%;
-        object-fit: cover;
-    }
-
     .close {
         position: absolute;
         top: 0;
@@ -68,21 +59,6 @@ data-handle="{{ product.handle }}">
         display: block;
     }
 
-    /* Final Step */
-    #final-step {
-        gap:20px;
-        align-items: center;
-    }
-
-    #final-step .product-image__container {
-        height: 200px;
-        width: 200px;
-    }
-
-    #final-step .product-image__container img{
-        width: 100%;
-        object-fit: cover;
-    }
     /* Timeline Styles */
 .timeline {
     display: flex;
@@ -100,33 +76,16 @@ data-handle="{{ product.handle }}">
     display: none;
 }
 
-.product-actions__container {
-    display: flex;
-    align-items: center;
-}
-
 .option-selector {
     padding: 10px 15px;
     border-radius: 50px;
 }
 
-label.product-quantity__label {
-    position: absolute;
-    left: 18px;
-    top: 0;
-}
-
-.product-quantity__container {
-    position: relative;
-    padding: 30px 15px 10px;
-    border-radius: 20px;
-    width: 110px;
-    border: 1px solid #ededed;
-}
-
 input#quantity {
-    width: 80px;
-    border: none;
+    padding: 10px 15px;
+    border-radius: 50px;
+    width: 90px;
+    border: 1px solid #ededed;
     font-family: 'BlackMango-Regular';
 }
 
@@ -150,7 +109,7 @@ input#quantity {
     color: #fff;
 }
 .btn {
-    /* margin-bottom: 1rem; */
+    margin-bottom: 1rem;
     border: none;
     font-size: 16px;
     padding: 10px 15px;
