@@ -44,7 +44,7 @@
   width: 100%;
   background-color: rgb(var(--color-background));
   overflow: hidden;
-  max-width: var(--page-width);
+  max-width: 1440px;
   width: calc(100% - 3rem);
 }
 
@@ -65,7 +65,7 @@
 
 @media screen and (min-width: 990px) {
   .quick-add-modal__content {
-    width: 70%;
+    width: 90%;
   }
 }
 
