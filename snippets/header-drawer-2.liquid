@@ -312,7 +312,28 @@
 
             // Position menu list items based on the initial menu position
             this.positionMenuListItems(this.points['bottom']);
-        }
+            this.attachSubmenuToggleListeners();
+            }
+
+            attachSubmenuToggleListeners() {
+                const menuItemsWithChildren = this.menuList.querySelectorAll('.has-children');
+                console.log(`Attaching event listeners to ${menuItemsWithChildren.length} items`); // Debugging line
+
+                menuItemsWithChildren.forEach(menuItem => {
+                    // Listen for clicks on the direct child anchor tag of menuItem
+                    const toggle = menuItem.querySelector('a');
+                    toggle.addEventListener('click', function(event) {
+                        const submenu = menuItem.querySelector('.submenu');
+                        if (submenu) {
+                            submenu.classList.toggle('open');
+                            console.log(`Toggling submenu for ${toggle.innerText}`); // More debugging
+                            event.preventDefault(); // Prevent following the link
+                            event.stopPropagation(); // Stop the click from closing the entire menu
+                        }
+                    });
+                });
+            }
+
     }
 
     customElements.define('draggable-menu', DraggableMenu);

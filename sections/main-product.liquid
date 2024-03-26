@@ -68,8 +68,7 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
-
-  <div id="sticky-product-box" class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+  <div id="sticky-product-box {% if template == 'product' %}product-template{% endif %}" class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
     <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
       <div class="main-carousel">{% render 'carousel-product-gallery' %}</div>
     </div>
@@ -662,9 +661,9 @@
     <script src="{{ 'product-model.js' | asset_url }}" defer></script>
   {%- endif -%}
 
-
+ 
   <script>
-   const productInfoWrapper = document.getElementById('product__info-wrapper');
+   const productInfoWrapper = document.getElementById('product-template');
 const stickyProductBox = document.getElementById('sticky-product-box');
 const accordionElements = document.querySelectorAll('[id^="Details-"] summary');
 

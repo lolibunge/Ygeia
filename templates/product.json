@@ -5,7 +5,8 @@
       "blocks": {
         "title": {
           "type": "title",
-          "settings": {}
+          "settings": {
+          }
         },
         "vendor": {
           "type": "text",
@@ -16,10 +17,17 @@
         },
         "price": {
           "type": "price",
-          "settings": {}
+          "settings": {
+          }
+        },
+        "17f69397-2fcb-42fa-a7c2-89302e941c8a": {
+          "type": "open-modal-button",
+          "settings": {
+          }
         },
         "buy_buttons": {
           "type": "buy_buttons",
+          "disabled": true,
           "settings": {
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": false
@@ -59,6 +67,7 @@
         "title",
         "vendor",
         "price",
+        "17f69397-2fcb-42fa-a7c2-89302e941c8a",
         "buy_buttons",
         "88f8b22c-fd04-4359-a940-a1fd751a22bb",
         "8e05f335-5e8b-413e-a248-9e08da601a4c",
@@ -66,7 +75,7 @@
         "675ede6a-5017-45c2-8bdd-492f34d3c778"
       ],
       "settings": {
-        "enable_sticky_info": true,
+        "enable_sticky_info": false,
         "media_size": "large",
         "constrain_to_viewport": true,
         "media_fit": "contain",
