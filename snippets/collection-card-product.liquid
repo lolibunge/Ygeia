@@ -212,52 +212,7 @@
               endif
             -%}
             {%- if card_product.variants.size > 1 or qty_rules -%}
-              <modal-opener data-modal="#QuickAdd-{{ card_product.id }}">
-                <button
-                  id="{{ product_form_id }}-submit"
-                  type="submit"
-                  name="add"
-                  class="quick-add__submit button button--full-width button--secondary{% if horizontal_quick_add %} card--horizontal__quick-add animate-arrow{% endif %}"
-                  aria-haspopup="dialog"
-                  aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
-                  data-product-url="{{ card_product.url }}"
-                >
-                  {{ 'products.product.choose_options' | t }}
-                  {%- if horizontal_quick_add -%}
-                    <span class="icon-wrap">{% render 'icon-arrow' %}</span>
-                  {%- endif -%}
-                  <div class="loading-overlay__spinner hidden">
-                    <svg
-                      aria-hidden="true"
-                      focusable="false"
-                      class="spinner"
-                      viewBox="0 0 66 66"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                    </svg>
-                  </div>
-                </button>
-              </modal-opener>
-              <quick-add-modal id="QuickAdd-{{ card_product.id }}" class="quick-add-modal">
-                <div
-                  role="dialog"
-                  aria-label="{{ 'products.product.choose_product_options' | t: product_name: card_product.title | escape }}"
-                  aria-modal="true"
-                  class="quick-add-modal__content global-settings-popup"
-                  tabindex="-1"
-                >
-                  <button
-                    id="ModalClose-{{ card_product.id }}"
-                    type="button"
-                    class="quick-add-modal__toggle"
-                    aria-label="{{ 'accessibility.close' | t }}"
-                  >
-                    {% render 'icon-close' %}
-                  </button>
-                  <div id="QuickAddInfo-{{ card_product.id }}" class="quick-add-modal__content-info"></div>
-                </div>
-              </quick-add-modal>
+            <button class="chooseOptionsBtn" data-product-handle="{{ card_product.handle }}">Choose options</button>
             {%- else -%}
               <product-form data-section-id="{{ section.id }}">
                 {%- form 'product',
@@ -364,3 +319,137 @@
     </div>
   </div>
 {%- endif -%}
+
+  
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.chooseOptionsBtn').forEach(button => {
+      button.addEventListener('click', function() {
+        const productHandle = this.getAttribute('data-product-handle');
+        if (productHandle) {
+          document.getElementById('quickAddProductModal').style.display = 'flex';
+          openModal(productHandle);
+        } else {
+          console.error('Product handle is missing');
+        }
+      });
+    });
+  
+    document.getElementById('addToCartBtn').addEventListener('click', () => {
+      const variantId = document.getElementById('selectedVariantId').value;
+      const quantity = parseInt(document.getElementById('productQuantity').value, 10) || 1;
+      addToCart(variantId, quantity);
+    });
+  });
+  
+  function openModal(productHandle) {
+    fetch(`/products/${productHandle}.js`)
+      .then(response => response.json())
+      .then(product => {
+        const carouselContainer = document.querySelector('.quick-add-product-modal__carousel');
+        carouselContainer.innerHTML = ''; // Clear previous content
+        
+        // Populate carousel with images
+        product.images.forEach((imageUrl, index) => {
+          const imgContainer = document.createElement('div');
+          imgContainer.className = "carousel-cell";
+          const img = document.createElement('img');
+          img.src = imageUrl;
+          img.alt = `Product Image ${index + 1}`;
+          //img.style.display = index === 0 ? 'block' : 'none'; // Only show the first image initially
+          imgContainer.appendChild(img);
+          carouselContainer.appendChild(imgContainer);
+        });
+        
+        document.querySelector('.quick-add-product-modal__title').innerText = product.title;
+        document.querySelector('.quick-add-product-modal__price').innerText = `$${product.variants[0].price}`;
+        document.querySelector('.quick-add-product-modal__vendor').textContent = product.vendor || 'Vendor not specified';
+        document.querySelector('.quick-add-product-modal__view-details').href = `/products/${product.handle}`;
+        
+        const optionsContainer = document.querySelector('.quick-add-product-modal__options');
+        optionsContainer.innerHTML = ''; // Clear previous options
+        product.options.forEach(option => {
+          const div = document.createElement('div');
+          const label = document.createElement('label');
+          label.textContent = option.name + ': ';
+          const select = document.createElement('select');
+          option.values.forEach(value => {
+            const optionElement = document.createElement('option');
+            optionElement.value = value;
+            optionElement.textContent = value;
+            select.appendChild(optionElement);
+          });
+          div.appendChild(label);
+          div.appendChild(select);
+          optionsContainer.appendChild(div);
+        });
+  
+        const selects = optionsContainer.querySelectorAll('select');
+        selects.forEach(select => select.addEventListener('change', () => updateVariantSelection(product, selects)));
+        updateVariantSelection(product, selects);
+      })
+      .catch(error => {
+        console.error('Error fetching product details:', error);
+      });
+  }
+  
+  function updateVariantSelection(product, selects) {
+    const selectedOptions = Array.from(selects).map(select => select.value);
+    const matchingVariant = product.variants.find(variant =>
+      selectedOptions.every((option, index) => option === variant.options[index])
+    );
+    if (matchingVariant) {
+      document.getElementById('selectedVariantId').value = matchingVariant.id;
+
+      // Use Intl.NumberFormat for locale-aware formatting
+      const formatter = new Intl.NumberFormat('en-US', { // Change 'en-US' to your target locale if necessary
+        style: 'currency',
+        currency: 'USD', // Change 'USD' to your target currency if necessary
+      });
+      const formattedPrice = formatter.format(matchingVariant.price / 100);
+      document.querySelector('.quick-add-product-modal__price').innerText = formattedPrice;
+    } else {
+      console.error('Matching variant not found');
+    }
+  }
+
+
+  function addToCart(variantId, quantity) {
+    fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            items: [{ id: variantId, quantity: quantity }]
+        }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Response not OK');
+        }
+        return response.json();
+    })
+    .then(() => {
+        // After adding to cart, redirect to cart page
+        window.location.href = '/cart';
+    })
+    .catch(error => {
+        console.error('Error adding item to cart:', error);
+        // Optionally handle the error, e.g., display a message to the user
+    });
+}
+
+  
+  function closeModal() {
+    document.getElementById('quickAddProductModal').style.display = 'none';
+  }
+  
+  window.onclick = function(event) {
+    let modal = document.getElementById('quickAddProductModal');
+    if (event.target == modal) {
+      closeModal();
+    }
+  }
+  </script>
+  

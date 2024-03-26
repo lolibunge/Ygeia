@@ -1,3 +1,4 @@
+
 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
 {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
 
@@ -44,6 +45,191 @@
     {%- endif -%}
   </div>
 </div>
+
+<div id="quickAddProductModal" class="quick-add-product-modal" style="display:none;">
+  <div class="quick-add-product-modal__content">
+    <span class="quick-add-product-modal__close-modal" onclick="closeModal()">&times;</span>
+    <div class="quick-add-product-modal__left-column">
+      <!-- Inside .quick-add-product-modal__left-column, replace the <img> with this: -->
+      <div class="quick-add-product-modal__carousel"></div>
+    </div>
+    <div class="quick-add-product-modal__right-column">
+      <div class="product__title">
+        <p class="quick-add-product-modal__vendor"></p>
+        <h2 class="quick-add-product-modal__title"></h2>
+      </div>
+      <p class="quick-add-product-modal__price"></p>
+      <div class="quick-add-product-modal__options"></div>
+      <!-- Hidden input for storing selected variant ID -->
+      <input type="hidden" id="selectedVariantId">
+      <!-- Inside your modal, within the .quick-add-product-modal__right-column -->
+      <div class="quick-add-product-modal__quantity-selector">
+        <label for="productQuantity">Quantity:</label>
+        <input type="number" id="productQuantity" name="productQuantity" value="1" min="1" step="1">
+      </div>
+      <!-- Add to Cart Button -->
+      <button id="addToCartBtn">Buy</button>
+      <a href="" class="link quick-add-product-modal__view-details animate-arrow">
+        View full details
+        <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Modal Background */
+  .quick-add-product-modal {
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  /* Modal Content */
+  .quick-add-product-modal__content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 40px 20px;
+    border: 1px solid #888;
+    width: 80%;
+    display: flex;
+    column-gap: 80px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 80vh;
+  }
+
+  /* The Close Button */
+  .quick-add-product-modal__close-modal {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 25px;
+    top: 10px;
+  }
+
+  .quick-add-product-modal__close-modal:hover,
+  .quick-add-product-modal__close-modal:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Modal Columns */
+  .quick-add-product-modal__left, .quick-add-product-modal__right {
+    flex: 1;
+  }
+
+  .quick-add-product-modal__options {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+  .quick-add-product-modal__options select {
+    padding: 10px 15px;
+    border-radius: 50px;
+  }
+
+  .quick-add-product-modal__carousel {
+    width: 500px;
+    height: 500px;
+    overflow-y: scroll;
+  }
+  /* Scrollbar styling */
+
+    /* End scrollbar styling*/
+  .carousel-cell {
+    width: 500px;
+    height: 500px;
+  }
+  .carousel-cell img{
+    width:100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .quick-add-product-modal__carousel img{
+    width: 100%;
+    height: 100%;
+  }
+  .quick-add-product-modal__right-column {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: flex-start;
+  }
+  .product__title {
+    display: flex;
+    flex-direction: column;
+  }
+  .quick-add-product-modal__title {
+    margin: 0;
+  }
+  .quick-add-product-modal__vendor{
+    font-size: 10px;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  #addToCartBtn{
+    background-color: #484a52;
+    color: #fff;
+    padding: 10px 40px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: BlackMango-Regular;
+    border-radius: 50px;
+  }
+
+  button.chooseOptionsBtn {
+    background-color: #484a52;
+    color: #fff;
+    padding: 12px 50px;
+    border: none;
+    font-size: 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: BlackMango-Regular;
+    width: fit-content !important;
+    margin: auto;
+  }
+
+  .quick-add-product-modal__quantity-selector {
+    position: relative;
+    padding: 30px 15px 10px;
+    border-radius: 20px;
+    width: 110px;
+    border: 1px solid #ededed;
+}
+
+.quick-add-product-modal__quantity-selector label {
+    position: absolute;
+    left: 18px;
+    top: 0;
+}
+
+input#productQuantity {
+    width: 80px;
+    border: none;
+    font-family: 'BlackMango-Regular';
+}
+
+@media (max-width:749px){
+
+}
+
+</style>
 
 {% schema %}
 {

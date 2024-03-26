@@ -3,6 +3,7 @@
   grid-row-start: 4;
   margin: 0 0 1rem;
   z-index: 1;
+  text-align: center;
 }
 
 .card--card .quick-add {
